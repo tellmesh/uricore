@@ -1,0 +1,25 @@
+id: browser-mock-pack
+version: 1
+scheme: browser
+
+uri_patterns:
+  - pattern: browser://{session}/page/open
+    kind: command
+    operation: open_page
+    command_type: browser.v1.OpenPageCommand
+    success_event_type: browser.v1.PageOpenedEvent
+    side_effects: true
+    approval: required
+
+  - pattern: browser://{session}/page/dom
+    kind: query
+    operation: get_dom
+    query_type: browser.v1.GetDomQuery
+    result_type: browser.v1.DomSnapshot
+    side_effects: false
+    approval: not_required
+
+handlers:
+  python:
+    open_page: python://examples.packs.browser_mock.handlers:open_page
+    get_dom: python://examples.packs.browser_mock.handlers:get_dom

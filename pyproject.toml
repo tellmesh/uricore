@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uricore"
+version = "0.1.0"
+description = "Thin URI-native control-plane core for software, services and devices."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "uricore contributors" }
+]
+dependencies = [
+  "PyYAML>=6.0"
+]
+keywords = ["uri", "control-plane", "cqrs", "event-sourcing", "devices", "automation"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6.0",
+]
+
+[project.scripts]
+uricore = "uri_control.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "core/python"}
+
+[tool.setuptools.packages.find]
+where = ["core/python"]
+include = ["uri_control*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["core/python", "."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

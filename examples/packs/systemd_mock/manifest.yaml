@@ -1,0 +1,25 @@
+id: systemd-mock-pack
+version: 1
+scheme: systemd
+
+uri_patterns:
+  - pattern: systemd://unit/{unit}/query/status
+    kind: query
+    operation: unit_status
+    query_type: systemd.v1.UnitStatusQuery
+    result_type: systemd.v1.UnitStatus
+    side_effects: false
+    approval: not_required
+
+  - pattern: systemd://unit/{unit}/command/restart
+    kind: command
+    operation: unit_restart
+    command_type: systemd.v1.RestartUnitCommand
+    success_event_type: systemd.v1.UnitRestartedEvent
+    side_effects: true
+    approval: required
+
+handlers:
+  python:
+    unit_status: python://examples.packs.systemd_mock.handlers:unit_status
+    unit_restart: python://examples.packs.systemd_mock.handlers:unit_restart

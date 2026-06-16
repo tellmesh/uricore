@@ -1,0 +1,161 @@
+# uricore
+
+`uricore` is a small URI-native control-plane core. It provides a thin deterministic layer over software, services, devices and operating-system capabilities.
+
+The Python distribution is named **`uricore`**, while the runtime module is **`uri_control`**:
+
+```python
+from uri_control import CapabilityRegistry, UriControlRuntime, JsonlEventStore
+```
+
+The repository also contains placeholder SDK folders for Node/TypeScript, Go and PHP. Those SDKs intentionally remain thin: the source of truth is the URI, the manifest, and the protobuf-style command/event envelope.
+
+## Architecture
+
+```text
+URI
+  ↓
+Capability manifest
+  ↓
+Policy decision
+  ↓
+Command / Query dispatch
+  ↓
+Handler in Python / Node / Go / PHP / any runtime
+  ↓
+Append-only event log
+  ↓
+Projection / status / result
+```
+
+Core rules:
+
+1. URI does not execute.
+2. URI identifies a resource, operation or intent.
+3. Manifest declares capabilities, handlers and policy.
+4. Handler performs the technical work.
+5. Event store records facts.
+6. Projection builds read models from events.
+
+## Repository layout
+
+```text
+uricore/
+  core/
+    python/
+      uri_control/
+        parser.py
+        registry.py
+        dispatcher.py
+        event_store.py
+        projection.py
+        policy.py
+    node/uri-control/
+    go/uricontrol/
+    php/UriControl/
+  contracts/
+    proto/uricore/v1/envelope.proto
+  examples/
+    packs/browser_mock/
+    packs/systemd_mock/
+    call_browser_mock.py
+    call_systemd_mock.py
+  tests/
+```
+
+## Install locally
+
+```bash
+cd uricore
+python -m pip install -e .
+```
+
+For tests:
+
+```bash
+python -m pip install -e .[dev]
+python -m pytest
+```
+
+## CLI examples
+
+Explain a URI against a manifest:
+
+```bash
+uricore explain browser://default/page/open \
+  --manifest examples/packs/browser_mock/manifest.yaml
+```
+
+Call a command:
+
+```bash
+uricore call browser://default/page/open \
+  --manifest examples/packs/browser_mock/manifest.yaml \
+  --payload '{"url":"https://example.com","wait_until_loaded":true}' \
+  --approve \
+  --events output/events.jsonl
+```
+
+Query a projection from JSONL events:
+
+```bash
+uricore projection latest --events output/events.jsonl
+```
+
+## Minimal Python usage
+
+```python
+from uri_control import CapabilityRegistry, JsonlEventStore, UriControlRuntime
+
+registry = CapabilityRegistry.from_manifest_files([
+    "examples/packs/browser_mock/manifest.yaml"
+])
+
+runtime = UriControlRuntime(
+    registry=registry,
+    event_store=JsonlEventStore("output/events.jsonl"),
+)
+
+result = runtime.call(
+    "browser://default/page/open",
+    payload={"url": "https://example.com"},
+    context={"approved": True, "environment": "mock"},
+)
+
+print(result.ok, result.result)
+```
+
+## Manifest example
+
+```yaml
+id: browser-mock-pack
+version: 1
+scheme: browser
+
+uri_patterns:
+  - pattern: browser://{session}/page/open
+    kind: command
+    operation: open_page
+    command_type: browser.v1.OpenPageCommand
+    success_event_type: browser.v1.PageOpenedEvent
+    side_effects: true
+    approval: required
+
+handlers:
+  python:
+    open_page: python://examples.packs.browser_mock.handlers:open_page
+```
+
+## Relationship to `urisys`
+
+`uricore` should stay small and deterministic. A future `urisys` project can reuse it and add:
+
+- concrete device/software packs,
+- HTTP or gRPC gateway,
+- dashboard,
+- scheduler,
+- LLM planner,
+- policy UI,
+- multi-language runners.
+
+`uricore` should not contain those heavier orchestration concerns.

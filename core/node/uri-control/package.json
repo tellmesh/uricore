@@ -1,0 +1,11 @@
+{
+  "name": "@uricore/uri-control",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Thin Node/TypeScript placeholder for uricore URI control runtime.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo 'Node SDK placeholder: no tests yet'"
+  }
+}

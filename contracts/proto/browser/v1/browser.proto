@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package browser.v1;
+
+message OpenPageCommand {
+  string session_id = 1;
+  string url = 2;
+  bool wait_until_loaded = 3;
+}
+
+message PageOpenedEvent {
+  string session_id = 1;
+  string url = 2;
+  string title = 3;
+}
+
+message GetDomQuery {
+  string session_id = 1;
+}
+
+message DomSnapshot {
+  string session_id = 1;
+  string html = 2;
+}
