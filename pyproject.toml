@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uricore"
-version = "0.1.5"
+version = "0.1.6"
 description = "Thin URI-native control-plane core for software, services and devices."
 readme = "README.md"
 requires-python = ">=3.10"
