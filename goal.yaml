@@ -222,7 +222,7 @@ git:
     format: '{prefix}{version}'
 strategies:
   python:
-    test: pytest tests/ -v
+    test: python -m pytest tests/ -q
     build: python -m build
     publish: twine upload dist/uricore-{version}*
     publish_enabled: false
