@@ -4,6 +4,7 @@ The Python distribution is named ``uricore``. The importable runtime module is
 ``uri_control`` to keep the API descriptive and language-neutral.
 """
 
+from . import edge  # noqa: F401  (migrated from urisysedge)
 from .dispatcher import UriControlRuntime
 from .event_store import EventStore, InMemoryEventStore, JsonlEventStore
 from .handlers import load_handler, load_python_handler, make_remote_handler
