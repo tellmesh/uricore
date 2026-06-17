@@ -155,7 +155,55 @@ class CapabilityRegistry:
         self._manifests.append(manifest)
         return manifest
 
-    def match(self, uri: str) -> MatchedRoute:
+    def register(
+        self,
+        pattern: str,
+        handler_ref: str,
+        *,
+        kind: str = "command",
+        operation: str | None = None,
+        approval: str = "not_required",
+        side_effects: bool = False,
+        manifest_id: str = "programmatic",
+    ) -> Route:
+        """Register a single route programmatically.
+
+        Mirrors the ``register(pattern, handler, kind=..., operation=...)``
+        contract used by urisys edge packs so the same pack ``register()``
+        functions can target the uricore engine directly, without requiring a
+        ``manifest.yaml``. Defaults match the edge runtime exactly to keep
+        existing packs behaviourally identical.
+        """
+
+        if "://" not in pattern:
+            raise RegistryError(f"Pattern {pattern!r} must contain a scheme, e.g. scheme://...")
+        scheme = pattern.split("://", 1)[0]
+        if not scheme:
+            raise RegistryError(f"Pattern {pattern!r} has an empty scheme.")
+
+        operation = operation or pattern.rsplit("/", 1)[-1]
+        route = Route(
+            manifest_id=manifest_id,
+            scheme=scheme,
+            pattern=pattern,
+            kind=kind,  # type: ignore[arg-type]
+            operation=operation,
+            handler_ref=handler_ref,
+            side_effects=side_effects,
+            approval=approval,  # type: ignore[arg-type]
+        )
+        self._compiled.append((route, _compile_pattern(pattern, scheme)))
+        return route
+
+    def match_route(self, uri: str) -> MatchedRoute:
+        """Resolve a URI to its route and variables, WITHOUT loading the handler.
+
+        Pure routing. Useful for runtimes that load handlers lazily with their
+        own loader (e.g. the urisys edge runtime) and for explain/inspection
+        that should not import handler modules. The returned ``MatchedRoute``
+        has ``handler=None``.
+        """
+
         parsed = parse_uri(uri)
         body = parsed.body.strip("/")
 
@@ -165,20 +213,32 @@ class CapabilityRegistry:
             match = compiled.match(body)
             if not match:
                 continue
-            handler = None
-            if route.handler_ref:
-                handler = self._handler_cache.get(route.handler_ref)
-                if handler is None:
-                    handler = _load_python_handler(route.handler_ref)
-                    self._handler_cache[route.handler_ref] = handler
             return MatchedRoute(
                 route=route,
                 parsed_uri=parsed,
                 variables=match.groupdict(),
-                handler=handler,
+                handler=None,
             )
 
         raise RouteNotFoundError(f"No capability route matches URI {uri!r}.")
+
+    def match(self, uri: str) -> MatchedRoute:
+        matched = self.match_route(uri)
+        route = matched.route
+        handler = None
+        if route.handler_ref:
+            handler = self._handler_cache.get(route.handler_ref)
+            if handler is None:
+                handler = _load_python_handler(route.handler_ref)
+                self._handler_cache[route.handler_ref] = handler
+        if handler is matched.handler:
+            return matched
+        return MatchedRoute(
+            route=route,
+            parsed_uri=matched.parsed_uri,
+            variables=matched.variables,
+            handler=handler,
+        )
 
     def explain(self, uri: str) -> dict[str, Any]:
         matched = self.match(uri)
