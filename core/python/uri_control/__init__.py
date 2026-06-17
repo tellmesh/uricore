@@ -6,6 +6,7 @@ The Python distribution is named ``uricore``. The importable runtime module is
 
 from .dispatcher import UriControlRuntime
 from .event_store import EventStore, InMemoryEventStore, JsonlEventStore
+from .handlers import load_handler, load_python_handler, make_remote_handler
 from .models import (
     CapabilityManifest,
     DispatchResult,
@@ -27,6 +28,9 @@ __all__ = [
     "EventStore",
     "InMemoryEventStore",
     "JsonlEventStore",
+    "load_handler",
+    "load_python_handler",
+    "make_remote_handler",
     "ParsedUri",
     "PolicyDecision",
     "PolicyEngine",

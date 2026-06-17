@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-import importlib
 import re
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
 import yaml
 
-from .errors import HandlerLoadError, RegistryError, RouteNotFoundError
+from .errors import RegistryError, RouteNotFoundError
+from .handlers import load_handler as _load_handler, load_python_handler as _load_python_handler
 from .models import CapabilityManifest, MatchedRoute, Route
 from .parser import parse_uri
 
@@ -35,35 +35,6 @@ def _compile_pattern(pattern: str, scheme: str) -> re.Pattern[str]:
         else:
             parts.append(re.escape(piece))
     return re.compile(r"^" + r"/".join(parts) + r"$")
-
-
-def _load_python_handler(handler_ref: str) -> Callable[[dict[str, Any], dict[str, Any]], dict[str, Any]]:
-    if not handler_ref.startswith(_HANDLER_PREFIX):
-        raise HandlerLoadError(
-            f"Unsupported handler reference {handler_ref!r}. Only python://module:function is supported."
-        )
-
-    target = handler_ref[len(_HANDLER_PREFIX) :]
-    if ":" not in target:
-        raise HandlerLoadError(f"Handler reference must be python://module:function, got {handler_ref!r}.")
-
-    module_name, function_name = target.split(":", 1)
-    try:
-        module = importlib.import_module(module_name)
-    except Exception as exc:  # pragma: no cover - message wrapping
-        raise HandlerLoadError(f"Cannot import handler module {module_name!r}: {exc}") from exc
-
-    try:
-        handler = getattr(module, function_name)
-    except AttributeError as exc:
-        raise HandlerLoadError(
-            f"Handler function {function_name!r} not found in module {module_name!r}."
-        ) from exc
-
-    if not callable(handler):
-        raise HandlerLoadError(f"Handler {handler_ref!r} is not callable.")
-
-    return handler
 
 
 class CapabilityRegistry:
@@ -229,7 +200,7 @@ class CapabilityRegistry:
         if route.handler_ref:
             handler = self._handler_cache.get(route.handler_ref)
             if handler is None:
-                handler = _load_python_handler(route.handler_ref)
+                handler = _load_handler(route.handler_ref)
                 self._handler_cache[route.handler_ref] = handler
         if handler is matched.handler:
             return matched
