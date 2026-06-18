@@ -101,6 +101,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.13] - 2026-06-18
+
+### Docs
+- Update README.md
+
+### Other
+- Update contracts/proto/uricontrol/v1/envelope.proto
+- Update core/python/uri_control/cli.py
+- Update core/python/uri_control/handlers.py
+- Update project.sh
+- Update uv.lock
+
 ## [0.1.12] - 2026-06-18
 
 ### Docs

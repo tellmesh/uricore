@@ -3211,8 +3211,8 @@ wheels = [
 ]
 
 [[package]]
-name = "uricore"
-version = "0.1.12"
+name = "uricontrol"
+version = "0.1.13"
 source = { editable = "." }
 dependencies = [
     { name = "pyyaml" },

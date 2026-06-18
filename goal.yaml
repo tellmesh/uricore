@@ -13,7 +13,7 @@
 
 version: '1.0'
 project:
-  name: uricore
+  name: uricontrol
   type:
   - python
   description: Thin URI-native control-plane core for software, services and devices.
@@ -30,7 +30,7 @@ versioning:
 git:
   commit:
     strategy: conventional
-    scope: uricore
+    scope: uricontrol
     abstraction_level: auto
     abstraction_levels:
       high: '{type}({domain}): {benefit}'
@@ -224,7 +224,7 @@ strategies:
   python:
     test: python -m pytest tests/ -q
     build: python -m build
-    publish: twine upload dist/uricore-{version}*
+    publish: twine upload dist/uricontrol-{version}*
     publish_enabled: true
     dependencies:
       file: requirements.txt
@@ -252,6 +252,19 @@ registries:
   npm:
     url: https://registry.npmjs.org/
     token_env: NPM_TOKEN
+publishing:
+  enabled: true
+  registries:
+  - pypi
+  fallback:
+    github_release:
+      enabled: true
+      owner: tellmesh
+      repo: ''
+      repo_map: {}
+      token_env: GITHUB_TOKEN
+      skip_pypi_retries_on_block: true
+      asset_glob: dist/*
 hooks:
   pre_commit: ''
   post_commit: ''

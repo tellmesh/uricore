@@ -78,7 +78,7 @@ def cmd_projection_status(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="uricore")
+    parser = argparse.ArgumentParser(prog="uricontrol")
     sub = parser.add_subparsers(dest="command", required=True)
 
     explain = sub.add_parser("explain", help="Explain how a URI matches a manifest route.")

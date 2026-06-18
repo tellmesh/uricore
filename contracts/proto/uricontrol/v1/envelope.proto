@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package uricore.v1;
+package uricontrol.v1;
 
 message CommandEnvelope {
   string command_id = 1;

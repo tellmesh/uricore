@@ -1,9 +1,9 @@
-# uricore
+# uricontrol
 
 
 ## AI Cost Tracking
 
-![PyPI](https://img.shields.io/badge/pypi-costs-blue) ![Version](https://img.shields.io/badge/version-0.1.12-blue) ![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
+![PyPI](https://img.shields.io/badge/pypi-costs-blue) ![Version](https://img.shields.io/badge/version-0.1.13-blue) ![Python](https://img.shields.io/badge/python-3.9+-blue) ![License](https://img.shields.io/badge/license-Apache--2.0-green)
 ![AI Cost](https://img.shields.io/badge/AI%20Cost-$1.05-orange) ![Human Time](https://img.shields.io/badge/Human%20Time-9.7h-blue) ![Model](https://img.shields.io/badge/Model-openrouter%2Fqwen%2Fqwen3--coder--next-lightgrey)
 
 - 🤖 **LLM usage:** $1.0501 (19 commits)
@@ -13,9 +13,9 @@ Generated on 2026-06-18 using [openrouter/qwen/qwen3-coder-next](https://openrou
 
 ---
 
-`uricore` is a small URI-native control-plane core. It provides a thin deterministic layer over software, services, devices and operating-system capabilities.
+`uricontrol` is a small URI-native control-plane core. It provides a thin deterministic layer over software, services, devices and operating-system capabilities.
 
-The Python distribution is named **`uricore`**, while the runtime module is **`uri_control`**:
+The Python distribution is named **`uricontrol`** (renamed from `uricore` — that PyPI name is squatted by an unrelated project), while the runtime module is **`uri_control`**:
 
 ```python
 from uri_control import CapabilityRegistry, UriControlRuntime, JsonlEventStore

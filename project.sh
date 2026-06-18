@@ -11,7 +11,7 @@ if [ ! -f "$PIP" ]; then
 fi
 
 #$PIP install -e .
-$PIP install regix --upgrade --quiet
+#$PIP install regix --upgrade --quiet
 #$PIP install pyqual --upgrade --quiet
 $PIP install prefact --upgrade --quiet
 $PIP install vallm --upgrade --quiet

@@ -7,10 +7,10 @@ served by any technology behind the URI wire ABI (``POST /uri/call``):
 
 * ``python://module:function`` — import and call an in-process Python callable.
 * ``http://host:port[/path]``  — forward the URI envelope over HTTP to a remote
-  URI runtime (any language: a Python edge, a uricore-js Node server, a C/ESP32
+  URI runtime (any language: a Python edge, a uricontrol-js Node server, a C/ESP32
   firmware…). Defaults the path to ``/uri/call``.
 * ``https://…``                — same, over TLS.
-* ``node://host:port[/path]``  — sugar for forwarding to a uricore-js HTTP runtime
+* ``node://host:port[/path]``  — sugar for forwarding to a uricontrol-js HTTP runtime
   (mapped to ``http://``).
 * ``urisys://flow/<flow-id>``   — built-in urisys controller: run a materialised
   ``markpact:flow`` YAML via the platform URI resolver (requires ``context.runtime``).
