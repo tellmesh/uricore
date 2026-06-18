@@ -21,6 +21,8 @@ The Python distribution is named **`uricore`**, while the runtime module is **`u
 from uri_control import CapabilityRegistry, UriControlRuntime, JsonlEventStore
 ```
 
+**URI intent routing** (resolve targets, HTTP/MQTT delegate, wire envelopes) lives in the sibling package **[`urirouter`](https://github.com/tellmesh/urirouter)** (`uri_router`). `uri_control.resolver`, `.transport`, and `.envelope` are compatibility shims over `uri_router`.
+
 The repository also contains placeholder SDK folders for Node/TypeScript, Go and PHP. Those SDKs intentionally remain thin: the source of truth is the URI, the manifest, and the protobuf-style command/event envelope.
 
 ## Architecture

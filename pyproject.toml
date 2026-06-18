@@ -14,7 +14,8 @@ authors = [
   {name = "Tom Sapletta",email = "tom@sapletta.com"}
 ]
 dependencies = [
-  "PyYAML>=6.0"
+  "PyYAML>=6.0",
+  "urirouter>=0.1.0",
 ]
 keywords = ["uri", "control-plane", "cqrs", "event-sourcing", "devices", "automation"]
 classifiers = [
@@ -26,6 +27,11 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
+# Native MQTT transport delegation (resolver targets with options.broker).
+# Without it, mqtt targets must use an HTTP→MQTT bridge (options.bridge_url).
+mqtt = [
+  "urirouter[mqtt]>=0.1.0",
+]
 dev = [
   "pytest>=8.0",
   "ruff>=0.6.0",
@@ -45,7 +51,9 @@ where = ["core/python"]
 include = ["uri_control*"]
 
 [tool.pytest.ini_options]
-pythonpath = ["core/python", "."]
+# ``../urirouter/src`` lets tests import the extracted ``uri_router`` package
+# from the sibling checkout without an editable install (prod uses the wheel).
+pythonpath = ["core/python", ".", "../urirouter/src"]
 testpaths = ["tests"]
 
 [tool.ruff]
