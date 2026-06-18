@@ -43,6 +43,7 @@ class Route:
     handler_ref: str
     approval: str = "not_required"
     side_effects: bool = False
+    risk: dict[str, Any] | None = None
     _regex: re.Pattern | None = None
 
     def compile(self) -> "Route":
@@ -102,6 +103,7 @@ class Runtime:
         # modes. When uricore is available, ``self._registry`` additionally holds
         # the same routes and drives matching.
         self.routes: list[Route] = []
+        self._operation_risk: dict[str, dict[str, Any]] = {}
         self.events = JsonlEventStore(events_path)
         self.config = config or {}
         self.state: dict[str, Any] = {}
@@ -116,9 +118,12 @@ class Runtime:
         operation: str | None = None,
         approval: str = "not_required",
         side_effects: bool = False,
+        risk: dict[str, Any] | None = None,
     ) -> None:
         op = operation or pattern.rsplit("/", 1)[-1]
-        self.routes.append(Route(pattern, kind, op, handler, approval, side_effects).compile())
+        if isinstance(risk, dict):
+            self._operation_risk[op] = risk
+        self.routes.append(Route(pattern, kind, op, handler, approval, side_effects, risk).compile())
         if self._registry is not None:
             self._registry.register(
                 pattern,
@@ -147,6 +152,7 @@ class Runtime:
                 handler_ref=core.handler_ref,
                 approval=core.approval,
                 side_effects=core.side_effects,
+                risk=self._operation_risk.get(core.operation),
             )
             return route, dict(matched.variables)
         for route in self.routes:
@@ -217,6 +223,21 @@ class Runtime:
         approved = bool(context.get("approved"))
         if route.side_effects and route.approval == "required" and not approved:
             return {"ok": False, "uri": uri, "type": "policy_denied", "reason": "approval required"}
+
+        from .risk_policy import check_risk_requirements
+
+        risk_violation = check_risk_requirements(route.risk, context, operation=route.operation)
+        if risk_violation is not None:
+            self.events.append({
+                "event_id": str(uuid.uuid4()),
+                "source_uri": uri,
+                "operation": route.operation,
+                "kind": route.kind,
+                "occurred_at_unix_ms": int(time.time() * 1000),
+                "event_type": f"{route.operation}.risk_denied",
+                "violation": risk_violation,
+            })
+            return {**risk_violation, "uri": uri}
 
         # Central operation policy: declarative payload limits enforced before the
         # handler (and even for dry-run), so safety does not depend on each handler.
