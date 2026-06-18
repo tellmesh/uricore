@@ -64,3 +64,27 @@ def test_resolve_flow_path_missing():
     rt = Runtime(config={})
     with pytest.raises(HandlerLoadError, match="not found"):
         resolve_flow_path(rt, "missing")
+
+
+def test_parse_flow_step_graph_format():
+    from uri_control.edge.runtime import _parse_flow_step
+
+    uri, payload, step_id = _parse_flow_step(
+        {
+            "id": "apt_update",
+            "uri": "shell://apt-get",
+            "payload": {"args": ["update"]},
+            "after": "env_check",
+        }
+    )
+    assert uri == "shell://apt-get"
+    assert payload == {"args": ["update"]}
+    assert step_id == "apt_update"
+
+    uri2, payload2, _ = _parse_flow_step("kvm://local/monitor/primary/query/screenshot")
+    assert uri2 == "kvm://local/monitor/primary/query/screenshot"
+    assert payload2 == {}
+
+    uri3, payload3, _ = _parse_flow_step({"kvm://local/task/command/click-text": {"text": "OK"}})
+    assert uri3 == "kvm://local/task/command/click-text"
+    assert payload3 == {"text": "OK"}

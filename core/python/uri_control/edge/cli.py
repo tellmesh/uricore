@@ -3,7 +3,7 @@
 Every urisys edge package (uristepperedge, urikvmedge, uribrowseredge, urirdpedge,
 ...) exposes the same command surface over its runtime: call / explain / routes /
 events / flow / serve. Historically each re-rolled the argparse plumbing and some
-re-implemented ``flow`` (which already lives in ``urisysedge.runtime.run_flow``).
+re-implemented ``flow`` (which already lives in ``uri_control.edge.runtime.run_flow``).
 
 ``build_edge_cli`` builds that CLI once. A package supplies only what is specific
 to it:

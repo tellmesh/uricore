@@ -37,6 +37,15 @@ from uri_control.edge.http import serve
 
 Used by edge CLIs (`urirdpedge`, `urikvmedge`, …) and orchestrated by **[urisys](https://github.com/tellmesh/urisys)**.
 
+`Runtime.call` resolves the URI via **[`urirouter`](https://github.com/tellmesh/urirouter)**
+(`resolve_uri` → optional transport delegation), then — for local execution —
+enforces resolver-declared policy (`uri_router.policy.check_operation_limits` /
+`check_shell_policy`) **before** loading the handler, and emits a `*.policy_denied`
+event on violation. Supported handler schemes: `python://`, `http(s)://`, `node://`,
+`urisys://flow/<id>` (built-in process flow runner) and `runtime://resolver/<op>`
+(resolver-bound placeholder: mock under dry-run/`environment: mock`, else a clear
+`no_runtime_binding` error).
+
 ## Architecture
 
 ```text
