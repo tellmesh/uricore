@@ -43,6 +43,32 @@ def test_resolve_uri_remaps_authority():
     assert extra["transport"] == "mqtt"
 
 
+def test_resolve_uri_runtime_profile_overlay():
+    config = {
+        "targets": {
+            "tic-t249": {
+                "transport": "http",
+                "endpoint": "http://127.0.0.1:8791/uri/call",
+                "profiles": {
+                    "esp32-i2c-http-mqtt": {
+                        "transport": "http",
+                        "endpoint": "http://esp32-tic.local:8791/uri/call",
+                    }
+                },
+            }
+        }
+    }
+    uri, extra = resolve_uri(
+        "stepper://tic-t249/axis/x/query/status",
+        config,
+        {"runtime_profile": "esp32-i2c-http-mqtt"},
+    )
+    assert uri.endswith("/query/status")
+    assert extra["transport"] == "http"
+    assert extra["target_profile"]["endpoint"] == "http://esp32-tic.local:8791/uri/call"
+    assert "profiles" not in extra["target_profile"]
+
+
 def test_apply_uri_aliases():
     from uri_control.resolver import apply_uri_aliases, resolve_uri
 

@@ -21,7 +21,30 @@ The Python distribution is named **`uricore`**, while the runtime module is **`u
 from uri_control import CapabilityRegistry, UriControlRuntime, JsonlEventStore
 ```
 
+**URI intent routing** (resolve targets, HTTP/MQTT delegate, wire envelopes) lives in the sibling package **[`urirouter`](https://github.com/tellmesh/urirouter)** (`uri_router`). `uri_control.resolver`, `.transport`, and `.envelope` are compatibility shims over `uri_router`.
+
 The repository also contains placeholder SDK folders for Node/TypeScript, Go and PHP. Those SDKs intentionally remain thin: the source of truth is the URI, the manifest, and the protobuf-style command/event envelope.
+
+## Edge runtime (`uri_control.edge`)
+
+Edge HTTP server, flow runner, and pack composition — formerly the separate **`urisysedge`** package (removed 2026-06):
+
+```python
+from uri_control.edge.runtime import Runtime, run_flow
+from uri_control.edge.compose import build_runtime
+from uri_control.edge.http import serve
+```
+
+Used by edge CLIs (`urirdpedge`, `urikvmedge`, …) and orchestrated by **[urisys](https://github.com/tellmesh/urisys)**.
+
+`Runtime.call` resolves the URI via **[`urirouter`](https://github.com/tellmesh/urirouter)**
+(`resolve_uri` → optional transport delegation), then — for local execution —
+enforces resolver-declared policy (`uri_router.policy.check_operation_limits` /
+`check_shell_policy`) **before** loading the handler, and emits a `*.policy_denied`
+event on violation. Supported handler schemes: `python://`, `http(s)://`, `node://`,
+`urisys://flow/<id>` (built-in process flow runner) and `runtime://resolver/<op>`
+(resolver-bound placeholder: mock under dry-run/`environment: mock`, else a clear
+`no_runtime_binding` error).
 
 ## Architecture
 
@@ -173,6 +196,23 @@ handlers:
 
 `uricore` should not contain those heavier orchestration concerns.
 
+
+## Ekosystem TellMesh
+
+Orchestrator: **[urisys](https://github.com/tellmesh/urisys)** · Mapa: **[MESH.md](https://github.com/tellmesh/urisys/blob/main/docs/MESH.md)** · Model: **[ECOSYSTEM.md](https://github.com/tellmesh/urisys/blob/main/../docs/ECOSYSTEM.md)**
+
+| Pole | Wartość |
+|------|---------|
+| **Warstwa** | Control plane + edge runtime |
+| **Moduł** | `uri_control`, `uri_control.edge` |
+| **Zależności** | `urirouter` |
+| **Rola** | CapabilityRegistry, policy, handlers, `Runtime`, `compose`, `http.serve` |
+| **Uwaga** | Zastępuje legacy `urisysedge` (usunięty 2026-06) |
+
+Runtime edge: **`uri_control.edge`** w pakiecie **`uricore`** (legacy `urisysedge` usunięty 2026-06).
+Router intencji: **`urirouter`** (`uri_router`) — resolve + HTTP/MQTT delegate.
+
+<!-- end-ecosystem -->
 
 ## License
 

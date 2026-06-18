@@ -115,13 +115,10 @@ def make_uri_handler(
                 length = int(self.headers.get("Content-Length") or "0")
                 body = self.rfile.read(length).decode("utf-8")
                 req = json.loads(body or "{}")
-                result = _as_dict(
-                    runtime.call(
-                        req.get("uri", ""),
-                        req.get("payload") or {},
-                        req.get("context") or {},
-                    )
-                )
+                from uri_control.envelope import normalize_call_envelope
+
+                uri, payload, context = normalize_call_envelope(req if isinstance(req, dict) else {})
+                result = _as_dict(runtime.call(uri, payload, context))
                 ok = result.get("ok", True) if isinstance(result, dict) else True
                 return self._json(200 if ok else 400, result)
             return self._json(404, {"ok": False, "error": "not found"})

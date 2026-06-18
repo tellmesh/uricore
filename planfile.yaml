@@ -1,0 +1,994 @@
+name: Code Quality Improvement
+project_name: ''
+project_type: prefactoring
+domain: dev-tools
+goal: Improve code quality using prefact
+goals:
+- Fix all prefact-detected issues
+- Improve code maintainability
+- Ensure consistent code style
+quality_gates:
+- metric: Prefact Issues
+  threshold: '0'
+sprints:
+- id: sprint-1
+  name: Code Quality Improvements
+  duration: 2 weeks
+  objectives:
+  - Fix code quality issues
+  task_patterns:
+  - id: ticket-4b19b289
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in core/python/uri_control/edge/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/__init__.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-24170c23
+    name: Fix relative-imports issues
+    description: Resolve 18 relative-imports issues in core/python/uri_control/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - core/python/uri_control/__init__.py
+    rule_id: relative-imports
+    count: 18
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b397afb7
+    name: Fix unused-imports issues
+    description: Resolve 4 unused-imports issues in core/python/uri_control/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/__init__.py
+    rule_id: unused-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-8ce38c65
+    name: Fix relative-imports issues
+    description: Resolve 8 relative-imports issues in core/python/uri_control/dispatcher.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/dispatcher.py
+    rule_id: relative-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ad6c73bc
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/dispatcher.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/dispatcher.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-495822f2
+    name: Fix relative-imports issues
+    description: Resolve 8 relative-imports issues in core/python/uri_control/cli.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/cli.py
+    rule_id: relative-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2b593dab
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/cli.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-83b8afbe
+    name: Fix ai-boilerplate issues
+    description: Resolve 1 ai-boilerplate issues in core/python/uri_control/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/cli.py
+    rule_id: ai-boilerplate
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-348a17b3
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in core/python/uri_control/edge/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/cli.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-eb828173
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/cli.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-14390adb
+    name: Fix magic-numbers issues
+    description: Resolve 2 magic-numbers issues in core/python/uri_control/edge/cli.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/cli.py
+    rule_id: magic-numbers
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d58f8373
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in core/python/uri_control/edge/compose.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/compose.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-380e5920
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/compose.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/compose.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-b8d5a7e5
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/flow_artifacts.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/flow_artifacts.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-0c069827
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/env.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/env.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-41283315
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/flow_refs.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/flow_refs.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a99504f4
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/flow_expect.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/flow_expect.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6594366b
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/manifest.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/manifest.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-173e98c1
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in core/python/uri_control/edge/http.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/http.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f2046b06
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/http.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/http.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f33d3149
+    name: Fix magic-numbers issues
+    description: Resolve 9 magic-numbers issues in core/python/uri_control/edge/http.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/http.py
+    rule_id: magic-numbers
+    count: 9
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-66383c71
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/risk_policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/risk_policy.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c3bca744
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in core/python/uri_control/event_store.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/event_store.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ebe80cb4
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in core/python/uri_control/event_store.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/event_store.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5f1274cf
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/event_store.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/event_store.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-c24b80b5
+    name: Fix relative-imports issues
+    description: Resolve 12 relative-imports issues in core/python/uri_control/edge/runtime.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - core/python/uri_control/edge/runtime.py
+    rule_id: relative-imports
+    count: 12
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-21a63c73
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in core/python/uri_control/edge/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/runtime.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ead94691
+    name: Fix string-concat issues
+    description: Resolve 5 string-concat issues in core/python/uri_control/edge/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/runtime.py
+    rule_id: string-concat
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2787e633
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/runtime.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-4c40bde5
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in core/python/uri_control/edge/runtime.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/runtime.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-04633df8
+    name: Fix relative-imports issues
+    description: Resolve 6 relative-imports issues in core/python/uri_control/handlers.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/handlers.py
+    rule_id: relative-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-69b36beb
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in core/python/uri_control/handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/handlers.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-25c31e84
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/handlers.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9d184192
+    name: Fix magic-numbers issues
+    description: Resolve 1 magic-numbers issues in core/python/uri_control/handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/handlers.py
+    rule_id: magic-numbers
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-41cf7479
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in core/python/uri_control/parser.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/parser.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-86021e15
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/parser.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/parser.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-57267ae6
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in core/python/uri_control/policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/policy.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-62ef582a
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/policy.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1f7dea44
+    name: Fix relative-imports issues
+    description: Resolve 6 relative-imports issues in core/python/uri_control/projection.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/projection.py
+    rule_id: relative-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-53bb7cfb
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/projection.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/projection.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-da024b4d
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/models.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/models.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f6cc57f0
+    name: Fix llm-generated-code issues
+    description: Resolve 1 llm-generated-code issues in core/python/uri_control/models.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/models.py
+    rule_id: llm-generated-code
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-77ff9d10
+    name: Fix relative-imports issues
+    description: Resolve 8 relative-imports issues in core/python/uri_control/registry.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/registry.py
+    rule_id: relative-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-68ead69b
+    name: Fix string-concat issues
+    description: Resolve 2 string-concat issues in core/python/uri_control/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/registry.py
+    rule_id: string-concat
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f2c19777
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/registry.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3b2c320f
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in core/python/uri_control/runtime_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/runtime_handlers.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-805b656a
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/runtime_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/runtime_handlers.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3124df1e
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/urisys_handlers_test_support.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/urisys_handlers_test_support.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2c4b0394
+    name: Fix relative-imports issues
+    description: Resolve 2 relative-imports issues in core/python/uri_control/urisys_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/urisys_handlers.py
+    rule_id: relative-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-18633b25
+    name: Fix string-concat issues
+    description: Resolve 1 string-concat issues in core/python/uri_control/urisys_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/urisys_handlers.py
+    rule_id: string-concat
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-072905a7
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/urisys_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/urisys_handlers.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-3c0e6113
+    name: Fix smart-return-type issues
+    description: Resolve 3 smart-return-type issues in tests/test_dispatcher.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_dispatcher.py
+    rule_id: smart-return-type
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ac327ae4
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in tests/test_envelope.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_envelope.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5f636bd2
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_envelope.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_envelope.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-05f2de25
+    name: Fix smart-return-type issues
+    description: Resolve 3 smart-return-type issues in tests/test_flow_expect.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_flow_expect.py
+    rule_id: smart-return-type
+    count: 3
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-04380c04
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_flow_expect.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_flow_expect.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-d6e6d4ff
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in tests/test_flow_inputs.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_flow_inputs.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2e194cae
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_flow_inputs.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_flow_inputs.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f41443a6
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in tests/test_flow_refs.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_flow_refs.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-32198df0
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in tests/test_flow_refs.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_flow_refs.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fa2e512a
+    name: Fix smart-return-type issues
+    description: Resolve 4 smart-return-type issues in tests/test_operation_policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_operation_policy.py
+    rule_id: smart-return-type
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-bdcdabd7
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_operation_policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_operation_policy.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-32e22b76
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in tests/test_parser.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_parser.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-84b4d7b9
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in tests/test_register.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_register.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-982c635e
+    name: Fix smart-return-type issues
+    description: Resolve 2 smart-return-type issues in tests/test_registry.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_registry.py
+    rule_id: smart-return-type
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-5b3ee7ae
+    name: Fix smart-return-type issues
+    description: Resolve 9 smart-return-type issues in tests/test_resolver.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_resolver.py
+    rule_id: smart-return-type
+    count: 9
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-050e1adf
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in tests/test_resolver.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_resolver.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-fb592d69
+    name: Fix smart-return-type issues
+    description: Resolve 2 smart-return-type issues in tests/test_risk_policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_risk_policy.py
+    rule_id: smart-return-type
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-402afbe3
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_risk_policy.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_risk_policy.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-59b0ecf9
+    name: Fix smart-return-type issues
+    description: Resolve 8 smart-return-type issues in tests/test_runtime_handlers.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_runtime_handlers.py
+    rule_id: smart-return-type
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-2c15d2e0
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_runtime_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_runtime_handlers.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6b0b6475
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in tests/test_transport.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_transport.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9319fe4c
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_transport.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_transport.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-f9c025e9
+    name: Fix smart-return-type issues
+    description: Resolve 5 smart-return-type issues in tests/test_urisys_handlers.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - tests/test_urisys_handlers.py
+    rule_id: smart-return-type
+    count: 5
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-a1b16e4b
+    name: Fix unused-imports issues
+    description: Resolve 6 unused-imports issues in tests/test_urisys_handlers.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - tests/test_urisys_handlers.py
+    rule_id: unused-imports
+    count: 6
+    model_hints:
+      planning: balanced
+      implementation: balanced

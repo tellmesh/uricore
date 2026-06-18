@@ -1,0 +1,566 @@
+source: code2llm
+# generated in 0.02s
+schema: code2llm.planfile_tickets.v1
+project_root: /home/tom/github/tellmesh/uricore
+tickets:
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_parser'
+  description: 'code2llm reports `God Function: build_parser` in `core/python/uri_control/cli.py:80`.
+
+
+    Function ''build_parser'' is oversized: CC=1, fan-out=15, mutations=33.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/cli.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/cli.py:80:God Function:
+    build_parser'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: load_yaml_flow'
+  description: 'code2llm reports `God Function: load_yaml_flow` in `core/python/uri_control/edge/runtime.py:319`.
+
+
+    Function ''load_yaml_flow'' is oversized: CC=14, fan-out=18, mutations=21.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/runtime.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/runtime.py:319:God
+    Function: load_yaml_flow'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: data'
+  description: 'code2llm reports `Shotgun Surgery: data` in `core/python/uri_control/edge/manifest.py:39`.
+
+
+    Mutation of variable ''data'' spans 7 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - core/python/uri_control/edge/manifest.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/manifest.py:39:Shotgun
+    Surgery: data'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: operation'
+  description: 'code2llm reports `Shotgun Surgery: operation` in `core/python/uri_control/edge/manifest.py:46`.
+
+
+    Mutation of variable ''operation'' spans 6 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - core/python/uri_control/edge/manifest.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/manifest.py:46:Shotgun
+    Surgery: operation'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: path'
+  description: 'code2llm reports `Shotgun Surgery: path` in `core/python/uri_control/edge/manifest.py:39`.
+
+
+    Mutation of variable ''path'' spans 5 functions. Changing this logic requires
+    work in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - core/python/uri_control/edge/manifest.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/manifest.py:39:Shotgun
+    Surgery: path'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: ref'
+  description: 'code2llm reports `Shotgun Surgery: ref` in `core/python/uri_control/edge/flow_refs.py:63`.
+
+
+    Mutation of variable ''ref'' spans 5 functions. Changing this logic requires work
+    in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - core/python/uri_control/edge/flow_refs.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/flow_refs.py:63:Shotgun
+    Surgery: ref'
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.risk_policy.check_risk_requirements
+    (CC=16)'
+  description: 'code2llm reports `core.python.uri_control.edge.risk_policy.check_risk_requirements`
+    at `core/python/uri_control/edge/risk_policy.py:8` with cyclomatic complexity
+    16 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/edge/risk_policy.py
+  dedupe_key: code2llm:cc:core/python/uri_control/edge/risk_policy.py:core.python.uri_control.edge.risk_policy.check_risk_requirements
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.runtime.Runtime.call
+    (CC=22)'
+  description: 'code2llm reports `core.python.uri_control.edge.runtime.Runtime.call`
+    at `core/python/uri_control/edge/runtime.py:180` with cyclomatic complexity 22
+    (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/edge/runtime.py
+  dedupe_key: code2llm:cc:core/python/uri_control/edge/runtime.py:core.python.uri_control.edge.runtime.Runtime.call
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.runtime._order_flow_steps
+    (CC=21)'
+  description: 'code2llm reports `core.python.uri_control.edge.runtime._order_flow_steps`
+    at `core/python/uri_control/edge/runtime.py:375` with cyclomatic complexity 21
+    (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/edge/runtime.py
+  dedupe_key: code2llm:cc:core/python/uri_control/edge/runtime.py:core.python.uri_control.edge.runtime._order_flow_steps
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.runtime.run_flow
+    (CC=19)'
+  description: 'code2llm reports `core.python.uri_control.edge.runtime.run_flow` at
+    `core/python/uri_control/edge/runtime.py:420` with cyclomatic complexity 19 (limit
+    15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/edge/runtime.py
+  dedupe_key: code2llm:cc:core/python/uri_control/edge/runtime.py:core.python.uri_control.edge.runtime.run_flow
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.registry.CapabilityRegistry.load_manifest
+    (CC=21)'
+  description: 'code2llm reports `core.python.uri_control.registry.CapabilityRegistry.load_manifest`
+    at `core/python/uri_control/registry.py:72` with cyclomatic complexity 21 (limit
+    15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/registry.py
+  dedupe_key: code2llm:cc:core/python/uri_control/registry.py:core.python.uri_control.registry.CapabilityRegistry.load_manifest
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: host, runtime, port'
+  description: 'code2llm reports `Data Clump: host, runtime, port` in `core/python/uri_control/edge/http.py:132`.
+
+
+    Arguments (host, runtime, port) are used together in multiple functions: core.python.uri_control.edge.http.serve,
+    core.python.uri_control.edge.runtime.serve.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/edge/http.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/http.py:132:Data
+    Clump: host, runtime, port'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: host, runtime, port'
+  description: 'code2llm reports `Data Clump: host, runtime, port` in `core/python/uri_control/edge/runtime.py:511`.
+
+
+    Arguments (host, runtime, port) are used together in multiple functions: core.python.uri_control.edge.http.serve,
+    core.python.uri_control.edge.runtime.serve.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/edge/runtime.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/runtime.py:511:Data
+    Clump: host, runtime, port'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: self, uri, context, payload'
+  description: 'code2llm reports `Data Clump: self, uri, context, payload` in `core/python/uri_control/dispatcher.py:35`.
+
+
+    Arguments (self, uri, context, payload) are used together in multiple functions:
+    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/dispatcher.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/dispatcher.py:35:Data
+    Clump: self, uri, context, payload'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: self, uri, context, payload'
+  description: 'code2llm reports `Data Clump: self, uri, context, payload` in `core/python/uri_control/edge/runtime.py:180`.
+
+
+    Arguments (self, uri, context, payload) are used together in multiple functions:
+    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/edge/runtime.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/runtime.py:180:Data
+    Clump: self, uri, context, payload'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: _register_urisys_flows'
+  description: 'code2llm reports `God Function: _register_urisys_flows` in `core/python/uri_control/edge/manifest.py:20`.
+
+
+    Function ''_register_urisys_flows'' is oversized: CC=8, fan-out=10, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/manifest.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/manifest.py:20:God
+    Function: _register_urisys_flows'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: build_edge_cli'
+  description: 'code2llm reports `God Function: build_edge_cli` in `core/python/uri_control/edge/cli.py:46`.
+
+
+    Function ''build_edge_cli'' is oversized: CC=1, fan-out=22, mutations=0.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/cli.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/cli.py:46:God
+    Function: build_edge_cli'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: bundle_packs'
+  description: 'code2llm reports `God Function: bundle_packs` in `core/python/uri_control/edge/compose.py:76`.
+
+
+    Function ''bundle_packs'' is oversized: CC=5, fan-out=10, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/compose.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/compose.py:76:God
+    Function: bundle_packs'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: evaluate_flow_expect'
+  description: 'code2llm reports `God Function: evaluate_flow_expect` in `core/python/uri_control/edge/flow_expect.py:125`.
+
+
+    Function ''evaluate_flow_expect'' is oversized: CC=7, fan-out=13, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/flow_expect.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/flow_expect.py:125:God
+    Function: evaluate_flow_expect'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: evaluate_step_if'
+  description: 'code2llm reports `God Function: evaluate_step_if` in `core/python/uri_control/edge/flow_refs.py:88`.
+
+
+    Function ''evaluate_step_if'' is oversized: CC=9, fan-out=8, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/flow_refs.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/flow_refs.py:88:God
+    Function: evaluate_step_if'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: load_python_handler'
+  description: 'code2llm reports `God Function: load_python_handler` in `core/python/uri_control/handlers.py:43`.
+
+
+    Function ''load_python_handler'' is oversized: CC=6, fan-out=7, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/handlers.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/handlers.py:43:God
+    Function: load_python_handler'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: load_urisys_env'
+  description: 'code2llm reports `God Function: load_urisys_env` in `core/python/uri_control/edge/env.py:23`.
+
+
+    Function ''load_urisys_env'' is oversized: CC=8, fan-out=15, mutations=10.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/env.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/env.py:23:God
+    Function: load_urisys_env'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: make_remote_handler'
+  description: 'code2llm reports `God Function: make_remote_handler` in `core/python/uri_control/handlers.py:92`.
+
+
+    Function ''make_remote_handler'' is oversized: CC=1, fan-out=13, mutations=1.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/handlers.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/handlers.py:92:God
+    Function: make_remote_handler'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: make_uri_handler'
+  description: 'code2llm reports `God Function: make_uri_handler` in `core/python/uri_control/edge/http.py:53`.
+
+
+    Function ''make_uri_handler'' is oversized: CC=2, fan-out=29, mutations=1.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/http.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/http.py:53:God
+    Function: make_uri_handler'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: open_page'
+  description: 'code2llm reports `God Function: open_page` in `examples/packs/browser_mock/handlers.py:9`.
+
+
+    Function ''open_page'' is oversized: CC=6, fan-out=3, mutations=7.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - examples/packs/browser_mock/handlers.py
+  dedupe_key: 'code2llm:smell:god_function:examples/packs/browser_mock/handlers.py:9:God
+    Function: open_page'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: resolve_env_var'
+  description: 'code2llm reports `God Function: resolve_env_var` in `core/python/uri_control/edge/env.py:85`.
+
+
+    Function ''resolve_env_var'' is oversized: CC=11, fan-out=9, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/env.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/env.py:85:God
+    Function: resolve_env_var'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: resolve_ref'
+  description: 'code2llm reports `God Function: resolve_ref` in `core/python/uri_control/edge/flow_refs.py:13`.
+
+
+    Function ''resolve_ref'' is oversized: CC=5, fan-out=6, mutations=8.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/flow_refs.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/flow_refs.py:13:God
+    Function: resolve_ref'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: seed_flow_inputs'
+  description: 'code2llm reports `God Function: seed_flow_inputs` in `core/python/uri_control/edge/flow_refs.py:131`.
+
+
+    Function ''seed_flow_inputs'' is oversized: CC=12, fan-out=7, mutations=15.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/flow_refs.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/flow_refs.py:131:God
+    Function: seed_flow_inputs'
+- signal: code2llm_smell_god_function
+  title: 'Address code smell: God Function: sync_artifacts_to_runtime'
+  description: 'code2llm reports `God Function: sync_artifacts_to_runtime` in `core/python/uri_control/edge/flow_artifacts.py:9`.
+
+
+    Function ''sync_artifacts_to_runtime'' is oversized: CC=7, fan-out=8, mutations=9.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - god-function
+  files:
+  - core/python/uri_control/edge/flow_artifacts.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/flow_artifacts.py:9:God
+    Function: sync_artifacts_to_runtime'
+applied: []
+skipped: []

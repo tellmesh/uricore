@@ -26,6 +26,7 @@ from .runtime import Runtime
 # scheme/alias -> python module, only for names that are NOT simply ``uri<alias>``.
 DEFAULT_ALIAS_MAP: dict[str, str] = {
     "browser": "uribrowserdocker",
+    "tts": "uristt",
 }
 
 _CONTRACT_SCHEME_RE = re.compile(r"^\s*scheme:\s*([A-Za-z0-9_.-]+)\s*$", re.MULTILINE)

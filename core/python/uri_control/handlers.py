@@ -12,6 +12,8 @@ served by any technology behind the URI wire ABI (``POST /uri/call``):
 * ``https://…``                — same, over TLS.
 * ``node://host:port[/path]``  — sugar for forwarding to a uricore-js HTTP runtime
   (mapped to ``http://``).
+* ``urisys://flow/<flow-id>``   — built-in urisys controller: run a materialised
+  ``markpact:flow`` YAML via the platform URI resolver (requires ``context.runtime``).
 
 The remote forms reuse the same envelope as ``urisys.managers.bridge_manager``:
 ``{"uri": <uri>, "payload": <payload>, "context": <json-safe context>}``.
@@ -117,17 +119,25 @@ def make_remote_handler(handler_ref: str, *, timeout: int = DEFAULT_TIMEOUT) -> 
 
 
 def load_handler(handler_ref: str, *, timeout: int = DEFAULT_TIMEOUT) -> Handler:
-    """Load a handler for any supported scheme (python/http/https/node)."""
+    """Load a handler for any supported scheme (python/http/https/node/urisys)."""
     if not handler_ref or "://" not in handler_ref:
         raise HandlerLoadError(f"Handler reference must include a scheme, got {handler_ref!r}.")
     scheme = handler_ref.split("://", 1)[0]
     if scheme == "python":
         return load_python_handler(handler_ref)
+    if scheme == "urisys":
+        from .urisys_handlers import load_urisys_handler
+
+        return load_urisys_handler(handler_ref)
+    if scheme == "runtime":
+        from .runtime_handlers import load_runtime_handler
+
+        return load_runtime_handler(handler_ref)
     if scheme in REMOTE_SCHEMES or scheme == "node":
         return make_remote_handler(handler_ref, timeout=timeout)
     raise HandlerLoadError(
         f"Unsupported handler scheme {scheme!r} in {handler_ref!r}. "
-        "Supported: python://, http://, https://, node://."
+        "Supported: python://, http://, https://, node://, urisys://, runtime://."
     )
 
 
