@@ -1,0 +1,133 @@
+# uricore | 26f 1093L | python:23,shell:2,less:1 | 2026-06-18
+# stats: 59 func | 1 cls | 26 mod | CC̄=3.4 | critical:0 | cycles:0
+# alerts[5]: CC test_parse_flow_step_graph_format=8; CC test_normalize_promotes_wire_fields_into_context=7; CC test_parse_custom_uri=7; CC open_page=6; CC test_match_route_does_not_load_handler=6
+# hotspots[5]: test_load_urisys_flow_handler_runs_steps fan=8; test_run_flow_if_skips_step fan=6; test_run_flow_save_as_and_ref fan=5; test_run_flow_payload_from fan=5; test_match_route_does_not_load_handler fan=5
+# evolution: baseline
+# Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
+M[26]:
+  app.doql.less,63
+  examples/__init__.py,1
+  examples/call_browser_mock.py,31
+  examples/call_systemd_mock.py,23
+  examples/packs/__init__.py,1
+  examples/packs/browser_mock/__init__.py,1
+  examples/packs/browser_mock/handlers.py,46
+  examples/packs/systemd_mock/__init__.py,1
+  examples/packs/systemd_mock/handlers.py,29
+  project.sh,59
+  tests/conftest.py,5
+  tests/test_dispatcher.py,50
+  tests/test_envelope.py,25
+  tests/test_flow_expect.py,33
+  tests/test_flow_inputs.py,21
+  tests/test_flow_refs.py,86
+  tests/test_operation_policy.py,73
+  tests/test_parser.py,12
+  tests/test_register.py,93
+  tests/test_registry.py,29
+  tests/test_resolver.py,137
+  tests/test_risk_policy.py,30
+  tests/test_runtime_handlers.py,74
+  tests/test_transport.py,77
+  tests/test_urisys_handlers.py,91
+  tree.sh,2
+D:
+  examples/__init__.py:
+  examples/call_browser_mock.py:
+  examples/call_systemd_mock.py:
+  examples/packs/__init__.py:
+  examples/packs/browser_mock/__init__.py:
+  examples/packs/browser_mock/handlers.py:
+    e: open_page,get_dom
+    open_page(payload;context)
+    get_dom(payload;context)
+  examples/packs/systemd_mock/__init__.py:
+  examples/packs/systemd_mock/handlers.py:
+    e: unit_status,unit_restart
+    unit_status(payload;context)
+    unit_restart(payload;context)
+  tests/conftest.py:
+  tests/test_dispatcher.py:
+    e: _runtime,test_command_requires_approval,test_command_executes_when_approved,test_query_does_not_require_approval
+    _runtime()
+    test_command_requires_approval()
+    test_command_executes_when_approved()
+    test_query_does_not_require_approval()
+  tests/test_envelope.py:
+    e: test_normalize_promotes_wire_fields_into_context
+    test_normalize_promotes_wire_fields_into_context()
+  tests/test_flow_expect.py:
+    e: test_evaluate_transport_ok_and_required_steps,test_evaluate_required_step_missing,test_evaluate_ocr_contains
+    test_evaluate_transport_ok_and_required_steps()
+    test_evaluate_required_step_missing()
+    test_evaluate_ocr_contains()
+  tests/test_flow_inputs.py:
+    e: test_seed_flow_inputs_enables_uri_interpolation
+    test_seed_flow_inputs_enables_uri_interpolation()
+  tests/test_flow_refs.py:
+    e: test_resolve_ref_nested,test_interpolate_payload,test_run_flow_save_as_and_ref,test_run_flow_payload_from,test_run_flow_if_skips_step
+    test_resolve_ref_nested()
+    test_interpolate_payload()
+    test_run_flow_save_as_and_ref(tmp_path)
+    test_run_flow_payload_from(tmp_path)
+    test_run_flow_if_skips_step(tmp_path)
+  tests/test_operation_policy.py:
+    e: _runtime,test_within_limit_executes,test_exceeds_limit_denied_before_handler,test_limit_enforced_even_on_dry_run,test_approval_still_checked_before_policy
+    _runtime(tmp_path)
+    test_within_limit_executes(tmp_path)
+    test_exceeds_limit_denied_before_handler(tmp_path)
+    test_limit_enforced_even_on_dry_run(tmp_path)
+    test_approval_still_checked_before_policy(tmp_path)
+  tests/test_parser.py:
+    e: test_parse_custom_uri
+    test_parse_custom_uri()
+  tests/test_register.py:
+    e: test_register_matches_like_edge_pack,test_register_defaults_match_edge_runtime,test_match_route_does_not_load_handler,test_register_requires_scheme,test_register_and_manifest_coexist
+    test_register_matches_like_edge_pack()
+    test_register_defaults_match_edge_runtime()
+    test_match_route_does_not_load_handler()
+    test_register_requires_scheme()
+    test_register_and_manifest_coexist()
+  tests/test_registry.py:
+    e: test_registry_matches_browser_route,test_registry_explain
+    test_registry_matches_browser_route()
+    test_registry_explain()
+  tests/test_resolver.py:
+    e: test_load_and_apply_resolver,test_resolve_uri_remaps_authority,test_resolve_uri_runtime_profile_overlay,test_apply_uri_aliases,test_apply_resolver_config_loads_uri_aliases,test_runtime_call_applies_resolver,test_run_flow_applies_resolver_runtime_defaults,test_order_flow_steps_after,test_order_flow_steps_cycle
+    test_load_and_apply_resolver(tmp_path)
+    test_resolve_uri_remaps_authority()
+    test_resolve_uri_runtime_profile_overlay()
+    test_apply_uri_aliases()
+    test_apply_resolver_config_loads_uri_aliases(tmp_path)
+    test_runtime_call_applies_resolver(tmp_path)
+    test_run_flow_applies_resolver_runtime_defaults(tmp_path)
+    test_order_flow_steps_after()
+    test_order_flow_steps_cycle()
+  tests/test_risk_policy.py:
+    e: test_high_risk_requires_dry_run_or_allow_real,test_audit_required_for_critical
+    test_high_risk_requires_dry_run_or_allow_real()
+    test_audit_required_for_critical()
+  tests/test_runtime_handlers.py:
+    e: test_parse_runtime_handler,test_parse_runtime_handler_rejects_missing_operation,test_load_handler_dispatches_runtime_scheme,test_runtime_handler_dry_run_is_mock,test_runtime_handler_mock_environment_is_mock,test_runtime_handler_real_without_binding_errors_cleanly,test_runtime_handler_via_runtime_call_mock,test_runtime_handler_resolver_transport_wins_over_local
+    test_parse_runtime_handler()
+    test_parse_runtime_handler_rejects_missing_operation()
+    test_load_handler_dispatches_runtime_scheme()
+    test_runtime_handler_dry_run_is_mock()
+    test_runtime_handler_mock_environment_is_mock()
+    test_runtime_handler_real_without_binding_errors_cleanly()
+    test_runtime_handler_via_runtime_call_mock(tmp_path)
+    test_runtime_handler_resolver_transport_wins_over_local(tmp_path)
+  tests/test_transport.py:
+    e: _with_http_server,test_runtime_call_delegates_before_route_match,test_runtime_unsupported_transport_returns_clean_error,test_runtime_local_transport_still_uses_handler,_Handler
+    _Handler: log_message(0),do_POST(0)
+    _with_http_server()
+    test_runtime_call_delegates_before_route_match(tmp_path)
+    test_runtime_unsupported_transport_returns_clean_error(tmp_path)
+    test_runtime_local_transport_still_uses_handler(tmp_path)
+  tests/test_urisys_handlers.py:
+    e: test_parse_urisys_flow_handler,test_load_urisys_flow_handler_runs_steps,test_resolve_flow_path_from_manifest_map,test_resolve_flow_path_missing,test_parse_flow_step_graph_format
+    test_parse_urisys_flow_handler()
+    test_load_urisys_flow_handler_runs_steps(tmp_path)
+    test_resolve_flow_path_from_manifest_map(tmp_path)
+    test_resolve_flow_path_missing()
+    test_parse_flow_step_graph_format()

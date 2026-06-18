@@ -1,0 +1,184 @@
+# code2llm | 47f 3821L | python:34,yaml:3,shell:2,json:2,proto:2,toml:1,php:1,typescript:1 | 2026-06-18
+# generated in 0.01s
+# CC̅=4.6 | critical:5/125 | dups:0 | cycles:1
+
+HEALTH[5]:
+  🟡 CC    check_risk_requirements CC=16 (limit:15)
+  🟡 CC    load_manifest CC=21 (limit:15)
+  🟡 CC    call CC=22 (limit:15)
+  🟡 CC    _order_flow_steps CC=21 (limit:15)
+  🟡 CC    run_flow CC=19 (limit:15)
+
+REFACTOR[2]:
+  1. split 5 high-CC methods  (CC>15)
+  2. break 1 circular dependencies
+
+PIPELINES[50]:
+  [1] Src [unit_status]: unit_status
+      PURITY: 100% pure
+  [2] Src [unit_restart]: unit_restart
+      PURITY: 100% pure
+  [3] Src [append]: append
+      PURITY: 100% pure
+  [4] Src [read_all]: read_all
+      PURITY: 100% pure
+  [5] Src [__init__]: __init__
+      PURITY: 100% pure
+  [6] Src [append]: append
+      PURITY: 100% pure
+  [7] Src [read_all]: read_all
+      PURITY: 100% pure
+  [8] Src [dump_events]: dump_events
+      PURITY: 100% pure
+  [9] Src [__init__]: __init__
+      PURITY: 100% pure
+  [10] Src [call]: call → _new_id
+      PURITY: 100% pure
+  [11] Src [open_page]: open_page
+      PURITY: 100% pure
+  [12] Src [get_dom]: get_dom
+      PURITY: 100% pure
+  [13] Src [build_edge_cli]: build_edge_cli → _json_arg
+      PURITY: 100% pure
+  [14] Src [register_manifest_files]: register_manifest_files → register_manifest_file → register_manifest_data → _register_urisys_flows
+      PURITY: 100% pure
+  [15] Src [canonicalize_uri]: canonicalize_uri → parse_uri
+      PURITY: 100% pure
+  [16] Src [__init__]: __init__
+      PURITY: 100% pure
+  [17] Src [decide]: decide
+      PURITY: 100% pure
+  [18] Src [cmd_explain]: cmd_explain → _registry_from_args
+      PURITY: 100% pure
+  [19] Src [cmd_call]: cmd_call → _registry_from_args
+      PURITY: 100% pure
+  [20] Src [cmd_list]: cmd_list → _registry_from_args
+      PURITY: 100% pure
+  [21] Src [cmd_projection_latest]: cmd_projection_latest
+      PURITY: 100% pure
+  [22] Src [cmd_projection_status]: cmd_projection_status
+      PURITY: 100% pure
+  [23] Src [main]: main → build_parser
+      PURITY: 100% pure
+  [24] Src [latest_by_source_uri]: latest_by_source_uri
+      PURITY: 100% pure
+  [25] Src [status_by_source_uri]: status_by_source_uri
+      PURITY: 100% pure
+  [26] Src [events_by_type]: events_by_type
+      PURITY: 100% pure
+  [27] Src [from_events]: from_events
+      PURITY: 100% pure
+  [28] Src [load_urisys_env]: load_urisys_env → _urisys_root
+      PURITY: 100% pure
+  [29] Src [resolve_env_var]: resolve_env_var → _env_config
+      PURITY: 100% pure
+  [30] Src [is_secret_env]: is_secret_env
+      PURITY: 100% pure
+  [31] Src [from_manifest_files]: from_manifest_files
+      PURITY: 100% pure
+  [32] Src [load_manifest_file]: load_manifest_file
+      PURITY: 100% pure
+  [33] Src [load_manifest]: load_manifest → _compile_pattern → _pattern_body
+      PURITY: 100% pure
+  [34] Src [match_route]: match_route → parse_uri
+      PURITY: 100% pure
+  [35] Src [match]: match → _load_handler → load_handler → load_python_handler
+      PURITY: 100% pure
+  [36] Src [explain]: explain
+      PURITY: 100% pure
+  [37] Src [serve]: serve → _routes_list
+      PURITY: 100% pure
+  [38] Src [compile]: compile
+      PURITY: 100% pure
+  [39] Src [match]: match
+      PURITY: 100% pure
+  [40] Src [__init__]: __init__
+      PURITY: 100% pure
+  [41] Src [append]: append
+      PURITY: 100% pure
+  [42] Src [tail]: tail
+      PURITY: 100% pure
+  [43] Src [__init__]: __init__
+      PURITY: 100% pure
+  [44] Src [register]: register
+      PURITY: 100% pure
+  [45] Src [resolve]: resolve
+      PURITY: 100% pure
+  [46] Src [call]: call → check_risk_requirements → _violation
+      PURITY: 100% pure
+  [47] Src [load_json]: load_json
+      PURITY: 100% pure
+  [48] Src [make_handler]: make_handler → make_uri_handler → _as_dict
+      PURITY: 100% pure
+  [49] Src [serve]: serve
+      PURITY: 100% pure
+  [50] Src [to_dict]: to_dict
+      PURITY: 100% pure
+
+LAYERS:
+  core/                           CC̄=4.6    ←in:0  →out:0
+  │ !! runtime                    512L  3C   18m  CC=22     ←2
+  │ !! registry                   233L  1C   10m  CC=21     ←1
+  │ flow_refs                  176L  0C   10m  CC=12     ←1
+  │ dispatcher                 167L  1C    4m  CC=10     ←0
+  │ cli                        164L  0C    3m  CC=3      ←0
+  │ compose                    157L  0C    9m  CC=8      ←1
+  │ flow_expect                156L  0C    9m  CC=12     ←1
+  │ http                       148L  0C    4m  CC=6      ←1
+  │ handlers                   144L  0C    5m  CC=8      ←1
+  │ env                        129L  0C    7m  CC=11     ←1
+  │ models                     127L  7C    2m  CC=3      ←0
+  │ cli                        123L  0C    9m  CC=3      ←0
+  │ runtime_handlers            89L  0C    3m  CC=5      ←1
+  │ manifest                    83L  0C    5m  CC=11     ←1
+  │ policy                      71L  1C    2m  CC=9      ←0
+  │ projection                  70L  1C    5m  CC=6      ←0
+  │ event_store                 65L  3C    9m  CC=6      ←0
+  │ !! risk_policy                 57L  0C    2m  CC=16     ←1
+  │ parser                      45L  0C    2m  CC=7      ←1
+  │ __init__                    42L  0C    0m  CC=0.0    ←0
+  │ flow_artifacts              40L  0C    1m  CC=7      ←1
+  │ __init__                    30L  0C    0m  CC=0.0    ←0
+  │ errors                      22L  6C    0m  CC=0.0    ←0
+  │ composer.json               13L  0C    0m  CC=0.0    ←0
+  │ UriControl.php              11L  1C    1m  CC=1      ←0
+  │ package.json                11L  0C    0m  CC=0.0    ←0
+  │ index.ts                     9L  0C    1m  CC=1      ←0
+  │ envelope                     6L  0C    0m  CC=0.0    ←0
+  │ resolver                     6L  0C    0m  CC=0.0    ←0
+  │ transport                    6L  0C    0m  CC=0.0    ←0
+  │
+  examples/                       CC̄=4.0    ←in:0  →out:0
+  │ handlers                    45L  0C    2m  CC=6      ←0
+  │ call_browser_mock           30L  0C    0m  CC=0.0    ←0
+  │ handlers                    28L  0C    2m  CC=3      ←0
+  │ manifest.yaml               25L  0C    0m  CC=0.0    ←0
+  │ manifest.yaml               25L  0C    0m  CC=0.0    ←0
+  │ call_systemd_mock           22L  0C    0m  CC=0.0    ←0
+  │ __init__                     0L  0C    0m  CC=0.0    ←0
+  │ __init__                     0L  0C    0m  CC=0.0    ←0
+  │ __init__                     0L  0C    0m  CC=0.0    ←0
+  │ __init__                     0L  0C    0m  CC=0.0    ←0
+  │
+  ./                              CC̄=0.0    ←in:0  →out:0
+  │ !! goal.yaml                  513L  0C    0m  CC=0.0    ←0
+  │ pyproject.toml              90L  0C    0m  CC=0.0    ←0
+  │ project.sh                  59L  0C    0m  CC=0.0    ←0
+  │ Makefile                    16L  0C    0m  CC=0.0    ←0
+  │ tree.sh                      1L  0C    0m  CC=0.0    ←0
+  │
+  contracts/                      CC̄=0.0    ←in:0  →out:0
+  │ envelope.proto              31L  0C    0m  CC=0.0    ←0
+  │ browser.proto               24L  0C    0m  CC=0.0    ←0
+  │
+  ── zero ──
+     examples/__init__.py                      0L
+     examples/packs/__init__.py                0L
+     examples/packs/browser_mock/__init__.py   0L
+     examples/packs/systemd_mock/__init__.py   0L
+
+COUPLING: no cross-package imports detected
+
+EXTERNAL:
+  validation: run `vallm batch .` → validation.toon
+  duplication: run `redup scan .` → duplication.toon

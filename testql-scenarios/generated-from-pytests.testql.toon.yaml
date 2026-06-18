@@ -1,0 +1,22 @@
+# SCENARIO: Auto-generated from Python Tests
+# TYPE: integration
+# GENERATED: true
+
+CONFIG[2]{key, value}:
+  base_url, ${api_url:-http://localhost:8101}
+  timeout_ms, 10000
+
+# Converted 12 assertions from pytest
+ASSERT[12]{field, operator, expected}:
+  result.error, ==, "Approval required for side-effect operation."
+  store.read_all()[-1].event_type, ==, "PolicyDenied"
+  result.result.url, ==, "https://example.com"
+  store.read_all()[-1].event_type, ==, "browser.v1.PageOpenedEvent"
+  extra.transport, ==, "http"
+  extra.target_profile.endpoint, ==, "http://esp32-tic.local:8791/uri/call"
+  result.error, ==, "Approval required for side-effect operation."
+  store.read_all()[-1].event_type, ==, "PolicyDenied"
+  result.result.url, ==, "https://example.com"
+  store.read_all()[-1].event_type, ==, "browser.v1.PageOpenedEvent"
+  extra.transport, ==, "http"
+  extra.target_profile.endpoint, ==, "http://esp32-tic.local:8791/uri/call"
