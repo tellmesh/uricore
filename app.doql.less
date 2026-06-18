@@ -2,7 +2,7 @@
 
 app {
   name: uricore;
-  version: 0.1.9;
+  version: 0.1.10;
 }
 
 dependencies {
@@ -41,6 +41,10 @@ workflow[name="example-browser"] {
 workflow[name="example-systemd"] {
   trigger: manual;
   step-1: run cmd=PYTHONPATH=core/python:. python examples/call_systemd_mock.py;
+}
+
+tests {
+  import: testql-scenarios/**/*.testql.toon.yaml;
 }
 
 env_vars {

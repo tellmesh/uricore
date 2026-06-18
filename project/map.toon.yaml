@@ -1,11 +1,11 @@
-# uricore | 26f 1093L | python:23,shell:2,less:1 | 2026-06-18
-# stats: 59 func | 1 cls | 26 mod | CC̄=3.4 | critical:0 | cycles:0
+# uricore | 27f 1120L | python:24,shell:2,less:1 | 2026-06-18
+# stats: 60 func | 1 cls | 27 mod | CC̄=3.5 | critical:0 | cycles:0
 # alerts[5]: CC test_parse_flow_step_graph_format=8; CC test_normalize_promotes_wire_fields_into_context=7; CC test_parse_custom_uri=7; CC open_page=6; CC test_match_route_does_not_load_handler=6
-# hotspots[5]: test_load_urisys_flow_handler_runs_steps fan=8; test_run_flow_if_skips_step fan=6; test_run_flow_save_as_and_ref fan=5; test_run_flow_payload_from fan=5; test_match_route_does_not_load_handler fan=5
+# hotspots[5]: test_flow_runner_matches_run_flow fan=9; test_load_urisys_flow_handler_runs_steps fan=8; test_run_flow_if_skips_step fan=6; test_run_flow_save_as_and_ref fan=5; test_run_flow_payload_from fan=5
 # evolution: baseline
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[26]:
-  app.doql.less,63
+M[27]:
+  app.doql.less,67
   examples/__init__.py,1
   examples/call_browser_mock.py,31
   examples/call_systemd_mock.py,23
@@ -21,6 +21,7 @@ M[26]:
   tests/test_flow_expect.py,33
   tests/test_flow_inputs.py,21
   tests/test_flow_refs.py,86
+  tests/test_flow_runner.py,23
   tests/test_operation_policy.py,73
   tests/test_parser.py,12
   tests/test_register.py,93
@@ -71,6 +72,9 @@ D:
     test_run_flow_save_as_and_ref(tmp_path)
     test_run_flow_payload_from(tmp_path)
     test_run_flow_if_skips_step(tmp_path)
+  tests/test_flow_runner.py:
+    e: test_flow_runner_matches_run_flow
+    test_flow_runner_matches_run_flow(tmp_path)
   tests/test_operation_policy.py:
     e: _runtime,test_within_limit_executes,test_exceeds_limit_denied_before_handler,test_limit_enforced_even_on_dry_run,test_approval_still_checked_before_policy
     _runtime(tmp_path)

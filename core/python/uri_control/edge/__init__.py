@@ -12,9 +12,10 @@ from .compose import (
     register_packs,
     resolve_pack_module,
 )
-from .runtime import JsonlEventStore, Route, Runtime, load_json, load_yaml_flow, run_flow
+from .runtime import FlowRunner, JsonlEventStore, Route, Runtime, load_json, load_yaml_flow, run_flow
 
 __all__ = [
+    "FlowRunner",
     "JsonlEventStore",
     "Route",
     "Runtime",

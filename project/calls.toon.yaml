@@ -1,49 +1,49 @@
 # code2llm call graph | /home/tom/github/tellmesh/uricore
-# generated in 0.04s
-# nodes: 72 | edges: 62 | modules: 15
-# CC̄=4.6
+# generated in 0.03s
+# nodes: 75 | edges: 64 | modules: 18
+# CC̄=4.2
 
 HUBS[20]:
   core.python.uri_control.edge.cli.build_edge_cli
     CC=1  in:0  out:57  total:57
-  core.python.uri_control.edge.runtime.Runtime.call
-    CC=22  in:0  out:50  total:50
   core.python.uri_control.edge.http.make_uri_handler
     CC=2  in:2  out:47  total:49
-  core.python.uri_control.edge.runtime.run_flow
-    CC=19  in:1  out:37  total:38
+  core.python.uri_control.edge.flow.runner.FlowRunner.run
+    CC=19  in:0  out:37  total:37
   core.python.uri_control.dispatcher.UriControlRuntime.call
     CC=10  in:0  out:31  total:31
   core.python.uri_control.cli.build_parser
     CC=1  in:1  out:25  total:26
-  core.python.uri_control.edge.runtime._order_flow_steps
+  core.python.uri_control.edge.flow.steps.order_flow_steps
     CC=21  in:1  out:25  total:26
   core.python.uri_control.edge.flow_refs.evaluate_step_if
     CC=9  in:1  out:22  total:23
+  core.python.uri_control.edge.flow.loader.load_yaml_flow
+    CC=14  in:1  out:21  total:22
   core.python.uri_control.edge.manifest.register_manifest_data
     CC=11  in:1  out:21  total:22
-  core.python.uri_control.edge.runtime.load_yaml_flow
-    CC=14  in:1  out:21  total:22
   core.python.uri_control.edge.flow_expect.evaluate_flow_expect
     CC=7  in:1  out:19  total:20
   core.python.uri_control.edge.risk_policy.check_risk_requirements
     CC=16  in:1  out:17  total:18
   core.python.uri_control.edge.env.load_urisys_env
     CC=8  in:0  out:17  total:17
-  core.python.uri_control.edge.manifest._register_urisys_flows
-    CC=8  in:2  out:14  total:16
   core.python.uri_control.handlers.make_remote_handler
     CC=1  in:1  out:15  total:16
+  core.python.uri_control.edge.manifest._register_urisys_flows
+    CC=8  in:2  out:14  total:16
   core.python.uri_control.edge.flow_expect._ocr_texts
     CC=12  in:1  out:15  total:16
   core.python.uri_control.edge.flow_refs.interpolate_value
     CC=8  in:4  out:11  total:15
   core.python.uri_control.registry._compile_pattern
     CC=6  in:2  out:12  total:14
-  core.python.uri_control.edge.flow_expect._vision_confidences
-    CC=12  in:1  out:13  total:14
   core.python.uri_control.edge.compose.build_runtime
     CC=6  in:6  out:8  total:14
+  core.python.uri_control.edge.flow_expect._vision_confidences
+    CC=12  in:1  out:13  total:14
+  core.python.uri_control.edge.runtime.Runtime._execute_handler
+    CC=2  in:0  out:13  total:13
 
 MODULES:
   core.python.uri_control.cli  [7 funcs]
@@ -78,6 +78,12 @@ MODULES:
     load_env_policy  CC=6  out:5
     load_urisys_env  CC=8  out:17
     resolve_env_var  CC=11  out:9
+  core.python.uri_control.edge.flow.loader  [1 funcs]
+    load_yaml_flow  CC=14  out:21
+  core.python.uri_control.edge.flow.runner  [1 funcs]
+    run  CC=19  out:37
+  core.python.uri_control.edge.flow.steps  [1 funcs]
+    order_flow_steps  CC=21  out:25
   core.python.uri_control.edge.flow_expect  [6 funcs]
     _min_vision_confidence  CC=4  out:3
     _ocr_contains  CC=5  out:6
@@ -108,12 +114,12 @@ MODULES:
     _violation  CC=1  out:0
     check_risk_requirements  CC=16  out:17
   core.python.uri_control.edge.runtime  [6 funcs]
+    _build_call_context  CC=3  out:3
+    _check_policies  CC=7  out:8
+    _execute_handler  CC=2  out:13
     _load_handler  CC=4  out:6
-    call  CC=22  out:50
-    _order_flow_steps  CC=21  out:25
-    load_yaml_flow  CC=14  out:21
+    _result_ok  CC=5  out:3
     make_handler  CC=1  out:1
-    run_flow  CC=19  out:37
   core.python.uri_control.handlers  [5 funcs]
     _normalise_endpoint  CC=3  out:4
     _safe_context  CC=5  out:2
@@ -135,12 +141,29 @@ MODULES:
     parse_runtime_handler  CC=5  out:7
 
 EDGES:
+  core.python.uri_control.cli.cmd_explain → core.python.uri_control.cli._registry_from_args
+  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._registry_from_args
+  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._load_payload
+  core.python.uri_control.cli.cmd_list → core.python.uri_control.cli._registry_from_args
+  core.python.uri_control.cli.main → core.python.uri_control.cli.build_parser
+  core.python.uri_control.registry._compile_pattern → core.python.uri_control.registry._pattern_body
+  core.python.uri_control.registry.CapabilityRegistry.register → core.python.uri_control.registry._compile_pattern
+  core.python.uri_control.registry.CapabilityRegistry.match_route → core.python.uri_control.parser.parse_uri
+  core.python.uri_control.registry.CapabilityRegistry.match → core.python.uri_control.edge.runtime.Runtime._load_handler
+  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._normalise_endpoint
+  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._safe_context
+  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.load_python_handler
+  core.python.uri_control.handlers.load_handler → core.python.uri_control.runtime_handlers.load_runtime_handler
+  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.make_remote_handler
+  core.python.uri_control.parser.canonicalize_uri → core.python.uri_control.parser.parse_uri
   core.python.uri_control.dispatcher.UriControlRuntime.call → core.python.uri_control.dispatcher._new_id
   core.python.uri_control.runtime_handlers.load_runtime_handler → core.python.uri_control.runtime_handlers.parse_runtime_handler
   core.python.uri_control.runtime_handlers.load_runtime_handler → core.python.uri_control.runtime_handlers.make_runtime_handler
   core.python.uri_control.edge.cli.build_edge_cli → core.python.uri_control.edge.cli._json_arg
   core.python.uri_control.edge.cli.build_edge_cli → core.python.uri_control.edge.compose.build_runtime
   core.python.uri_control.edge.cli.build_edge_cli → core.python.uri_control.edge.cli._emit
+  core.python.uri_control.edge.http.serve → core.python.uri_control.edge.http._routes_list
+  core.python.uri_control.edge.http.serve → core.python.uri_control.edge.http.make_uri_handler
   core.python.uri_control.edge.manifest.register_manifest_file → core.python.uri_control.edge.manifest.register_manifest_data
   core.python.uri_control.edge.manifest.register_manifest_data → core.python.uri_control.edge.manifest._register_urisys_flows
   core.python.uri_control.edge.manifest.register_manifest_data → core.python.uri_control.edge.manifest._handler_for_operation
@@ -165,23 +188,6 @@ EDGES:
   core.python.uri_control.edge.compose.build_runtime → core.python.uri_control.edge.compose.register_packs
   core.python.uri_control.edge.compose.build_runtime → core.python.uri_control.edge.compose.register_manifests
   core.python.uri_control.edge.compose.build_runtime → core.python.uri_control.edge.compose.bundle_packs
-  core.python.uri_control.edge.risk_policy.check_risk_requirements → core.python.uri_control.edge.risk_policy._violation
-  core.python.uri_control.edge.flow_expect._ocr_contains → core.python.uri_control.edge.flow_expect._ocr_texts
-  core.python.uri_control.edge.flow_expect._min_vision_confidence → core.python.uri_control.edge.flow_expect._vision_confidences
-  core.python.uri_control.edge.flow_expect.evaluate_flow_expect → core.python.uri_control.edge.flow_expect._transport_ok
-  core.python.uri_control.parser.canonicalize_uri → core.python.uri_control.parser.parse_uri
-  core.python.uri_control.cli.cmd_explain → core.python.uri_control.cli._registry_from_args
-  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._registry_from_args
-  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._load_payload
-  core.python.uri_control.cli.cmd_list → core.python.uri_control.cli._registry_from_args
-  core.python.uri_control.cli.main → core.python.uri_control.cli.build_parser
-  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._normalise_endpoint
-  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._safe_context
-  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.load_python_handler
-  core.python.uri_control.handlers.load_handler → core.python.uri_control.runtime_handlers.load_runtime_handler
-  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.make_remote_handler
   core.python.uri_control.edge.env.load_urisys_env → core.python.uri_control.edge.env._urisys_root
   core.python.uri_control.edge.env._env_policy_candidates → core.python.uri_control.edge.env._urisys_root
   core.python.uri_control.edge.env.load_env_policy → core.python.uri_control.edge.env._env_policy_candidates
-  core.python.uri_control.edge.env.resolve_env_var → core.python.uri_control.edge.env._env_config
-  core.python.uri_control.edge.env.resolve_env_var → core.python.uri_control.edge.env.load_env_policy

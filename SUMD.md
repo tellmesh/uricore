@@ -22,7 +22,7 @@ Thin URI-native control-plane core for software, services and devices.
 ## Metadata
 
 - **name**: `uricore`
-- **version**: `0.1.8`
+- **version**: `0.1.10`
 - **python_requires**: `>=3.10`
 - **license**: Apache-2.0
 - **ai_model**: `openrouter/qwen/qwen3-coder-next`
@@ -42,7 +42,7 @@ SUMD (description) → DOQL/source (code) → taskfile (automation) → testql (
 
 app {
   name: uricore;
-  version: 0.1.8;
+  version: 0.1.10;
 }
 
 dependencies {
@@ -81,6 +81,10 @@ workflow[name="example-browser"] {
 workflow[name="example-systemd"] {
   trigger: manual;
   step-1: run cmd=PYTHONPATH=core/python:. python examples/call_systemd_mock.py;
+}
+
+tests {
+  import: testql-scenarios/**/*.testql.toon.yaml;
 }
 
 env_vars {
@@ -169,7 +173,7 @@ ASSERT[12]{field, operator, expected}:
 ```yaml
 project:
   name: uricore
-  version: 0.1.8
+  version: 0.1.10
   env: local
 ```
 
@@ -223,7 +227,7 @@ pip install -e .[dev]
 - **commits**: `conventional` scope=`uricore`
 - **changelog**: `keep-a-changelog`
 - **build strategies**: `python`, `nodejs`, `rust`
-- **version files**: `VERSION`, `pyproject.toml:version`, `.venv/lib/python3.13/site-packages/_pytest/__init__.py:__version__`
+- **version files**: `VERSION`, `pyproject.toml:version`, `venv/lib/python3.13/site-packages/cryptography/__init__.py:__version__`
 
 ## Makefile Targets
 
@@ -238,14 +242,14 @@ pip install -e .[dev]
 ### `project/map.toon.yaml`
 
 ```toon markpact:analysis path=project/map.toon.yaml
-# uricore | 26f 1093L | python:23,shell:2,less:1 | 2026-06-18
-# stats: 59 func | 1 cls | 26 mod | CC̄=3.4 | critical:0 | cycles:0
+# uricore | 27f 1120L | python:24,shell:2,less:1 | 2026-06-18
+# stats: 60 func | 1 cls | 27 mod | CC̄=3.5 | critical:0 | cycles:0
 # alerts[5]: CC test_parse_flow_step_graph_format=8; CC test_normalize_promotes_wire_fields_into_context=7; CC test_parse_custom_uri=7; CC open_page=6; CC test_match_route_does_not_load_handler=6
-# hotspots[5]: test_load_urisys_flow_handler_runs_steps fan=8; test_run_flow_if_skips_step fan=6; test_run_flow_save_as_and_ref fan=5; test_run_flow_payload_from fan=5; test_match_route_does_not_load_handler fan=5
+# hotspots[5]: test_flow_runner_matches_run_flow fan=9; test_load_urisys_flow_handler_runs_steps fan=8; test_run_flow_if_skips_step fan=6; test_run_flow_save_as_and_ref fan=5; test_run_flow_payload_from fan=5
 # evolution: baseline
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[26]:
-  app.doql.less,63
+M[27]:
+  app.doql.less,67
   examples/__init__.py,1
   examples/call_browser_mock.py,31
   examples/call_systemd_mock.py,23
@@ -261,6 +265,7 @@ M[26]:
   tests/test_flow_expect.py,33
   tests/test_flow_inputs.py,21
   tests/test_flow_refs.py,86
+  tests/test_flow_runner.py,23
   tests/test_operation_policy.py,73
   tests/test_parser.py,12
   tests/test_register.py,93
@@ -311,6 +316,9 @@ D:
     test_run_flow_save_as_and_ref(tmp_path)
     test_run_flow_payload_from(tmp_path)
     test_run_flow_if_skips_step(tmp_path)
+  tests/test_flow_runner.py:
+    e: test_flow_runner_matches_run_flow
+    test_flow_runner_matches_run_flow(tmp_path)
   tests/test_operation_policy.py:
     e: _runtime,test_within_limit_executes,test_exceeds_limit_denied_before_handler,test_limit_enforced_even_on_dry_run,test_approval_still_checked_before_policy
     _runtime(tmp_path)
@@ -377,10 +385,10 @@ D:
 
 ```prolog markpact:analysis path=project/logic.pl
 % ── Project Metadata ─────────────────────────────────────
-project_metadata('uricore', '0.1.9', 'python').
+project_metadata('uricore', '0.1.10', 'python').
 
 % ── Project Files ────────────────────────────────────────
-project_file('app.doql.less', 63, 'less').
+project_file('app.doql.less', 67, 'less').
 project_file('examples/__init__.py', 1, 'python').
 project_file('examples/call_browser_mock.py', 31, 'python').
 project_file('examples/call_systemd_mock.py', 23, 'python').
@@ -396,6 +404,7 @@ project_file('tests/test_envelope.py', 25, 'python').
 project_file('tests/test_flow_expect.py', 33, 'python').
 project_file('tests/test_flow_inputs.py', 21, 'python').
 project_file('tests/test_flow_refs.py', 86, 'python').
+project_file('tests/test_flow_runner.py', 23, 'python').
 project_file('tests/test_operation_policy.py', 73, 'python').
 project_file('tests/test_parser.py', 12, 'python').
 project_file('tests/test_register.py', 93, 'python').
@@ -426,6 +435,7 @@ python_function('tests/test_flow_refs.py', 'test_interpolate_payload', 0, 2, 1).
 python_function('tests/test_flow_refs.py', 'test_run_flow_save_as_and_ref', 1, 4, 5).
 python_function('tests/test_flow_refs.py', 'test_run_flow_payload_from', 1, 3, 5).
 python_function('tests/test_flow_refs.py', 'test_run_flow_if_skips_step', 1, 3, 6).
+python_function('tests/test_flow_runner.py', 'test_flow_runner_matches_run_flow', 1, 4, 9).
 python_function('tests/test_operation_policy.py', '_runtime', 1, 1, 3).
 python_function('tests/test_operation_policy.py', 'test_within_limit_executes', 1, 3, 2).
 python_function('tests/test_operation_policy.py', 'test_exceeds_limit_denied_before_handler', 1, 5, 3).
@@ -502,72 +512,90 @@ testql_scenario('generated-cli-tests.testql.toon.yaml', 'cli').
 testql_scenario('generated-from-pytests.testql.toon.yaml', 'integration').
 
 % ── Semantic Facts from SUMD.md ──────────────────────────
+sumd_declared_file('app.doql.less', 'doql').
+sumd_declared_file('testql-scenarios/generated-cli-tests.testql.toon.yaml', 'testql').
+sumd_declared_file('testql-scenarios/generated-from-pytests.testql.toon.yaml', 'testql').
+sumd_declared_file('project/map.toon.yaml', 'analysis').
+sumd_declared_file('project/logic.pl', 'analysis').
+sumd_declared_file('project/calls.toon.yaml', 'analysis').
+sumd_interface('cli', 'argparse').
+sumd_interface('cli', '').
+sumd_workflow('install', 'manual').
+sumd_workflow_step('install', 1, 'python -m pip install -e .').
+sumd_workflow('test', 'manual').
+sumd_workflow_step('test', 1, 'python -m pytest').
+sumd_workflow('lint', 'manual').
+sumd_workflow_step('lint', 1, 'python -m ruff check core/python tests examples').
+sumd_workflow('example-browser', 'manual').
+sumd_workflow_step('example-browser', 1, 'PYTHONPATH=core/python:. python examples/call_browser_mock.py').
+sumd_workflow('example-systemd', 'manual').
+sumd_workflow_step('example-systemd', 1, 'PYTHONPATH=core/python:. python examples/call_systemd_mock.py').
 ```
 
 ## Call Graph
 
-*72 nodes · 62 edges · 15 modules · CC̄=4.6*
+*75 nodes · 64 edges · 18 modules · CC̄=4.2*
 
 ### Hubs (by degree)
 
 | Function | CC | in | out | total |
 |----------|----|----|-----|-------|
 | `build_edge_cli` *(in core.python.uri_control.edge.cli)* | 1 | 0 | 57 | **57** |
-| `call` *(in core.python.uri_control.edge.runtime.Runtime)* | 22 ⚠ | 0 | 50 | **50** |
 | `make_uri_handler` *(in core.python.uri_control.edge.http)* | 2 | 2 | 47 | **49** |
-| `run_flow` *(in core.python.uri_control.edge.runtime)* | 19 ⚠ | 1 | 37 | **38** |
+| `run` *(in core.python.uri_control.edge.flow.runner.FlowRunner)* | 19 ⚠ | 0 | 37 | **37** |
 | `call` *(in core.python.uri_control.dispatcher.UriControlRuntime)* | 10 ⚠ | 0 | 31 | **31** |
 | `build_parser` *(in core.python.uri_control.cli)* | 1 | 1 | 25 | **26** |
-| `_order_flow_steps` *(in core.python.uri_control.edge.runtime)* | 21 ⚠ | 1 | 25 | **26** |
+| `order_flow_steps` *(in core.python.uri_control.edge.flow.steps)* | 21 ⚠ | 1 | 25 | **26** |
 | `evaluate_step_if` *(in core.python.uri_control.edge.flow_refs)* | 9 | 1 | 22 | **23** |
+| `load_yaml_flow` *(in core.python.uri_control.edge.flow.loader)* | 14 ⚠ | 1 | 21 | **22** |
 
 ```toon markpact:analysis path=project/calls.toon.yaml
 # code2llm call graph | /home/tom/github/tellmesh/uricore
-# generated in 0.04s
-# nodes: 72 | edges: 62 | modules: 15
-# CC̄=4.6
+# generated in 0.03s
+# nodes: 75 | edges: 64 | modules: 18
+# CC̄=4.2
 
 HUBS[20]:
   core.python.uri_control.edge.cli.build_edge_cli
     CC=1  in:0  out:57  total:57
-  core.python.uri_control.edge.runtime.Runtime.call
-    CC=22  in:0  out:50  total:50
   core.python.uri_control.edge.http.make_uri_handler
     CC=2  in:2  out:47  total:49
-  core.python.uri_control.edge.runtime.run_flow
-    CC=19  in:1  out:37  total:38
+  core.python.uri_control.edge.flow.runner.FlowRunner.run
+    CC=19  in:0  out:37  total:37
   core.python.uri_control.dispatcher.UriControlRuntime.call
     CC=10  in:0  out:31  total:31
   core.python.uri_control.cli.build_parser
     CC=1  in:1  out:25  total:26
-  core.python.uri_control.edge.runtime._order_flow_steps
+  core.python.uri_control.edge.flow.steps.order_flow_steps
     CC=21  in:1  out:25  total:26
   core.python.uri_control.edge.flow_refs.evaluate_step_if
     CC=9  in:1  out:22  total:23
+  core.python.uri_control.edge.flow.loader.load_yaml_flow
+    CC=14  in:1  out:21  total:22
   core.python.uri_control.edge.manifest.register_manifest_data
     CC=11  in:1  out:21  total:22
-  core.python.uri_control.edge.runtime.load_yaml_flow
-    CC=14  in:1  out:21  total:22
   core.python.uri_control.edge.flow_expect.evaluate_flow_expect
     CC=7  in:1  out:19  total:20
   core.python.uri_control.edge.risk_policy.check_risk_requirements
     CC=16  in:1  out:17  total:18
   core.python.uri_control.edge.env.load_urisys_env
     CC=8  in:0  out:17  total:17
-  core.python.uri_control.edge.manifest._register_urisys_flows
-    CC=8  in:2  out:14  total:16
   core.python.uri_control.handlers.make_remote_handler
     CC=1  in:1  out:15  total:16
+  core.python.uri_control.edge.manifest._register_urisys_flows
+    CC=8  in:2  out:14  total:16
   core.python.uri_control.edge.flow_expect._ocr_texts
     CC=12  in:1  out:15  total:16
   core.python.uri_control.edge.flow_refs.interpolate_value
     CC=8  in:4  out:11  total:15
   core.python.uri_control.registry._compile_pattern
     CC=6  in:2  out:12  total:14
-  core.python.uri_control.edge.flow_expect._vision_confidences
-    CC=12  in:1  out:13  total:14
   core.python.uri_control.edge.compose.build_runtime
     CC=6  in:6  out:8  total:14
+  core.python.uri_control.edge.flow_expect._vision_confidences
+    CC=12  in:1  out:13  total:14
+  core.python.uri_control.edge.runtime.Runtime._execute_handler
+    CC=2  in:0  out:13  total:13
 
 MODULES:
   core.python.uri_control.cli  [7 funcs]
@@ -602,6 +630,12 @@ MODULES:
     load_env_policy  CC=6  out:5
     load_urisys_env  CC=8  out:17
     resolve_env_var  CC=11  out:9
+  core.python.uri_control.edge.flow.loader  [1 funcs]
+    load_yaml_flow  CC=14  out:21
+  core.python.uri_control.edge.flow.runner  [1 funcs]
+    run  CC=19  out:37
+  core.python.uri_control.edge.flow.steps  [1 funcs]
+    order_flow_steps  CC=21  out:25
   core.python.uri_control.edge.flow_expect  [6 funcs]
     _min_vision_confidence  CC=4  out:3
     _ocr_contains  CC=5  out:6
@@ -632,12 +666,12 @@ MODULES:
     _violation  CC=1  out:0
     check_risk_requirements  CC=16  out:17
   core.python.uri_control.edge.runtime  [6 funcs]
+    _build_call_context  CC=3  out:3
+    _check_policies  CC=7  out:8
+    _execute_handler  CC=2  out:13
     _load_handler  CC=4  out:6
-    call  CC=22  out:50
-    _order_flow_steps  CC=21  out:25
-    load_yaml_flow  CC=14  out:21
+    _result_ok  CC=5  out:3
     make_handler  CC=1  out:1
-    run_flow  CC=19  out:37
   core.python.uri_control.handlers  [5 funcs]
     _normalise_endpoint  CC=3  out:4
     _safe_context  CC=5  out:2
@@ -659,12 +693,29 @@ MODULES:
     parse_runtime_handler  CC=5  out:7
 
 EDGES:
+  core.python.uri_control.cli.cmd_explain → core.python.uri_control.cli._registry_from_args
+  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._registry_from_args
+  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._load_payload
+  core.python.uri_control.cli.cmd_list → core.python.uri_control.cli._registry_from_args
+  core.python.uri_control.cli.main → core.python.uri_control.cli.build_parser
+  core.python.uri_control.registry._compile_pattern → core.python.uri_control.registry._pattern_body
+  core.python.uri_control.registry.CapabilityRegistry.register → core.python.uri_control.registry._compile_pattern
+  core.python.uri_control.registry.CapabilityRegistry.match_route → core.python.uri_control.parser.parse_uri
+  core.python.uri_control.registry.CapabilityRegistry.match → core.python.uri_control.edge.runtime.Runtime._load_handler
+  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._normalise_endpoint
+  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._safe_context
+  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.load_python_handler
+  core.python.uri_control.handlers.load_handler → core.python.uri_control.runtime_handlers.load_runtime_handler
+  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.make_remote_handler
+  core.python.uri_control.parser.canonicalize_uri → core.python.uri_control.parser.parse_uri
   core.python.uri_control.dispatcher.UriControlRuntime.call → core.python.uri_control.dispatcher._new_id
   core.python.uri_control.runtime_handlers.load_runtime_handler → core.python.uri_control.runtime_handlers.parse_runtime_handler
   core.python.uri_control.runtime_handlers.load_runtime_handler → core.python.uri_control.runtime_handlers.make_runtime_handler
   core.python.uri_control.edge.cli.build_edge_cli → core.python.uri_control.edge.cli._json_arg
   core.python.uri_control.edge.cli.build_edge_cli → core.python.uri_control.edge.compose.build_runtime
   core.python.uri_control.edge.cli.build_edge_cli → core.python.uri_control.edge.cli._emit
+  core.python.uri_control.edge.http.serve → core.python.uri_control.edge.http._routes_list
+  core.python.uri_control.edge.http.serve → core.python.uri_control.edge.http.make_uri_handler
   core.python.uri_control.edge.manifest.register_manifest_file → core.python.uri_control.edge.manifest.register_manifest_data
   core.python.uri_control.edge.manifest.register_manifest_data → core.python.uri_control.edge.manifest._register_urisys_flows
   core.python.uri_control.edge.manifest.register_manifest_data → core.python.uri_control.edge.manifest._handler_for_operation
@@ -689,26 +740,9 @@ EDGES:
   core.python.uri_control.edge.compose.build_runtime → core.python.uri_control.edge.compose.register_packs
   core.python.uri_control.edge.compose.build_runtime → core.python.uri_control.edge.compose.register_manifests
   core.python.uri_control.edge.compose.build_runtime → core.python.uri_control.edge.compose.bundle_packs
-  core.python.uri_control.edge.risk_policy.check_risk_requirements → core.python.uri_control.edge.risk_policy._violation
-  core.python.uri_control.edge.flow_expect._ocr_contains → core.python.uri_control.edge.flow_expect._ocr_texts
-  core.python.uri_control.edge.flow_expect._min_vision_confidence → core.python.uri_control.edge.flow_expect._vision_confidences
-  core.python.uri_control.edge.flow_expect.evaluate_flow_expect → core.python.uri_control.edge.flow_expect._transport_ok
-  core.python.uri_control.parser.canonicalize_uri → core.python.uri_control.parser.parse_uri
-  core.python.uri_control.cli.cmd_explain → core.python.uri_control.cli._registry_from_args
-  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._registry_from_args
-  core.python.uri_control.cli.cmd_call → core.python.uri_control.cli._load_payload
-  core.python.uri_control.cli.cmd_list → core.python.uri_control.cli._registry_from_args
-  core.python.uri_control.cli.main → core.python.uri_control.cli.build_parser
-  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._normalise_endpoint
-  core.python.uri_control.handlers.make_remote_handler → core.python.uri_control.handlers._safe_context
-  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.load_python_handler
-  core.python.uri_control.handlers.load_handler → core.python.uri_control.runtime_handlers.load_runtime_handler
-  core.python.uri_control.handlers.load_handler → core.python.uri_control.handlers.make_remote_handler
   core.python.uri_control.edge.env.load_urisys_env → core.python.uri_control.edge.env._urisys_root
   core.python.uri_control.edge.env._env_policy_candidates → core.python.uri_control.edge.env._urisys_root
   core.python.uri_control.edge.env.load_env_policy → core.python.uri_control.edge.env._env_policy_candidates
-  core.python.uri_control.edge.env.resolve_env_var → core.python.uri_control.edge.env._env_config
-  core.python.uri_control.edge.env.resolve_env_var → core.python.uri_control.edge.env.load_env_policy
 ```
 
 ## Test Contracts

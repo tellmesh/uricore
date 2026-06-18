@@ -24,7 +24,7 @@ tickets:
     build_parser'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: load_yaml_flow'
-  description: 'code2llm reports `God Function: load_yaml_flow` in `core/python/uri_control/edge/runtime.py:319`.
+  description: 'code2llm reports `God Function: load_yaml_flow` in `core/python/uri_control/edge/flow/loader.py:7`.
 
 
     Function ''load_yaml_flow'' is oversized: CC=14, fan-out=18, mutations=21.
@@ -38,15 +38,35 @@ tickets:
   - code-smell
   - god-function
   files:
-  - core/python/uri_control/edge/runtime.py
-  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/runtime.py:319:God
+  - core/python/uri_control/edge/flow/loader.py
+  dedupe_key: 'code2llm:smell:god_function:core/python/uri_control/edge/flow/loader.py:7:God
     Function: load_yaml_flow'
 - signal: code2llm_smell_shotgun_surgery
-  title: 'Address code smell: Shotgun Surgery: data'
-  description: 'code2llm reports `Shotgun Surgery: data` in `core/python/uri_control/edge/manifest.py:39`.
+  title: 'Address code smell: Shotgun Surgery: ctx'
+  description: 'code2llm reports `Shotgun Surgery: ctx` in `core/python/uri_control/edge/risk_policy.py:8`.
 
 
-    Mutation of variable ''data'' spans 7 functions. Changing this logic requires
+    Mutation of variable ''ctx'' spans 5 functions. Changing this logic requires work
+    in many places.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: high
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - shotgun-surgery
+  files:
+  - core/python/uri_control/edge/risk_policy.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/risk_policy.py:8:Shotgun
+    Surgery: ctx'
+- signal: code2llm_smell_shotgun_surgery
+  title: 'Address code smell: Shotgun Surgery: name'
+  description: 'code2llm reports `Shotgun Surgery: name` in `core/python/uri_control/edge/flow_expect.py:53`.
+
+
+    Mutation of variable ''name'' spans 6 functions. Changing this logic requires
     work in many places.
 
 
@@ -58,12 +78,12 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - core/python/uri_control/edge/manifest.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/manifest.py:39:Shotgun
-    Surgery: data'
+  - core/python/uri_control/edge/flow_expect.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/flow_expect.py:53:Shotgun
+    Surgery: name'
 - signal: code2llm_smell_shotgun_surgery
   title: 'Address code smell: Shotgun Surgery: operation'
-  description: 'code2llm reports `Shotgun Surgery: operation` in `core/python/uri_control/edge/manifest.py:46`.
+  description: 'code2llm reports `Shotgun Surgery: operation` in `core/python/uri_control/runtime_handlers.py:79`.
 
 
     Mutation of variable ''operation'' spans 6 functions. Changing this logic requires
@@ -78,15 +98,15 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - core/python/uri_control/edge/manifest.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/manifest.py:46:Shotgun
+  - core/python/uri_control/runtime_handlers.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/runtime_handlers.py:79:Shotgun
     Surgery: operation'
 - signal: code2llm_smell_shotgun_surgery
-  title: 'Address code smell: Shotgun Surgery: path'
-  description: 'code2llm reports `Shotgun Surgery: path` in `core/python/uri_control/edge/manifest.py:39`.
+  title: 'Address code smell: Shotgun Surgery: registry'
+  description: 'code2llm reports `Shotgun Surgery: registry` in `core/python/uri_control/cli.py:35`.
 
 
-    Mutation of variable ''path'' spans 5 functions. Changing this logic requires
+    Mutation of variable ''registry'' spans 6 functions. Changing this logic requires
     work in many places.
 
 
@@ -98,15 +118,15 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - core/python/uri_control/edge/manifest.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/manifest.py:39:Shotgun
-    Surgery: path'
+  - core/python/uri_control/cli.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/cli.py:35:Shotgun
+    Surgery: registry'
 - signal: code2llm_smell_shotgun_surgery
-  title: 'Address code smell: Shotgun Surgery: ref'
-  description: 'code2llm reports `Shotgun Surgery: ref` in `core/python/uri_control/edge/flow_refs.py:63`.
+  title: 'Address code smell: Shotgun Surgery: uri'
+  description: 'code2llm reports `Shotgun Surgery: uri` in `core/python/uri_control/edge/flow/loader.py:7`.
 
 
-    Mutation of variable ''ref'' spans 5 functions. Changing this logic requires work
+    Mutation of variable ''uri'' spans 5 functions. Changing this logic requires work
     in many places.
 
 
@@ -118,9 +138,47 @@ tickets:
   - code-smell
   - shotgun-surgery
   files:
-  - core/python/uri_control/edge/flow_refs.py
-  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/flow_refs.py:63:Shotgun
-    Surgery: ref'
+  - core/python/uri_control/edge/flow/loader.py
+  dedupe_key: 'code2llm:smell:shotgun_surgery:core/python/uri_control/edge/flow/loader.py:7:Shotgun
+    Surgery: uri'
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.flow.runner.FlowRunner.run
+    (CC=19)'
+  description: 'code2llm reports `core.python.uri_control.edge.flow.runner.FlowRunner.run`
+    at `core/python/uri_control/edge/flow/runner.py:22` with cyclomatic complexity
+    19 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/edge/flow/runner.py
+  dedupe_key: code2llm:cc:core/python/uri_control/edge/flow/runner.py:core.python.uri_control.edge.flow.runner.FlowRunner.run
+- signal: code2llm_cc
+  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.flow.steps.order_flow_steps
+    (CC=21)'
+  description: 'code2llm reports `core.python.uri_control.edge.flow.steps.order_flow_steps`
+    at `core/python/uri_control/edge/flow/steps.py:22` with cyclomatic complexity
+    21 (limit 15).
+
+
+    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
+    code2llm after the change and keep tests green.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - complexity
+  - refactor
+  files:
+  - core/python/uri_control/edge/flow/steps.py
+  dedupe_key: code2llm:cc:core/python/uri_control/edge/flow/steps.py:core.python.uri_control.edge.flow.steps.order_flow_steps
 - signal: code2llm_cc
   title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.risk_policy.check_risk_requirements
     (CC=16)'
@@ -141,63 +199,6 @@ tickets:
   - core/python/uri_control/edge/risk_policy.py
   dedupe_key: code2llm:cc:core/python/uri_control/edge/risk_policy.py:core.python.uri_control.edge.risk_policy.check_risk_requirements
 - signal: code2llm_cc
-  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.runtime.Runtime.call
-    (CC=22)'
-  description: 'code2llm reports `core.python.uri_control.edge.runtime.Runtime.call`
-    at `core/python/uri_control/edge/runtime.py:180` with cyclomatic complexity 22
-    (limit 15).
-
-
-    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
-    code2llm after the change and keep tests green.'
-  priority: normal
-  labels:
-  - llm-ready
-  - code2llm
-  - complexity
-  - refactor
-  files:
-  - core/python/uri_control/edge/runtime.py
-  dedupe_key: code2llm:cc:core/python/uri_control/edge/runtime.py:core.python.uri_control.edge.runtime.Runtime.call
-- signal: code2llm_cc
-  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.runtime._order_flow_steps
-    (CC=21)'
-  description: 'code2llm reports `core.python.uri_control.edge.runtime._order_flow_steps`
-    at `core/python/uri_control/edge/runtime.py:375` with cyclomatic complexity 21
-    (limit 15).
-
-
-    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
-    code2llm after the change and keep tests green.'
-  priority: normal
-  labels:
-  - llm-ready
-  - code2llm
-  - complexity
-  - refactor
-  files:
-  - core/python/uri_control/edge/runtime.py
-  dedupe_key: code2llm:cc:core/python/uri_control/edge/runtime.py:core.python.uri_control.edge.runtime._order_flow_steps
-- signal: code2llm_cc
-  title: 'Reduce cyclomatic complexity: core.python.uri_control.edge.runtime.run_flow
-    (CC=19)'
-  description: 'code2llm reports `core.python.uri_control.edge.runtime.run_flow` at
-    `core/python/uri_control/edge/runtime.py:420` with cyclomatic complexity 19 (limit
-    15).
-
-
-    Extract smaller functions, flatten conditionals, or split strategy branches. Re-run
-    code2llm after the change and keep tests green.'
-  priority: normal
-  labels:
-  - llm-ready
-  - code2llm
-  - complexity
-  - refactor
-  files:
-  - core/python/uri_control/edge/runtime.py
-  dedupe_key: code2llm:cc:core/python/uri_control/edge/runtime.py:core.python.uri_control.edge.runtime.run_flow
-- signal: code2llm_cc
   title: 'Reduce cyclomatic complexity: core.python.uri_control.registry.CapabilityRegistry.load_manifest
     (CC=21)'
   description: 'code2llm reports `core.python.uri_control.registry.CapabilityRegistry.load_manifest`
@@ -216,6 +217,46 @@ tickets:
   files:
   - core/python/uri_control/registry.py
   dedupe_key: code2llm:cc:core/python/uri_control/registry.py:core.python.uri_control.registry.CapabilityRegistry.load_manifest
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: config, context, self, uri'
+  description: 'code2llm reports `Data Clump: config, context, self, uri` in `core/python/uri_control/edge/call/resolver_hook.py:11`.
+
+
+    Arguments (config, context, self, uri) are used together in multiple functions:
+    core.python.uri_control.edge.call.resolver_hook.ResolverHook.resolve, core.python.uri_control.edge.call.resolver_hook.DefaultResolverHook.resolve.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/edge/call/resolver_hook.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/call/resolver_hook.py:11:Data
+    Clump: config, context, self, uri'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: config, context, self, uri'
+  description: 'code2llm reports `Data Clump: config, context, self, uri` in `core/python/uri_control/edge/call/resolver_hook.py:32`.
+
+
+    Arguments (config, context, self, uri) are used together in multiple functions:
+    core.python.uri_control.edge.call.resolver_hook.ResolverHook.resolve, core.python.uri_control.edge.call.resolver_hook.DefaultResolverHook.resolve.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/edge/call/resolver_hook.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/call/resolver_hook.py:32:Data
+    Clump: config, context, self, uri'
 - signal: code2llm_smell_data_clump
   title: 'Address code smell: Data Clump: host, runtime, port'
   description: 'code2llm reports `Data Clump: host, runtime, port` in `core/python/uri_control/edge/http.py:132`.
@@ -238,7 +279,7 @@ tickets:
     Clump: host, runtime, port'
 - signal: code2llm_smell_data_clump
   title: 'Address code smell: Data Clump: host, runtime, port'
-  description: 'code2llm reports `Data Clump: host, runtime, port` in `core/python/uri_control/edge/runtime.py:511`.
+  description: 'code2llm reports `Data Clump: host, runtime, port` in `core/python/uri_control/edge/runtime.py:269`.
 
 
     Arguments (host, runtime, port) are used together in multiple functions: core.python.uri_control.edge.http.serve,
@@ -254,15 +295,16 @@ tickets:
   - data-clump
   files:
   - core/python/uri_control/edge/runtime.py
-  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/runtime.py:511:Data
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/runtime.py:269:Data
     Clump: host, runtime, port'
 - signal: code2llm_smell_data_clump
-  title: 'Address code smell: Data Clump: self, uri, context, payload'
-  description: 'code2llm reports `Data Clump: self, uri, context, payload` in `core/python/uri_control/dispatcher.py:35`.
+  title: 'Address code smell: Data Clump: payload, context, self, uri'
+  description: 'code2llm reports `Data Clump: payload, context, self, uri` in `core/python/uri_control/dispatcher.py:35`.
 
 
-    Arguments (self, uri, context, payload) are used together in multiple functions:
-    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call.
+    Arguments (payload, context, self, uri) are used together in multiple functions:
+    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call,
+    core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline.call.
 
 
     Make the smallest refactor that removes the smell and run local tests.'
@@ -275,14 +317,15 @@ tickets:
   files:
   - core/python/uri_control/dispatcher.py
   dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/dispatcher.py:35:Data
-    Clump: self, uri, context, payload'
+    Clump: payload, context, self, uri'
 - signal: code2llm_smell_data_clump
-  title: 'Address code smell: Data Clump: self, uri, context, payload'
-  description: 'code2llm reports `Data Clump: self, uri, context, payload` in `core/python/uri_control/edge/runtime.py:180`.
+  title: 'Address code smell: Data Clump: payload, context, self, uri'
+  description: 'code2llm reports `Data Clump: payload, context, self, uri` in `core/python/uri_control/edge/runtime.py:183`.
 
 
-    Arguments (self, uri, context, payload) are used together in multiple functions:
-    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call.
+    Arguments (payload, context, self, uri) are used together in multiple functions:
+    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call,
+    core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline.call.
 
 
     Make the smallest refactor that removes the smell and run local tests.'
@@ -294,8 +337,29 @@ tickets:
   - data-clump
   files:
   - core/python/uri_control/edge/runtime.py
-  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/runtime.py:180:Data
-    Clump: self, uri, context, payload'
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/runtime.py:183:Data
+    Clump: payload, context, self, uri'
+- signal: code2llm_smell_data_clump
+  title: 'Address code smell: Data Clump: payload, context, self, uri'
+  description: 'code2llm reports `Data Clump: payload, context, self, uri` in `core/python/uri_control/edge/call/pipeline.py:20`.
+
+
+    Arguments (payload, context, self, uri) are used together in multiple functions:
+    core.python.uri_control.dispatcher.UriControlRuntime.call, core.python.uri_control.edge.runtime.Runtime.call,
+    core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline.call.
+
+
+    Make the smallest refactor that removes the smell and run local tests.'
+  priority: normal
+  labels:
+  - llm-ready
+  - code2llm
+  - code-smell
+  - data-clump
+  files:
+  - core/python/uri_control/edge/call/pipeline.py
+  dedupe_key: 'code2llm:smell:data_clump:core/python/uri_control/edge/call/pipeline.py:20:Data
+    Clump: payload, context, self, uri'
 - signal: code2llm_smell_god_function
   title: 'Address code smell: God Function: _register_urisys_flows'
   description: 'code2llm reports `God Function: _register_urisys_flows` in `core/python/uri_control/edge/manifest.py:20`.

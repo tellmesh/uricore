@@ -1,8 +1,8 @@
 % ── Project Metadata ─────────────────────────────────────
-project_metadata('uricore', '0.1.9', 'python').
+project_metadata('uricore', '0.1.10', 'python').
 
 % ── Project Files ────────────────────────────────────────
-project_file('app.doql.less', 63, 'less').
+project_file('app.doql.less', 67, 'less').
 project_file('examples/__init__.py', 1, 'python').
 project_file('examples/call_browser_mock.py', 31, 'python').
 project_file('examples/call_systemd_mock.py', 23, 'python').
@@ -18,6 +18,7 @@ project_file('tests/test_envelope.py', 25, 'python').
 project_file('tests/test_flow_expect.py', 33, 'python').
 project_file('tests/test_flow_inputs.py', 21, 'python').
 project_file('tests/test_flow_refs.py', 86, 'python').
+project_file('tests/test_flow_runner.py', 23, 'python').
 project_file('tests/test_operation_policy.py', 73, 'python').
 project_file('tests/test_parser.py', 12, 'python').
 project_file('tests/test_register.py', 93, 'python').
@@ -48,6 +49,7 @@ python_function('tests/test_flow_refs.py', 'test_interpolate_payload', 0, 2, 1).
 python_function('tests/test_flow_refs.py', 'test_run_flow_save_as_and_ref', 1, 4, 5).
 python_function('tests/test_flow_refs.py', 'test_run_flow_payload_from', 1, 3, 5).
 python_function('tests/test_flow_refs.py', 'test_run_flow_if_skips_step', 1, 3, 6).
+python_function('tests/test_flow_runner.py', 'test_flow_runner_matches_run_flow', 1, 4, 9).
 python_function('tests/test_operation_policy.py', '_runtime', 1, 1, 3).
 python_function('tests/test_operation_policy.py', 'test_within_limit_executes', 1, 3, 2).
 python_function('tests/test_operation_policy.py', 'test_exceeds_limit_denied_before_handler', 1, 5, 3).

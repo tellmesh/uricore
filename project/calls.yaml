@@ -1,37 +1,44 @@
 project: /home/tom/github/tellmesh/uricore
 generated_from: code2llm call graph analysis
 stats:
-  total_nodes: 72
-  total_edges: 62
-  modules_count: 15
+  total_nodes: 75
+  total_edges: 64
+  modules_count: 18
 nodes:
-  core.python.uri_control.edge.env._env_config:
-    name: _env_config
-    module: core.python.uri_control.edge.env
-    line: 74
-    cyclomatic_complexity: 7
-    calls_out: 6
-    calls_in: 1
-  core.python.uri_control.edge.runtime.Runtime.call:
-    name: call
-    module: core.python.uri_control.edge.runtime
-    line: 180
-    cyclomatic_complexity: 22
-    calls_out: 50
-    calls_in: 0
-  core.python.uri_control.runtime_handlers.parse_runtime_handler:
-    name: parse_runtime_handler
-    module: core.python.uri_control.runtime_handlers
-    line: 33
-    cyclomatic_complexity: 5
-    calls_out: 7
-    calls_in: 1
-  core.python.uri_control.edge.compose.register_pack:
-    name: register_pack
+  core.python.uri_control.edge.compose._split:
+    name: _split
     module: core.python.uri_control.edge.compose
-    line: 53
-    cyclomatic_complexity: 2
-    calls_out: 6
+    line: 45
+    cyclomatic_complexity: 8
+    calls_out: 7
+    calls_in: 3
+  core.python.uri_control.edge.runtime.make_handler:
+    name: make_handler
+    module: core.python.uri_control.edge.runtime
+    line: 265
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  core.python.uri_control.edge.flow.loader.load_yaml_flow:
+    name: load_yaml_flow
+    module: core.python.uri_control.edge.flow.loader
+    line: 7
+    cyclomatic_complexity: 14
+    calls_out: 21
+    calls_in: 1
+  core.python.uri_control.cli.build_parser:
+    name: build_parser
+    module: core.python.uri_control.cli
+    line: 80
+    cyclomatic_complexity: 1
+    calls_out: 25
+    calls_in: 1
+  core.python.uri_control.handlers.make_remote_handler:
+    name: make_remote_handler
+    module: core.python.uri_control.handlers
+    line: 92
+    cyclomatic_complexity: 1
+    calls_out: 15
     calls_in: 1
   core.python.uri_control.edge.flow_refs.evaluate_step_if:
     name: evaluate_step_if
@@ -40,20 +47,139 @@ nodes:
     cyclomatic_complexity: 9
     calls_out: 22
     calls_in: 1
-  core.python.uri_control.edge.risk_policy._violation:
-    name: _violation
-    module: core.python.uri_control.edge.risk_policy
-    line: 48
-    cyclomatic_complexity: 1
-    calls_out: 0
-    calls_in: 3
-  core.python.uri_control.edge.env.resolve_env_var:
-    name: resolve_env_var
+  core.python.uri_control.edge.compose._bundle_block:
+    name: _bundle_block
+    module: core.python.uri_control.edge.compose
+    line: 98
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 1
+  core.python.uri_control.edge.http._routes_list:
+    name: _routes_list
+    module: core.python.uri_control.edge.http
+    line: 43
+    cyclomatic_complexity: 6
+    calls_out: 6
+    calls_in: 2
+  core.python.uri_control.edge.compose.register_pack:
+    name: register_pack
+    module: core.python.uri_control.edge.compose
+    line: 53
+    cyclomatic_complexity: 2
+    calls_out: 6
+    calls_in: 1
+  core.python.uri_control.edge.flow.steps.order_flow_steps:
+    name: order_flow_steps
+    module: core.python.uri_control.edge.flow.steps
+    line: 22
+    cyclomatic_complexity: 21
+    calls_out: 25
+    calls_in: 1
+  core.python.uri_control.edge.flow_refs.interpolate_value:
+    name: interpolate_value
+    module: core.python.uri_control.edge.flow_refs
+    line: 38
+    cyclomatic_complexity: 8
+    calls_out: 11
+    calls_in: 4
+  core.python.uri_control.handlers._normalise_endpoint:
+    name: _normalise_endpoint
+    module: core.python.uri_control.handlers
+    line: 83
+    cyclomatic_complexity: 3
+    calls_out: 4
+    calls_in: 1
+  core.python.uri_control.edge.compose.bundle_packs:
+    name: bundle_packs
+    module: core.python.uri_control.edge.compose
+    line: 76
+    cyclomatic_complexity: 5
+    calls_out: 11
+    calls_in: 1
+  core.python.uri_control.edge.env.load_env_policy:
+    name: load_env_policy
     module: core.python.uri_control.edge.env
-    line: 85
-    cyclomatic_complexity: 11
-    calls_out: 9
+    line: 61
+    cyclomatic_complexity: 6
+    calls_out: 5
+    calls_in: 2
+  core.python.uri_control.registry._compile_pattern:
+    name: _compile_pattern
+    module: core.python.uri_control.registry
+    line: 24
+    cyclomatic_complexity: 6
+    calls_out: 12
+    calls_in: 2
+  core.python.uri_control.registry.CapabilityRegistry.match:
+    name: match
+    module: core.python.uri_control.registry
+    line: 196
+    cyclomatic_complexity: 4
+    calls_out: 4
     calls_in: 0
+  core.python.uri_control.cli.cmd_list:
+    name: cmd_list
+    module: core.python.uri_control.cli
+    line: 48
+    cyclomatic_complexity: 2
+    calls_out: 3
+    calls_in: 0
+  core.python.uri_control.registry._pattern_body:
+    name: _pattern_body
+    module: core.python.uri_control.registry
+    line: 17
+    cyclomatic_complexity: 2
+    calls_out: 4
+    calls_in: 1
+  core.python.uri_control.edge.flow_expect.evaluate_flow_expect:
+    name: evaluate_flow_expect
+    module: core.python.uri_control.edge.flow_expect
+    line: 125
+    cyclomatic_complexity: 7
+    calls_out: 19
+    calls_in: 1
+  core.python.uri_control.edge.runtime.Runtime._execute_handler:
+    name: _execute_handler
+    module: core.python.uri_control.edge.runtime
+    line: 227
+    cyclomatic_complexity: 2
+    calls_out: 13
+    calls_in: 0
+  core.python.uri_control.cli.cmd_call:
+    name: cmd_call
+    module: core.python.uri_control.cli
+    line: 35
+    cyclomatic_complexity: 2
+    calls_out: 8
+    calls_in: 0
+  core.python.uri_control.cli.main:
+    name: main
+    module: core.python.uri_control.cli
+    line: 116
+    cyclomatic_complexity: 1
+    calls_out: 4
+    calls_in: 0
+  core.python.uri_control.edge.env.load_urisys_env:
+    name: load_urisys_env
+    module: core.python.uri_control.edge.env
+    line: 23
+    cyclomatic_complexity: 8
+    calls_out: 17
+    calls_in: 0
+  core.python.uri_control.edge.cli.build_edge_cli:
+    name: build_edge_cli
+    module: core.python.uri_control.edge.cli
+    line: 46
+    cyclomatic_complexity: 1
+    calls_out: 57
+    calls_in: 0
+  core.python.uri_control.cli._load_payload:
+    name: _load_payload
+    module: core.python.uri_control.cli
+    line: 14
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
   core.python.uri_control.cli._registry_from_args:
     name: _registry_from_args
     module: core.python.uri_control.cli
@@ -61,12 +187,110 @@ nodes:
     cyclomatic_complexity: 2
     calls_out: 2
     calls_in: 3
+  core.python.uri_control.edge.env._env_config:
+    name: _env_config
+    module: core.python.uri_control.edge.env
+    line: 74
+    cyclomatic_complexity: 7
+    calls_out: 6
+    calls_in: 1
+  core.python.uri_control.edge.flow_refs._result_payload:
+    name: _result_payload
+    module: core.python.uri_control.edge.flow_refs
+    line: 54
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 1
   core.python.uri_control.runtime_handlers.make_runtime_handler:
     name: make_runtime_handler
     module: core.python.uri_control.runtime_handlers
     line: 51
     cyclomatic_complexity: 1
     calls_out: 8
+    calls_in: 1
+  core.python.uri_control.edge.flow_refs.resolve_step_uri:
+    name: resolve_step_uri
+    module: core.python.uri_control.edge.flow_refs
+    line: 72
+    cyclomatic_complexity: 9
+    calls_out: 11
+    calls_in: 1
+  core.python.uri_control.edge.env._env_policy_candidates:
+    name: _env_policy_candidates
+    module: core.python.uri_control.edge.env
+    line: 45
+    cyclomatic_complexity: 2
+    calls_out: 7
+    calls_in: 1
+  core.python.uri_control.edge.manifest._register_urisys_flows:
+    name: _register_urisys_flows
+    module: core.python.uri_control.edge.manifest
+    line: 20
+    cyclomatic_complexity: 8
+    calls_out: 14
+    calls_in: 2
+  core.python.uri_control.registry.CapabilityRegistry.match_route:
+    name: match_route
+    module: core.python.uri_control.registry
+    line: 169
+    cyclomatic_complexity: 4
+    calls_out: 6
+    calls_in: 0
+  core.python.uri_control.runtime_handlers.parse_runtime_handler:
+    name: parse_runtime_handler
+    module: core.python.uri_control.runtime_handlers
+    line: 33
+    cyclomatic_complexity: 5
+    calls_out: 7
+    calls_in: 1
+  core.python.uri_control.edge.http.make_uri_handler:
+    name: make_uri_handler
+    module: core.python.uri_control.edge.http
+    line: 53
+    cyclomatic_complexity: 2
+    calls_out: 47
+    calls_in: 2
+  core.python.uri_control.edge.cli._json_arg:
+    name: _json_arg
+    module: core.python.uri_control.edge.cli
+    line: 34
+    cyclomatic_complexity: 3
+    calls_out: 5
+    calls_in: 2
+  core.python.uri_control.edge.compose.resolve_pack_module:
+    name: resolve_pack_module
+    module: core.python.uri_control.edge.compose
+    line: 36
+    cyclomatic_complexity: 4
+    calls_out: 2
+    calls_in: 1
+  core.python.uri_control.handlers._safe_context:
+    name: _safe_context
+    module: core.python.uri_control.handlers
+    line: 69
+    cyclomatic_complexity: 5
+    calls_out: 2
+    calls_in: 1
+  core.python.uri_control.edge.compose.build_runtime:
+    name: build_runtime
+    module: core.python.uri_control.edge.compose
+    line: 117
+    cyclomatic_complexity: 6
+    calls_out: 8
+    calls_in: 6
+  core.python.uri_control.edge.compose.register_packs:
+    name: register_packs
+    module: core.python.uri_control.edge.compose
+    line: 64
+    cyclomatic_complexity: 2
+    calls_out: 2
+    calls_in: 1
+  core.python.uri_control.edge.compose.register_manifests:
+    name: register_manifests
+    module: core.python.uri_control.edge.compose
+    line: 68
+    cyclomatic_complexity: 2
+    calls_out: 4
     calls_in: 1
   core.python.uri_control.edge.compose._imports_contracts:
     name: _imports_contracts
@@ -75,26 +299,33 @@ nodes:
     cyclomatic_complexity: 8
     calls_out: 8
     calls_in: 1
-  core.python.uri_control.edge.compose.resolve_pack_module:
-    name: resolve_pack_module
-    module: core.python.uri_control.edge.compose
-    line: 36
+  core.python.uri_control.edge.flow_refs.interpolate_string:
+    name: interpolate_string
+    module: core.python.uri_control.edge.flow_refs
+    line: 28
+    cyclomatic_complexity: 1
+    calls_out: 5
+    calls_in: 1
+  core.python.uri_control.handlers.load_handler:
+    name: load_handler
+    module: core.python.uri_control.handlers
+    line: 121
+    cyclomatic_complexity: 8
+    calls_out: 7
+    calls_in: 1
+  core.python.uri_control.edge.runtime.Runtime._build_call_context:
+    name: _build_call_context
+    module: core.python.uri_control.edge.runtime
+    line: 218
+    cyclomatic_complexity: 3
+    calls_out: 3
+    calls_in: 0
+  core.python.uri_control.edge.flow_refs.merge_payload_from:
+    name: merge_payload_from
+    module: core.python.uri_control.edge.flow_refs
+    line: 63
     cyclomatic_complexity: 4
-    calls_out: 2
-    calls_in: 1
-  core.python.uri_control.edge.compose._bundle_block:
-    name: _bundle_block
-    module: core.python.uri_control.edge.compose
-    line: 98
-    cyclomatic_complexity: 2
-    calls_out: 2
-    calls_in: 1
-  core.python.uri_control.edge.flow_expect._ocr_contains:
-    name: _ocr_contains
-    module: core.python.uri_control.edge.flow_expect
-    line: 85
-    cyclomatic_complexity: 5
-    calls_out: 6
+    calls_out: 5
     calls_in: 1
   core.python.uri_control.edge.http.serve:
     name: serve
@@ -110,6 +341,20 @@ nodes:
     cyclomatic_complexity: 2
     calls_out: 1
     calls_in: 0
+  core.python.uri_control.edge.cli._emit:
+    name: _emit
+    module: core.python.uri_control.edge.cli
+    line: 42
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 5
+  core.python.uri_control.edge.flow_expect._ocr_texts:
+    name: _ocr_texts
+    module: core.python.uri_control.edge.flow_expect
+    line: 8
+    cyclomatic_complexity: 12
+    calls_out: 15
+    calls_in: 1
   core.python.uri_control.edge.flow_refs.seed_flow_inputs:
     name: seed_flow_inputs
     module: core.python.uri_control.edge.flow_refs
@@ -117,153 +362,6 @@ nodes:
     cyclomatic_complexity: 12
     calls_out: 11
     calls_in: 1
-  core.python.uri_control.edge.manifest.register_manifest_file:
-    name: register_manifest_file
-    module: core.python.uri_control.edge.manifest
-    line: 39
-    cyclomatic_complexity: 2
-    calls_out: 5
-    calls_in: 2
-  core.python.uri_control.edge.env._urisys_root:
-    name: _urisys_root
-    module: core.python.uri_control.edge.env
-    line: 18
-    cyclomatic_complexity: 1
-    calls_out: 2
-    calls_in: 2
-  core.python.uri_control.cli.cmd_explain:
-    name: cmd_explain
-    module: core.python.uri_control.cli
-    line: 29
-    cyclomatic_complexity: 1
-    calls_out: 4
-    calls_in: 0
-  core.python.uri_control.parser.canonicalize_uri:
-    name: canonicalize_uri
-    module: core.python.uri_control.parser
-    line: 38
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 0
-  core.python.uri_control.edge.env.load_urisys_env:
-    name: load_urisys_env
-    module: core.python.uri_control.edge.env
-    line: 23
-    cyclomatic_complexity: 8
-    calls_out: 17
-    calls_in: 0
-  core.python.uri_control.edge.flow_expect.evaluate_flow_expect:
-    name: evaluate_flow_expect
-    module: core.python.uri_control.edge.flow_expect
-    line: 125
-    cyclomatic_complexity: 7
-    calls_out: 19
-    calls_in: 1
-  core.python.uri_control.edge.manifest._handler_for_operation:
-    name: _handler_for_operation
-    module: core.python.uri_control.edge.manifest
-    line: 9
-    cyclomatic_complexity: 6
-    calls_out: 6
-    calls_in: 1
-  core.python.uri_control.runtime_handlers.load_runtime_handler:
-    name: load_runtime_handler
-    module: core.python.uri_control.runtime_handlers
-    line: 79
-    cyclomatic_complexity: 1
-    calls_out: 2
-    calls_in: 1
-  core.python.uri_control.edge.runtime.run_flow:
-    name: run_flow
-    module: core.python.uri_control.edge.runtime
-    line: 420
-    cyclomatic_complexity: 19
-    calls_out: 37
-    calls_in: 1
-  core.python.uri_control.edge.flow_refs._result_payload:
-    name: _result_payload
-    module: core.python.uri_control.edge.flow_refs
-    line: 54
-    cyclomatic_complexity: 3
-    calls_out: 5
-    calls_in: 1
-  core.python.uri_control.registry.CapabilityRegistry.register:
-    name: register
-    module: core.python.uri_control.registry
-    line: 129
-    cyclomatic_complexity: 4
-    calls_out: 7
-    calls_in: 1
-  core.python.uri_control.cli.cmd_list:
-    name: cmd_list
-    module: core.python.uri_control.cli
-    line: 48
-    cyclomatic_complexity: 2
-    calls_out: 3
-    calls_in: 0
-  core.python.uri_control.cli.main:
-    name: main
-    module: core.python.uri_control.cli
-    line: 116
-    cyclomatic_complexity: 1
-    calls_out: 4
-    calls_in: 0
-  core.python.uri_control.handlers._normalise_endpoint:
-    name: _normalise_endpoint
-    module: core.python.uri_control.handlers
-    line: 83
-    cyclomatic_complexity: 3
-    calls_out: 4
-    calls_in: 1
-  core.python.uri_control.edge.flow_refs.resolve_step_uri:
-    name: resolve_step_uri
-    module: core.python.uri_control.edge.flow_refs
-    line: 72
-    cyclomatic_complexity: 9
-    calls_out: 11
-    calls_in: 1
-  core.python.uri_control.handlers._safe_context:
-    name: _safe_context
-    module: core.python.uri_control.handlers
-    line: 69
-    cyclomatic_complexity: 5
-    calls_out: 2
-    calls_in: 1
-  core.python.uri_control.edge.manifest._register_urisys_flows:
-    name: _register_urisys_flows
-    module: core.python.uri_control.edge.manifest
-    line: 20
-    cyclomatic_complexity: 8
-    calls_out: 14
-    calls_in: 2
-  core.python.uri_control.edge.env.load_env_policy:
-    name: load_env_policy
-    module: core.python.uri_control.edge.env
-    line: 61
-    cyclomatic_complexity: 6
-    calls_out: 5
-    calls_in: 2
-  core.python.uri_control.edge.cli.build_edge_cli:
-    name: build_edge_cli
-    module: core.python.uri_control.edge.cli
-    line: 46
-    cyclomatic_complexity: 1
-    calls_out: 57
-    calls_in: 0
-  core.python.uri_control.edge.compose.bundle_packs:
-    name: bundle_packs
-    module: core.python.uri_control.edge.compose
-    line: 76
-    cyclomatic_complexity: 5
-    calls_out: 11
-    calls_in: 1
-  core.python.uri_control.edge.cli._json_arg:
-    name: _json_arg
-    module: core.python.uri_control.edge.cli
-    line: 34
-    cyclomatic_complexity: 3
-    calls_out: 5
-    calls_in: 2
   core.python.uri_control.edge.manifest.register_manifest_data:
     name: register_manifest_data
     module: core.python.uri_control.edge.manifest
@@ -271,75 +369,12 @@ nodes:
     cyclomatic_complexity: 11
     calls_out: 21
     calls_in: 1
-  core.python.uri_control.edge.http._routes_list:
-    name: _routes_list
-    module: core.python.uri_control.edge.http
-    line: 43
-    cyclomatic_complexity: 6
-    calls_out: 6
-    calls_in: 2
-  core.python.uri_control.dispatcher.UriControlRuntime.call:
-    name: call
-    module: core.python.uri_control.dispatcher
-    line: 35
-    cyclomatic_complexity: 10
-    calls_out: 31
-    calls_in: 0
-  core.python.uri_control.edge.flow_refs.merge_payload_from:
-    name: merge_payload_from
-    module: core.python.uri_control.edge.flow_refs
-    line: 63
-    cyclomatic_complexity: 4
-    calls_out: 5
-    calls_in: 1
-  core.python.uri_control.registry._compile_pattern:
-    name: _compile_pattern
-    module: core.python.uri_control.registry
-    line: 24
-    cyclomatic_complexity: 6
-    calls_out: 12
-    calls_in: 2
-  core.python.uri_control.edge.flow_expect._min_vision_confidence:
-    name: _min_vision_confidence
-    module: core.python.uri_control.edge.flow_expect
-    line: 114
-    cyclomatic_complexity: 4
-    calls_out: 3
-    calls_in: 1
-  core.python.uri_control.edge.runtime.load_yaml_flow:
-    name: load_yaml_flow
-    module: core.python.uri_control.edge.runtime
-    line: 319
-    cyclomatic_complexity: 14
-    calls_out: 21
-    calls_in: 1
-  core.python.uri_control.handlers.load_handler:
-    name: load_handler
-    module: core.python.uri_control.handlers
-    line: 121
-    cyclomatic_complexity: 8
-    calls_out: 7
-    calls_in: 1
-  core.python.uri_control.edge.flow_refs.interpolate_string:
-    name: interpolate_string
-    module: core.python.uri_control.edge.flow_refs
-    line: 28
-    cyclomatic_complexity: 1
-    calls_out: 5
-    calls_in: 1
-  core.python.uri_control.edge.flow_refs.interpolate_value:
-    name: interpolate_value
-    module: core.python.uri_control.edge.flow_refs
-    line: 38
-    cyclomatic_complexity: 8
-    calls_out: 11
-    calls_in: 4
-  core.python.uri_control.registry.CapabilityRegistry.match:
-    name: match
-    module: core.python.uri_control.registry
-    line: 196
-    cyclomatic_complexity: 4
-    calls_out: 4
+  core.python.uri_control.edge.env.resolve_env_var:
+    name: resolve_env_var
+    module: core.python.uri_control.edge.env
+    line: 85
+    cyclomatic_complexity: 11
+    calls_out: 9
     calls_in: 0
   core.python.uri_control.parser.parse_uri:
     name: parse_uri
@@ -348,55 +383,20 @@ nodes:
     cyclomatic_complexity: 7
     calls_out: 11
     calls_in: 2
-  core.python.uri_control.cli.build_parser:
-    name: build_parser
+  core.python.uri_control.edge.flow.runner.FlowRunner.run:
+    name: run
+    module: core.python.uri_control.edge.flow.runner
+    line: 22
+    cyclomatic_complexity: 19
+    calls_out: 37
+    calls_in: 0
+  core.python.uri_control.cli.cmd_explain:
+    name: cmd_explain
     module: core.python.uri_control.cli
-    line: 80
+    line: 29
     cyclomatic_complexity: 1
-    calls_out: 25
-    calls_in: 1
-  core.python.uri_control.dispatcher._new_id:
-    name: _new_id
-    module: core.python.uri_control.dispatcher
-    line: 17
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 6
-  core.python.uri_control.handlers.make_remote_handler:
-    name: make_remote_handler
-    module: core.python.uri_control.handlers
-    line: 92
-    cyclomatic_complexity: 1
-    calls_out: 15
-    calls_in: 1
-  core.python.uri_control.edge.compose.register_packs:
-    name: register_packs
-    module: core.python.uri_control.edge.compose
-    line: 64
-    cyclomatic_complexity: 2
-    calls_out: 2
-    calls_in: 1
-  core.python.uri_control.edge.env._env_policy_candidates:
-    name: _env_policy_candidates
-    module: core.python.uri_control.edge.env
-    line: 45
-    cyclomatic_complexity: 2
-    calls_out: 7
-    calls_in: 1
-  core.python.uri_control.edge.http.make_uri_handler:
-    name: make_uri_handler
-    module: core.python.uri_control.edge.http
-    line: 53
-    cyclomatic_complexity: 2
-    calls_out: 47
-    calls_in: 2
-  core.python.uri_control.edge.compose.register_manifests:
-    name: register_manifests
-    module: core.python.uri_control.edge.compose
-    line: 68
-    cyclomatic_complexity: 2
     calls_out: 4
-    calls_in: 1
+    calls_in: 0
   core.python.uri_control.edge.flow_expect._vision_confidences:
     name: _vision_confidences
     module: core.python.uri_control.edge.flow_expect
@@ -404,20 +404,13 @@ nodes:
     cyclomatic_complexity: 12
     calls_out: 13
     calls_in: 1
-  core.python.uri_control.registry.CapabilityRegistry.match_route:
-    name: match_route
-    module: core.python.uri_control.registry
-    line: 169
-    cyclomatic_complexity: 4
+  core.python.uri_control.edge.flow_expect._ocr_contains:
+    name: _ocr_contains
+    module: core.python.uri_control.edge.flow_expect
+    line: 85
+    cyclomatic_complexity: 5
     calls_out: 6
-    calls_in: 0
-  core.python.uri_control.edge.runtime.make_handler:
-    name: make_handler
-    module: core.python.uri_control.edge.runtime
-    line: 507
-    cyclomatic_complexity: 1
-    calls_out: 1
-    calls_in: 0
+    calls_in: 1
   core.python.uri_control.edge.risk_policy.check_risk_requirements:
     name: check_risk_requirements
     module: core.python.uri_control.edge.risk_policy
@@ -425,54 +418,75 @@ nodes:
     cyclomatic_complexity: 16
     calls_out: 17
     calls_in: 1
-  core.python.uri_control.edge.compose.build_runtime:
-    name: build_runtime
-    module: core.python.uri_control.edge.compose
-    line: 117
-    cyclomatic_complexity: 6
-    calls_out: 8
+  core.python.uri_control.runtime_handlers.load_runtime_handler:
+    name: load_runtime_handler
+    module: core.python.uri_control.runtime_handlers
+    line: 79
+    cyclomatic_complexity: 1
+    calls_out: 2
+    calls_in: 1
+  core.python.uri_control.registry.CapabilityRegistry.register:
+    name: register
+    module: core.python.uri_control.registry
+    line: 129
+    cyclomatic_complexity: 4
+    calls_out: 7
+    calls_in: 1
+  core.python.uri_control.parser.canonicalize_uri:
+    name: canonicalize_uri
+    module: core.python.uri_control.parser
+    line: 38
+    cyclomatic_complexity: 1
+    calls_out: 1
+    calls_in: 0
+  core.python.uri_control.edge.flow_refs.resolve_ref:
+    name: resolve_ref
+    module: core.python.uri_control.edge.flow_refs
+    line: 13
+    cyclomatic_complexity: 5
+    calls_out: 7
     calls_in: 6
+  core.python.uri_control.dispatcher.UriControlRuntime.call:
+    name: call
+    module: core.python.uri_control.dispatcher
+    line: 35
+    cyclomatic_complexity: 10
+    calls_out: 31
+    calls_in: 0
+  core.python.uri_control.edge.manifest.register_manifest_file:
+    name: register_manifest_file
+    module: core.python.uri_control.edge.manifest
+    line: 39
+    cyclomatic_complexity: 2
+    calls_out: 5
+    calls_in: 2
+  core.python.uri_control.edge.manifest._handler_for_operation:
+    name: _handler_for_operation
+    module: core.python.uri_control.edge.manifest
+    line: 9
+    cyclomatic_complexity: 6
+    calls_out: 6
+    calls_in: 1
+  core.python.uri_control.edge.flow_expect._min_vision_confidence:
+    name: _min_vision_confidence
+    module: core.python.uri_control.edge.flow_expect
+    line: 114
+    cyclomatic_complexity: 4
+    calls_out: 3
+    calls_in: 1
+  core.python.uri_control.edge.risk_policy._violation:
+    name: _violation
+    module: core.python.uri_control.edge.risk_policy
+    line: 48
+    cyclomatic_complexity: 1
+    calls_out: 0
+    calls_in: 3
   core.python.uri_control.edge.flow_expect._transport_ok:
     name: _transport_ok
     module: core.python.uri_control.edge.flow_expect
     line: 44
     cyclomatic_complexity: 5
     calls_out: 3
-    calls_in: 1
-  core.python.uri_control.cli.cmd_call:
-    name: cmd_call
-    module: core.python.uri_control.cli
-    line: 35
-    cyclomatic_complexity: 2
-    calls_out: 8
-    calls_in: 0
-  core.python.uri_control.cli._load_payload:
-    name: _load_payload
-    module: core.python.uri_control.cli
-    line: 14
-    cyclomatic_complexity: 3
-    calls_out: 5
-    calls_in: 1
-  core.python.uri_control.registry._pattern_body:
-    name: _pattern_body
-    module: core.python.uri_control.registry
-    line: 17
-    cyclomatic_complexity: 2
-    calls_out: 4
-    calls_in: 1
-  core.python.uri_control.edge.runtime.Runtime._load_handler:
-    name: _load_handler
-    module: core.python.uri_control.edge.runtime
-    line: 164
-    cyclomatic_complexity: 4
-    calls_out: 6
-    calls_in: 1
-  core.python.uri_control.edge.flow_expect._ocr_texts:
-    name: _ocr_texts
-    module: core.python.uri_control.edge.flow_expect
-    line: 8
-    cyclomatic_complexity: 12
-    calls_out: 15
     calls_in: 1
   core.python.uri_control.handlers.load_python_handler:
     name: load_python_handler
@@ -481,35 +495,87 @@ nodes:
     cyclomatic_complexity: 6
     calls_out: 11
     calls_in: 1
-  core.python.uri_control.edge.runtime._order_flow_steps:
-    name: _order_flow_steps
+  core.python.uri_control.edge.runtime.Runtime._load_handler:
+    name: _load_handler
     module: core.python.uri_control.edge.runtime
-    line: 375
-    cyclomatic_complexity: 21
-    calls_out: 25
+    line: 167
+    cyclomatic_complexity: 4
+    calls_out: 6
     calls_in: 1
-  core.python.uri_control.edge.flow_refs.resolve_ref:
-    name: resolve_ref
-    module: core.python.uri_control.edge.flow_refs
-    line: 13
-    cyclomatic_complexity: 5
-    calls_out: 7
+  core.python.uri_control.edge.runtime.Runtime._check_policies:
+    name: _check_policies
+    module: core.python.uri_control.edge.runtime
+    line: 186
+    cyclomatic_complexity: 7
+    calls_out: 8
+    calls_in: 0
+  core.python.uri_control.dispatcher._new_id:
+    name: _new_id
+    module: core.python.uri_control.dispatcher
+    line: 17
+    cyclomatic_complexity: 1
+    calls_out: 1
     calls_in: 6
-  core.python.uri_control.edge.cli._emit:
-    name: _emit
-    module: core.python.uri_control.edge.cli
-    line: 42
+  core.python.uri_control.edge.env._urisys_root:
+    name: _urisys_root
+    module: core.python.uri_control.edge.env
+    line: 18
     cyclomatic_complexity: 1
     calls_out: 2
-    calls_in: 5
-  core.python.uri_control.edge.compose._split:
-    name: _split
-    module: core.python.uri_control.edge.compose
-    line: 45
-    cyclomatic_complexity: 8
-    calls_out: 7
-    calls_in: 3
+    calls_in: 2
+  core.python.uri_control.edge.runtime._result_ok:
+    name: _result_ok
+    module: core.python.uri_control.edge.runtime
+    line: 28
+    cyclomatic_complexity: 5
+    calls_out: 3
+    calls_in: 1
 edges:
+- caller: core.python.uri_control.cli.cmd_explain
+  callee: core.python.uri_control.cli._registry_from_args
+  call_type: resolved
+- caller: core.python.uri_control.cli.cmd_call
+  callee: core.python.uri_control.cli._registry_from_args
+  call_type: resolved
+- caller: core.python.uri_control.cli.cmd_call
+  callee: core.python.uri_control.cli._load_payload
+  call_type: resolved
+- caller: core.python.uri_control.cli.cmd_list
+  callee: core.python.uri_control.cli._registry_from_args
+  call_type: resolved
+- caller: core.python.uri_control.cli.main
+  callee: core.python.uri_control.cli.build_parser
+  call_type: resolved
+- caller: core.python.uri_control.registry._compile_pattern
+  callee: core.python.uri_control.registry._pattern_body
+  call_type: resolved
+- caller: core.python.uri_control.registry.CapabilityRegistry.register
+  callee: core.python.uri_control.registry._compile_pattern
+  call_type: resolved
+- caller: core.python.uri_control.registry.CapabilityRegistry.match_route
+  callee: core.python.uri_control.parser.parse_uri
+  call_type: resolved
+- caller: core.python.uri_control.registry.CapabilityRegistry.match
+  callee: core.python.uri_control.edge.runtime.Runtime._load_handler
+  call_type: resolved
+- caller: core.python.uri_control.handlers.make_remote_handler
+  callee: core.python.uri_control.handlers._normalise_endpoint
+  call_type: resolved
+- caller: core.python.uri_control.handlers.make_remote_handler
+  callee: core.python.uri_control.handlers._safe_context
+  call_type: resolved
+- caller: core.python.uri_control.handlers.load_handler
+  callee: core.python.uri_control.handlers.load_python_handler
+  call_type: resolved
+- caller: core.python.uri_control.handlers.load_handler
+  callee: core.python.uri_control.runtime_handlers.load_runtime_handler
+  call_type: resolved
+- caller: core.python.uri_control.handlers.load_handler
+  callee: core.python.uri_control.handlers.make_remote_handler
+  call_type: resolved
+- caller: core.python.uri_control.parser.canonicalize_uri
+  callee: core.python.uri_control.parser.parse_uri
+  call_type: resolved
 - caller: core.python.uri_control.dispatcher.UriControlRuntime.call
   callee: core.python.uri_control.dispatcher._new_id
   call_type: resolved
@@ -527,6 +593,12 @@ edges:
   call_type: resolved
 - caller: core.python.uri_control.edge.cli.build_edge_cli
   callee: core.python.uri_control.edge.cli._emit
+  call_type: resolved
+- caller: core.python.uri_control.edge.http.serve
+  callee: core.python.uri_control.edge.http._routes_list
+  call_type: resolved
+- caller: core.python.uri_control.edge.http.serve
+  callee: core.python.uri_control.edge.http.make_uri_handler
   call_type: resolved
 - caller: core.python.uri_control.edge.manifest.register_manifest_file
   callee: core.python.uri_control.edge.manifest.register_manifest_data
@@ -600,51 +672,6 @@ edges:
 - caller: core.python.uri_control.edge.compose.build_runtime
   callee: core.python.uri_control.edge.compose.bundle_packs
   call_type: resolved
-- caller: core.python.uri_control.edge.risk_policy.check_risk_requirements
-  callee: core.python.uri_control.edge.risk_policy._violation
-  call_type: resolved
-- caller: core.python.uri_control.edge.flow_expect._ocr_contains
-  callee: core.python.uri_control.edge.flow_expect._ocr_texts
-  call_type: resolved
-- caller: core.python.uri_control.edge.flow_expect._min_vision_confidence
-  callee: core.python.uri_control.edge.flow_expect._vision_confidences
-  call_type: resolved
-- caller: core.python.uri_control.edge.flow_expect.evaluate_flow_expect
-  callee: core.python.uri_control.edge.flow_expect._transport_ok
-  call_type: resolved
-- caller: core.python.uri_control.parser.canonicalize_uri
-  callee: core.python.uri_control.parser.parse_uri
-  call_type: resolved
-- caller: core.python.uri_control.cli.cmd_explain
-  callee: core.python.uri_control.cli._registry_from_args
-  call_type: resolved
-- caller: core.python.uri_control.cli.cmd_call
-  callee: core.python.uri_control.cli._registry_from_args
-  call_type: resolved
-- caller: core.python.uri_control.cli.cmd_call
-  callee: core.python.uri_control.cli._load_payload
-  call_type: resolved
-- caller: core.python.uri_control.cli.cmd_list
-  callee: core.python.uri_control.cli._registry_from_args
-  call_type: resolved
-- caller: core.python.uri_control.cli.main
-  callee: core.python.uri_control.cli.build_parser
-  call_type: resolved
-- caller: core.python.uri_control.handlers.make_remote_handler
-  callee: core.python.uri_control.handlers._normalise_endpoint
-  call_type: resolved
-- caller: core.python.uri_control.handlers.make_remote_handler
-  callee: core.python.uri_control.handlers._safe_context
-  call_type: resolved
-- caller: core.python.uri_control.handlers.load_handler
-  callee: core.python.uri_control.handlers.load_python_handler
-  call_type: resolved
-- caller: core.python.uri_control.handlers.load_handler
-  callee: core.python.uri_control.runtime_handlers.load_runtime_handler
-  call_type: resolved
-- caller: core.python.uri_control.handlers.load_handler
-  callee: core.python.uri_control.handlers.make_remote_handler
-  call_type: resolved
 - caller: core.python.uri_control.edge.env.load_urisys_env
   callee: core.python.uri_control.edge.env._urisys_root
   call_type: resolved
@@ -660,41 +687,41 @@ edges:
 - caller: core.python.uri_control.edge.env.resolve_env_var
   callee: core.python.uri_control.edge.env.load_env_policy
   call_type: resolved
-- caller: core.python.uri_control.registry._compile_pattern
-  callee: core.python.uri_control.registry._pattern_body
+- caller: core.python.uri_control.edge.risk_policy.check_risk_requirements
+  callee: core.python.uri_control.edge.risk_policy._violation
   call_type: resolved
-- caller: core.python.uri_control.registry.CapabilityRegistry.register
-  callee: core.python.uri_control.registry._compile_pattern
+- caller: core.python.uri_control.edge.flow_expect._ocr_contains
+  callee: core.python.uri_control.edge.flow_expect._ocr_texts
   call_type: resolved
-- caller: core.python.uri_control.registry.CapabilityRegistry.match_route
-  callee: core.python.uri_control.parser.parse_uri
+- caller: core.python.uri_control.edge.flow_expect._min_vision_confidence
+  callee: core.python.uri_control.edge.flow_expect._vision_confidences
   call_type: resolved
-- caller: core.python.uri_control.registry.CapabilityRegistry.match
-  callee: core.python.uri_control.edge.runtime.Runtime._load_handler
-  call_type: resolved
-- caller: core.python.uri_control.edge.http.serve
-  callee: core.python.uri_control.edge.http._routes_list
-  call_type: resolved
-- caller: core.python.uri_control.edge.http.serve
-  callee: core.python.uri_control.edge.http.make_uri_handler
+- caller: core.python.uri_control.edge.flow_expect.evaluate_flow_expect
+  callee: core.python.uri_control.edge.flow_expect._transport_ok
   call_type: resolved
 - caller: core.python.uri_control.edge.runtime.Runtime._load_handler
   callee: core.python.uri_control.handlers.load_handler
   call_type: resolved
-- caller: core.python.uri_control.edge.runtime.Runtime.call
+- caller: core.python.uri_control.edge.runtime.Runtime._check_policies
   callee: core.python.uri_control.edge.risk_policy.check_risk_requirements
   call_type: resolved
-- caller: core.python.uri_control.edge.runtime.run_flow
-  callee: core.python.uri_control.edge.runtime.load_yaml_flow
+- caller: core.python.uri_control.edge.runtime.Runtime._build_call_context
+  callee: core.python.uri_control.edge.env.load_env_policy
   call_type: resolved
-- caller: core.python.uri_control.edge.runtime.run_flow
-  callee: core.python.uri_control.edge.flow_refs.seed_flow_inputs
-  call_type: resolved
-- caller: core.python.uri_control.edge.runtime.run_flow
-  callee: core.python.uri_control.edge.runtime._order_flow_steps
+- caller: core.python.uri_control.edge.runtime.Runtime._execute_handler
+  callee: core.python.uri_control.edge.runtime._result_ok
   call_type: resolved
 - caller: core.python.uri_control.edge.runtime.make_handler
   callee: core.python.uri_control.edge.http.make_uri_handler
+  call_type: resolved
+- caller: core.python.uri_control.edge.flow.runner.FlowRunner.run
+  callee: core.python.uri_control.edge.flow.loader.load_yaml_flow
+  call_type: resolved
+- caller: core.python.uri_control.edge.flow.runner.FlowRunner.run
+  callee: core.python.uri_control.edge.flow_refs.seed_flow_inputs
+  call_type: resolved
+- caller: core.python.uri_control.edge.flow.runner.FlowRunner.run
+  callee: core.python.uri_control.edge.flow.steps.order_flow_steps
   call_type: resolved
 modules:
   core.python.uri_control.cli:
@@ -729,6 +756,12 @@ modules:
   - core.python.uri_control.edge.env.load_env_policy
   - core.python.uri_control.edge.env.load_urisys_env
   - core.python.uri_control.edge.env.resolve_env_var
+  core.python.uri_control.edge.flow.loader:
+  - core.python.uri_control.edge.flow.loader.load_yaml_flow
+  core.python.uri_control.edge.flow.runner:
+  - core.python.uri_control.edge.flow.runner.FlowRunner.run
+  core.python.uri_control.edge.flow.steps:
+  - core.python.uri_control.edge.flow.steps.order_flow_steps
   core.python.uri_control.edge.flow_expect:
   - core.python.uri_control.edge.flow_expect._min_vision_confidence
   - core.python.uri_control.edge.flow_expect._ocr_contains
@@ -759,12 +792,12 @@ modules:
   - core.python.uri_control.edge.risk_policy._violation
   - core.python.uri_control.edge.risk_policy.check_risk_requirements
   core.python.uri_control.edge.runtime:
+  - core.python.uri_control.edge.runtime.Runtime._build_call_context
+  - core.python.uri_control.edge.runtime.Runtime._check_policies
+  - core.python.uri_control.edge.runtime.Runtime._execute_handler
   - core.python.uri_control.edge.runtime.Runtime._load_handler
-  - core.python.uri_control.edge.runtime.Runtime.call
-  - core.python.uri_control.edge.runtime._order_flow_steps
-  - core.python.uri_control.edge.runtime.load_yaml_flow
+  - core.python.uri_control.edge.runtime._result_ok
   - core.python.uri_control.edge.runtime.make_handler
-  - core.python.uri_control.edge.runtime.run_flow
   core.python.uri_control.handlers:
   - core.python.uri_control.handlers._normalise_endpoint
   - core.python.uri_control.handlers._safe_context
@@ -795,10 +828,19 @@ entry_points:
 - core.python.uri_control.cli.main
 - core.python.uri_control.dispatcher.UriControlRuntime.__init__
 - core.python.uri_control.dispatcher.UriControlRuntime.call
+- core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline.__init__
+- core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline._maybe_delegate
+- core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline.call
+- core.python.uri_control.edge.call.resolver_hook.DefaultResolverHook.delegate_transport
+- core.python.uri_control.edge.call.resolver_hook.DefaultResolverHook.resolve
+- core.python.uri_control.edge.call.resolver_hook.ResolverHook.delegate_transport
+- core.python.uri_control.edge.call.resolver_hook.ResolverHook.resolve
 - core.python.uri_control.edge.cli.build_edge_cli
 - core.python.uri_control.edge.env.is_secret_env
 - core.python.uri_control.edge.env.load_urisys_env
 - core.python.uri_control.edge.env.resolve_env_var
+- core.python.uri_control.edge.flow.runner.FlowRunner.__init__
+- core.python.uri_control.edge.flow.runner.FlowRunner.run
 - core.python.uri_control.edge.http.serve
 - core.python.uri_control.edge.manifest.register_manifest_files
 - core.python.uri_control.edge.runtime.JsonlEventStore.__init__
@@ -807,6 +849,10 @@ entry_points:
 - core.python.uri_control.edge.runtime.Route.compile
 - core.python.uri_control.edge.runtime.Route.match
 - core.python.uri_control.edge.runtime.Runtime.__init__
+- core.python.uri_control.edge.runtime.Runtime._build_call_context
+- core.python.uri_control.edge.runtime.Runtime._check_policies
+- core.python.uri_control.edge.runtime.Runtime._execute_handler
+- core.python.uri_control.edge.runtime.Runtime._log_event
 - core.python.uri_control.edge.runtime.Runtime.call
 - core.python.uri_control.edge.runtime.Runtime.register
 - core.python.uri_control.edge.runtime.Runtime.resolve

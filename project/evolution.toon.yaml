@@ -1,45 +1,41 @@
-# code2llm/evolution | 121 func | 22f | 2026-06-18
+# code2llm/evolution | 134 func | 27f | 2026-06-18
 # generated in 0.00s
 
-NEXT[7] (ranked by impact):
-  [1] !! SPLIT           core/python/uri_control/edge/runtime.py
-      WHY: 512L, 3 classes, max CC=22
-      EFFORT: ~4h  IMPACT: 11264
-
-  [2] !  SPLIT-FUNC      run_flow  CC=19  fan=26
+NEXT[6] (ranked by impact):
+  [1] !  SPLIT-FUNC      FlowRunner.run  CC=19  fan=26
       WHY: CC=19 exceeds 15
       EFFORT: ~1h  IMPACT: 494
 
-  [3] !  SPLIT-FUNC      Runtime.call  CC=22  fan=21
-      WHY: CC=22 exceeds 15
-      EFFORT: ~1h  IMPACT: 462
-
-  [4] !  SPLIT-FUNC      CapabilityRegistry.load_manifest  CC=21  fan=16
+  [2] !  SPLIT-FUNC      CapabilityRegistry.load_manifest  CC=21  fan=16
       WHY: CC=21 exceeds 15
       EFFORT: ~1h  IMPACT: 336
 
-  [5] !  SPLIT-FUNC      _order_flow_steps  CC=21  fan=14
+  [3] !  SPLIT-FUNC      order_flow_steps  CC=21  fan=14
       WHY: CC=21 exceeds 15
       EFFORT: ~1h  IMPACT: 294
 
-  [6] !  SPLIT-FUNC      check_risk_requirements  CC=16  fan=8
+  [4] !  SPLIT-FUNC      check_risk_requirements  CC=16  fan=8
       WHY: CC=16 exceeds 15
       EFFORT: ~1h  IMPACT: 128
 
-  [7] !! SPLIT           goal.yaml
+  [5] !! SPLIT           planfile.yaml
+      WHY: 994L, 0 classes, max CC=0
+      EFFORT: ~4h  IMPACT: 0
+
+  [6] !! SPLIT           goal.yaml
       WHY: 513L, 0 classes, max CC=0
       EFFORT: ~4h  IMPACT: 0
 
 
 RISKS[2]:
+  ⚠ Splitting planfile.yaml may break 0 import paths
   ⚠ Splitting goal.yaml may break 0 import paths
-  ⚠ Splitting core/python/uri_control/edge/runtime.py may break 18 import paths
 
 METRICS-TARGET:
-  CC̄:          4.6 → ≤3.2
-  max-CC:      22 → ≤11
+  CC̄:          4.2 → ≤2.9
+  max-CC:      21 → ≤10
   god-modules: 2 → 0
-  high-CC(≥15): 5 → ≤2
+  high-CC(≥15): 4 → ≤2
   hub-types:   0 → ≤0
 
 PATTERNS (language parser shared logic):
@@ -67,4 +63,4 @@ PATTERNS (language parser shared logic):
     - Standardized FunctionInfo/ClassInfo models
 
 HISTORY:
-  (first run — no previous data)
+  prev CC̄=4.6 → now CC̄=4.2

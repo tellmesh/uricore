@@ -992,3 +992,146 @@ sprints:
     model_hints:
       planning: balanced
       implementation: balanced
+  - id: ticket-6bb38a98
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in core/python/uri_control/edge/call/__init__.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/call/__init__.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6647866e
+    name: Fix relative-imports issues
+    description: Resolve 4 relative-imports issues in core/python/uri_control/edge/call/pipeline.py
+    task_type: prefactor
+    priority: medium
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/call/pipeline.py
+    rule_id: relative-imports
+    count: 4
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-1ccdda97
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/call/pipeline.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/call/pipeline.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7e6d2779
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/call/resolver_hook.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/call/resolver_hook.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-ced08261
+    name: Fix relative-imports issues
+    description: Resolve 8 relative-imports issues in core/python/uri_control/edge/flow/__init__.py
+    task_type: prefactor
+    priority: high
+    estimate: 2d
+    files:
+    - core/python/uri_control/edge/flow/__init__.py
+    rule_id: relative-imports
+    count: 8
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-6e6635b2
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/flow/loader.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/flow/loader.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-9d12e522
+    name: Fix relative-imports issues
+    description: Resolve 12 relative-imports issues in core/python/uri_control/edge/flow/runner.py
+    task_type: prefactor
+    priority: high
+    estimate: 3d
+    files:
+    - core/python/uri_control/edge/flow/runner.py
+    rule_id: relative-imports
+    count: 12
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-7935070d
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/flow/runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/flow/runner.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-79004693
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in core/python/uri_control/edge/flow/steps.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - core/python/uri_control/edge/flow/steps.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-cb87a067
+    name: Fix smart-return-type issues
+    description: Resolve 1 smart-return-type issues in tests/test_flow_runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_flow_runner.py
+    rule_id: smart-return-type
+    count: 1
+    model_hints:
+      planning: balanced
+      implementation: balanced
+  - id: ticket-323e8f55
+    name: Fix unused-imports issues
+    description: Resolve 2 unused-imports issues in tests/test_flow_runner.py
+    task_type: prefactor
+    priority: medium
+    estimate: 1d
+    files:
+    - tests/test_flow_runner.py
+    rule_id: unused-imports
+    count: 2
+    model_hints:
+      planning: balanced
+      implementation: balanced

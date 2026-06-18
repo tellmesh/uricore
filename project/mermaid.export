@@ -7,6 +7,41 @@ flowchart TD
         core__php__UriControl__src__UriControl__UriControl__UriControl__describePlaceholder["describePlaceholder"]
     end
     subgraph core__python
+        core__python__uri_control__projection__ProjectionBuilder____init__["__init__"]
+        core__python__uri_control__projection__ProjectionBuilder__latest_by_source_uri["latest_by_source_uri"]
+        core__python__uri_control__projection__ProjectionBuilder__status_by_source_uri["status_by_source_uri"]
+        core__python__uri_control__projection__ProjectionBuilder__events_by_type["events_by_type"]
+        core__python__uri_control__projection__ProjectionBuilder__from_events["from_events"]
+        core__python__uri_control__cli___load_payload["_load_payload"]
+        core__python__uri_control__cli___registry_from_args["_registry_from_args"]
+        core__python__uri_control__cli__cmd_explain["cmd_explain"]
+        core__python__uri_control__cli__cmd_call["cmd_call"]
+        core__python__uri_control__cli__cmd_list["cmd_list"]
+        core__python__uri_control__cli__cmd_projection_latest["cmd_projection_latest"]
+        core__python__uri_control__cli__cmd_projection_status["cmd_projection_status"]
+        core__python__uri_control__cli__build_parser["build_parser"]
+        core__python__uri_control__cli__main["main"]
+        core__python__uri_control__registry___pattern_body["_pattern_body"]
+        core__python__uri_control__registry___compile_pattern["_compile_pattern"]
+        core__python__uri_control__registry__CapabilityRegistry____init__["__init__"]
+        core__python__uri_control__registry__CapabilityRegistry__from_manifest_files["from_manifest_files"]
+        core__python__uri_control__registry__CapabilityRegistry__load_manifest_file["load_manifest_file"]
+        core__python__uri_control__registry__CapabilityRegistry__load_manifest{{load_manifest CC=21}}
+        core__python__uri_control__registry__CapabilityRegistry__register["register"]
+        core__python__uri_control__registry__CapabilityRegistry__match_route["match_route"]
+        core__python__uri_control__registry__CapabilityRegistry__match["match"]
+        core__python__uri_control__registry__CapabilityRegistry__explain["explain"]
+        core__python__uri_control__policy__PolicyEngine____init__["__init__"]
+        core__python__uri_control__policy__PolicyEngine__decide("decide CC=9")
+        core__python__uri_control__handlers__load_python_handler["load_python_handler"]
+        core__python__uri_control__handlers___safe_context["_safe_context"]
+        core__python__uri_control__handlers___normalise_endpoint["_normalise_endpoint"]
+        core__python__uri_control__handlers__make_remote_handler["make_remote_handler"]
+        core__python__uri_control__handlers__load_handler("load_handler CC=8")
+        core__python__uri_control__parser__parse_uri["parse_uri"]
+        core__python__uri_control__parser__canonicalize_uri["canonicalize_uri"]
+        core__python__uri_control__models__EventEnvelope__to_dict["to_dict"]
+        core__python__uri_control__models__DispatchResult__to_dict["to_dict"]
         core__python__uri_control__event_store__EventStore__append["append"]
         core__python__uri_control__event_store__EventStore__read_all["read_all"]
         core__python__uri_control__event_store__InMemoryEventStore____init__["__init__"]
@@ -27,46 +62,11 @@ flowchart TD
         core__python__uri_control__edge__cli___json_arg["_json_arg"]
         core__python__uri_control__edge__cli___emit["_emit"]
         core__python__uri_control__edge__cli__build_edge_cli["build_edge_cli"]
+        core__python__uri_control__edge__http___as_dict["_as_dict"]
+        core__python__uri_control__edge__http___routes_list["_routes_list"]
+        core__python__uri_control__edge__http__make_uri_handler["make_uri_handler"]
+        core__python__uri_control__edge__http__serve["serve"]
         core__python__uri_control__edge__manifest___handler_for_operation["_handler_for_operation"]
-        core__python__uri_control__edge__manifest___register_urisys_flows("_register_urisys_flows CC=8")
-        core__python__uri_control__edge__manifest__register_manifest_file["register_manifest_file"]
-        core__python__uri_control__edge__manifest__register_manifest_data("register_manifest_data CC=11")
-        core__python__uri_control__edge__manifest__register_manifest_files["register_manifest_files"]
-        core__python__uri_control__edge__flow_refs__resolve_ref["resolve_ref"]
-        core__python__uri_control__edge__flow_refs__interpolate_string["interpolate_string"]
-        core__python__uri_control__edge__flow_refs__interpolate_value("interpolate_value CC=8")
-        core__python__uri_control__edge__flow_refs___result_payload["_result_payload"]
-        core__python__uri_control__edge__flow_refs__merge_payload_from["merge_payload_from"]
-        core__python__uri_control__edge__flow_refs__resolve_step_uri("resolve_step_uri CC=9")
-        core__python__uri_control__edge__flow_refs__evaluate_step_if("evaluate_step_if CC=9")
-        core__python__uri_control__edge__flow_refs__store_step_output["store_step_output"]
-        core__python__uri_control__edge__flow_refs__seed_flow_inputs("seed_flow_inputs CC=12")
-        core__python__uri_control__edge__flow_refs__output_key["output_key"]
-        core__python__uri_control__edge__compose__resolve_pack_module["resolve_pack_module"]
-        core__python__uri_control__edge__compose___split("_split CC=8")
-        core__python__uri_control__edge__compose__register_pack["register_pack"]
-        core__python__uri_control__edge__compose__register_packs["register_packs"]
-        core__python__uri_control__edge__compose__register_manifests["register_manifests"]
-        core__python__uri_control__edge__compose__bundle_packs["bundle_packs"]
-        core__python__uri_control__edge__compose___bundle_block["_bundle_block"]
-        core__python__uri_control__edge__compose___imports_contracts("_imports_contracts CC=8")
-        core__python__uri_control__edge__compose__build_runtime["build_runtime"]
-        core__python__uri_control__edge__risk_policy__check_risk_requirements{{check_risk_requirements CC=16}}
-        core__python__uri_control__edge__risk_policy___violation["_violation"]
-        core__python__uri_control__edge__flow_expect___ocr_texts("_ocr_texts CC=12")
-        core__python__uri_control__edge__flow_expect___vision_confidences("_vision_confidences CC=12")
-        core__python__uri_control__edge__flow_expect___transport_ok["_transport_ok"]
-        core__python__uri_control__edge__flow_expect___required_steps["_required_steps"]
-        core__python__uri_control__edge__flow_expect___nested_result_expect["_nested_result_expect"]
-        core__python__uri_control__edge__flow_expect___ocr_contains["_ocr_contains"]
-        core__python__uri_control__edge__flow_expect___opened_url_contains("_opened_url_contains CC=9")
-        core__python__uri_control__edge__flow_expect___min_vision_confidence["_min_vision_confidence"]
-        core__python__uri_control__edge__flow_expect__evaluate_flow_expect["evaluate_flow_expect"]
-        core__python__uri_control__parser__parse_uri["parse_uri"]
-        core__python__uri_control__parser__canonicalize_uri["canonicalize_uri"]
-        core__python__uri_control__policy__PolicyEngine____init__["__init__"]
-        core__python__uri_control__policy__PolicyEngine__decide("decide CC=9")
-        core__python__uri_control__cli___load_payload["_load_payload"]
     end
     subgraph examples__packs
         examples__packs__systemd_mock__handlers__unit_status["unit_status"]
@@ -74,13 +74,30 @@ flowchart TD
         examples__packs__browser_mock__handlers__open_page["open_page"]
         examples__packs__browser_mock__handlers__get_dom["get_dom"]
     end
+    core__python__uri_control__cli__cmd_explain --> core__python__uri_control__cli___registry_from_args
+    core__python__uri_control__cli__cmd_call --> core__python__uri_control__cli___registry_from_args
+    core__python__uri_control__cli__cmd_call --> core__python__uri_control__cli___load_payload
+    core__python__uri_control__cli__cmd_list --> core__python__uri_control__cli___registry_from_args
+    core__python__uri_control__cli__main --> core__python__uri_control__cli__build_parser
+    core__python__uri_control__registry___compile_pattern --> core__python__uri_control__registry___pattern_body
+    core__python__uri_control__registry__CapabilityRegistry__register --> core__python__uri_control__registry___compile_pattern
+    core__python__uri_control__registry__CapabilityRegistry__match_route --> core__python__uri_control__parser__parse_uri
+    core__python__uri_control__registry__CapabilityRegistry__match --> core__python__uri_control__edge__runtime__Runtime___load_handler
+    core__python__uri_control__handlers__make_remote_handler --> core__python__uri_control__handlers___normalise_endpoint
+    core__python__uri_control__handlers__make_remote_handler --> core__python__uri_control__handlers___safe_context
+    core__python__uri_control__handlers__load_handler --> core__python__uri_control__handlers__load_python_handler
+    core__python__uri_control__handlers__load_handler --> core__python__uri_control__runtime_handlers__load_runtime_handler
+    core__python__uri_control__handlers__load_handler --> core__python__uri_control__handlers__make_remote_handler
+    core__python__uri_control__parser__canonicalize_uri --> core__python__uri_control__parser__parse_uri
     core__python__uri_control__dispatcher__UriControlRuntime__call --> core__python__uri_control__dispatcher___new_id
     core__python__uri_control__runtime_handlers__load_runtime_handler --> core__python__uri_control__runtime_handlers__parse_runtime_handler
     core__python__uri_control__runtime_handlers__load_runtime_handler --> core__python__uri_control__runtime_handlers__make_runtime_handler
     core__python__uri_control__edge__cli__build_edge_cli --> core__python__uri_control__edge__cli___json_arg
     core__python__uri_control__edge__cli__build_edge_cli --> core__python__uri_control__edge__compose__build_runtime
     core__python__uri_control__edge__cli__build_edge_cli --> core__python__uri_control__edge__cli___emit
-    core__python__uri_control__edge__cli__build_edge_cli --> core__python__uri_control__edge__runtime__run_flow
+    core__python__uri_control__edge__cli__build_edge_cli --> core__python__uri_control__edge__flow__runner__run_flow
+    core__python__uri_control__edge__http__serve --> core__python__uri_control__edge__http___routes_list
+    core__python__uri_control__edge__http__serve --> core__python__uri_control__edge__http__make_uri_handler
     core__python__uri_control__edge__manifest__register_manifest_file --> core__python__uri_control__edge__manifest__register_manifest_data
     core__python__uri_control__edge__manifest__register_manifest_data --> core__python__uri_control__edge__manifest___register_urisys_flows
     core__python__uri_control__edge__manifest__register_manifest_data --> core__python__uri_control__edge__manifest___handler_for_operation
@@ -105,6 +122,11 @@ flowchart TD
     core__python__uri_control__edge__compose__build_runtime --> core__python__uri_control__edge__compose__register_packs
     core__python__uri_control__edge__compose__build_runtime --> core__python__uri_control__edge__compose__register_manifests
     core__python__uri_control__edge__compose__build_runtime --> core__python__uri_control__edge__compose__bundle_packs
+    core__python__uri_control__edge__env__load_urisys_env --> core__python__uri_control__edge__env___urisys_root
+    core__python__uri_control__edge__env___env_policy_candidates --> core__python__uri_control__edge__env___urisys_root
+    core__python__uri_control__edge__env__load_env_policy --> core__python__uri_control__edge__env___env_policy_candidates
+    core__python__uri_control__edge__env__resolve_env_var --> core__python__uri_control__edge__env___env_config
+    core__python__uri_control__edge__env__resolve_env_var --> core__python__uri_control__edge__env__load_env_policy
     core__python__uri_control__edge__risk_policy__check_risk_requirements --> core__python__uri_control__edge__risk_policy___violation
     core__python__uri_control__edge__flow_expect___ocr_contains --> core__python__uri_control__edge__flow_expect___ocr_texts
     core__python__uri_control__edge__flow_expect___min_vision_confidence --> core__python__uri_control__edge__flow_expect___vision_confidences
@@ -112,39 +134,19 @@ flowchart TD
     core__python__uri_control__edge__flow_expect__evaluate_flow_expect --> core__python__uri_control__edge__flow_expect___ocr_contains
     core__python__uri_control__edge__flow_expect__evaluate_flow_expect --> core__python__uri_control__edge__flow_expect___opened_url_contains
     core__python__uri_control__edge__flow_expect__evaluate_flow_expect --> core__python__uri_control__edge__flow_expect___min_vision_confidence
-    core__python__uri_control__parser__canonicalize_uri --> core__python__uri_control__parser__parse_uri
-    core__python__uri_control__cli__cmd_explain --> core__python__uri_control__cli___registry_from_args
-    core__python__uri_control__cli__cmd_call --> core__python__uri_control__cli___registry_from_args
-    core__python__uri_control__cli__cmd_call --> core__python__uri_control__cli___load_payload
-    core__python__uri_control__cli__cmd_list --> core__python__uri_control__cli___registry_from_args
-    core__python__uri_control__cli__main --> core__python__uri_control__cli__build_parser
-    core__python__uri_control__handlers__make_remote_handler --> core__python__uri_control__handlers___normalise_endpoint
-    core__python__uri_control__handlers__make_remote_handler --> core__python__uri_control__handlers___safe_context
-    core__python__uri_control__handlers__load_handler --> core__python__uri_control__handlers__load_python_handler
-    core__python__uri_control__handlers__load_handler --> core__python__uri_control__runtime_handlers__load_runtime_handler
-    core__python__uri_control__handlers__load_handler --> core__python__uri_control__handlers__make_remote_handler
-    core__python__uri_control__edge__env__load_urisys_env --> core__python__uri_control__edge__env___urisys_root
-    core__python__uri_control__edge__env___env_policy_candidates --> core__python__uri_control__edge__env___urisys_root
-    core__python__uri_control__edge__env__load_env_policy --> core__python__uri_control__edge__env___env_policy_candidates
-    core__python__uri_control__edge__env__resolve_env_var --> core__python__uri_control__edge__env___env_config
-    core__python__uri_control__edge__env__resolve_env_var --> core__python__uri_control__edge__env__load_env_policy
-    core__python__uri_control__registry___compile_pattern --> core__python__uri_control__registry___pattern_body
-    core__python__uri_control__registry__CapabilityRegistry__register --> core__python__uri_control__registry___compile_pattern
-    core__python__uri_control__registry__CapabilityRegistry__match_route --> core__python__uri_control__parser__parse_uri
-    core__python__uri_control__registry__CapabilityRegistry__match --> core__python__uri_control__edge__runtime__Runtime___load_handler
-    core__python__uri_control__edge__http__serve --> core__python__uri_control__edge__http___routes_list
-    core__python__uri_control__edge__http__serve --> core__python__uri_control__edge__http__make_uri_handler
     core__python__uri_control__edge__runtime__Runtime___load_handler --> core__python__uri_control__handlers__load_handler
-    core__python__uri_control__edge__runtime__Runtime__call --> core__python__uri_control__edge__risk_policy__check_risk_requirements
-    core__python__uri_control__edge__runtime__run_flow --> core__python__uri_control__edge__runtime__load_yaml_flow
-    core__python__uri_control__edge__runtime__run_flow --> core__python__uri_control__edge__flow_refs__seed_flow_inputs
-    core__python__uri_control__edge__runtime__run_flow --> core__python__uri_control__edge__runtime___order_flow_steps
-    core__python__uri_control__edge__runtime__run_flow --> core__python__uri_control__edge__runtime___parse_flow_step
-    core__python__uri_control__edge__runtime__run_flow --> core__python__uri_control__edge__flow_refs__merge_payload_from
-    core__python__uri_control__edge__runtime__run_flow --> core__python__uri_control__edge__flow_refs__interpolate_value
+    core__python__uri_control__edge__runtime__Runtime___check_policies --> core__python__uri_control__edge__risk_policy__check_risk_requirements
+    core__python__uri_control__edge__runtime__Runtime___build_call_context --> core__python__uri_control__edge__env__load_env_policy
+    core__python__uri_control__edge__runtime__Runtime___execute_handler --> core__python__uri_control__edge__runtime___result_ok
     core__python__uri_control__edge__runtime__make_handler --> core__python__uri_control__edge__http__make_uri_handler
+    core__python__uri_control__edge__flow__runner__FlowRunner__run --> core__python__uri_control__edge__flow__loader__load_yaml_flow
+    core__python__uri_control__edge__flow__runner__FlowRunner__run --> core__python__uri_control__edge__flow_refs__seed_flow_inputs
+    core__python__uri_control__edge__flow__runner__FlowRunner__run --> core__python__uri_control__edge__flow__steps__order_flow_steps
+    core__python__uri_control__edge__flow__runner__FlowRunner__run --> core__python__uri_control__edge__flow__steps__parse_flow_step
+    core__python__uri_control__edge__flow__runner__FlowRunner__run --> core__python__uri_control__edge__flow_refs__merge_payload_from
+    core__python__uri_control__edge__flow__runner__FlowRunner__run --> core__python__uri_control__edge__flow_refs__interpolate_value
 
     classDef highCC fill:#ff6b6b,stroke:#c92a2a,color:#fff
     classDef medCC fill:#ffd43b,stroke:#f08c00,color:#000
-    class core__python__uri_control__edge__risk_policy__check_risk_requirements,core__python__uri_control__registry__CapabilityRegistry__load_manifest,core__python__uri_control__edge__runtime__Runtime__call,core__python__uri_control__edge__runtime___order_flow_steps,core__python__uri_control__edge__runtime__run_flow highCC
-    class core__python__uri_control__dispatcher__UriControlRuntime__call,core__python__uri_control__edge__manifest___register_urisys_flows,core__python__uri_control__edge__manifest__register_manifest_data,core__python__uri_control__edge__flow_refs__interpolate_value,core__python__uri_control__edge__flow_refs__resolve_step_uri,core__python__uri_control__edge__flow_refs__evaluate_step_if,core__python__uri_control__edge__flow_refs__seed_flow_inputs,core__python__uri_control__edge__compose___split,core__python__uri_control__edge__compose___imports_contracts,core__python__uri_control__edge__flow_expect___ocr_texts,core__python__uri_control__edge__flow_expect___vision_confidences,core__python__uri_control__edge__flow_expect___opened_url_contains,core__python__uri_control__policy__PolicyEngine__decide,core__python__uri_control__handlers__load_handler,core__python__uri_control__edge__env__load_urisys_env,core__python__uri_control__edge__env__resolve_env_var,core__python__uri_control__edge__runtime__load_yaml_flow,core__python__uri_control__edge__runtime___parse_flow_step medCC
+    class core__python__uri_control__registry__CapabilityRegistry__load_manifest,core__python__uri_control__edge__risk_policy__check_risk_requirements,core__python__uri_control__edge__flow__steps__order_flow_steps,core__python__uri_control__edge__flow__runner__FlowRunner__run highCC
+    class core__python__uri_control__policy__PolicyEngine__decide,core__python__uri_control__handlers__load_handler,core__python__uri_control__dispatcher__UriControlRuntime__call,core__python__uri_control__edge__manifest___register_urisys_flows,core__python__uri_control__edge__manifest__register_manifest_data,core__python__uri_control__edge__flow_refs__interpolate_value,core__python__uri_control__edge__flow_refs__resolve_step_uri,core__python__uri_control__edge__flow_refs__evaluate_step_if,core__python__uri_control__edge__flow_refs__seed_flow_inputs,core__python__uri_control__edge__compose___split,core__python__uri_control__edge__compose___imports_contracts,core__python__uri_control__edge__env__load_urisys_env,core__python__uri_control__edge__env__resolve_env_var,core__python__uri_control__edge__flow_expect___ocr_texts,core__python__uri_control__edge__flow_expect___vision_confidences,core__python__uri_control__edge__flow_expect___opened_url_contains,core__python__uri_control__edge__call__pipeline__RuntimeCallPipeline__call,core__python__uri_control__edge__flow__steps__parse_flow_step,core__python__uri_control__edge__flow__loader__load_yaml_flow medCC
