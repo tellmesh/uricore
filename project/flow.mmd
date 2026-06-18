@@ -5,6 +5,7 @@ flowchart TD
     classDef entry fill:#4dabf7,stroke:#1971c2,color:#fff
 
     subgraph Core
+        project__run_mod["run_mod"]
         core__php__UriControl__src__UriControl__UriControl__UriControl__describePlaceholder["describePlaceholder"]
         core__python__uri_control__projection__ProjectionBuilder__latest_by_source_uri["latest_by_source_uri"]
         core__python__uri_control__projection__ProjectionBuilder__status_by_source_uri["status_by_source_uri"]
@@ -19,8 +20,7 @@ flowchart TD
         core__python__uri_control__cli__cmd_projection_status["cmd_projection_status"]
         core__python__uri_control__cli__build_parser["build_parser"]
         core__python__uri_control__cli__main["main"]
-        core__python__uri_control__registry___pattern_body["_pattern_body"]
-        ...["+55 more"]
+        ...["+56 more"]
     end
 
-    class core__php__UriControl__src__UriControl__UriControl__UriControl__describePlaceholder,core__python__uri_control__projection__ProjectionBuilder__latest_by_source_uri,core__python__uri_control__projection__ProjectionBuilder__status_by_source_uri,core__python__uri_control__projection__ProjectionBuilder__events_by_type,core__python__uri_control__projection__ProjectionBuilder__from_events,core__python__uri_control__cli___load_payload,core__python__uri_control__cli___registry_from_args,core__python__uri_control__cli__cmd_explain,core__python__uri_control__cli__cmd_call,core__python__uri_control__cli__cmd_list entry
+    class project__run_mod,core__php__UriControl__src__UriControl__UriControl__UriControl__describePlaceholder,core__python__uri_control__projection__ProjectionBuilder__latest_by_source_uri,core__python__uri_control__projection__ProjectionBuilder__status_by_source_uri,core__python__uri_control__projection__ProjectionBuilder__events_by_type,core__python__uri_control__projection__ProjectionBuilder__from_events,core__python__uri_control__cli___load_payload,core__python__uri_control__cli___registry_from_args,core__python__uri_control__cli__cmd_explain,core__python__uri_control__cli__cmd_call entry

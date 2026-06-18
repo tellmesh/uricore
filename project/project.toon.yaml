@@ -1,8 +1,8 @@
-# uricore | 138 func | 29f | 5093L | python | 2026-06-18
+# uricontrol | 140 func | 31f | 5307L | python | 2026-06-18
 # generated in 0.00s
 
 HEALTH:
-  CC̄=4.2  critical=12 (limit:10)  dup=2  cycles=1
+  CC̄=4.2  critical=13 (limit:10)  dup=2  cycles=1
 
 ALERTS[19]:
   !!! high_fan_out     make_uri_handler = 29 (limit:10)
@@ -17,8 +17,8 @@ ALERTS[19]:
   !   cc_exceeded      FlowRunner.run = 19 (limit:15)
 
 MODULES[55] (top by size):
-  M[planfile.yaml] 994L C:0 F:0 CC↑0 D:0 (yaml)
-  M[goal.yaml] 513L C:0 F:0 CC↑0 D:0 (yaml)
+  M[planfile.yaml] 1137L C:0 F:0 CC↑0 D:0 (yaml)
+  M[goal.yaml] 526L C:0 F:0 CC↑0 D:0 (yaml)
   M[core/python/uri_control/edge/runtime.py] 270L C:3 F:18 CC↑7 D:1 (python)
   M[core/python/uri_control/registry.py] 233L C:1 F:10 CC↑21 D:1 (python)
   M[core/python/uri_control/edge/flow_refs.py] 176L C:0 F:10 CC↑12 D:1 (python)
@@ -44,11 +44,11 @@ HOTSPOTS[10]:
   ★ CapabilityRegistry.load_manifest fan=16  // Orchestrates 16 calls
 
 REFACTOR[10]:
-  [1] H/H Split god module goal.yaml (513L, 0 classes)
-  [2] H/H Split god module planfile.yaml (994L, 0 classes)
+  [1] H/H Split god module goal.yaml (526L, 0 classes)
+  [2] H/H Split god module planfile.yaml (1137L, 0 classes)
   [3] M/L Split CapabilityRegistry.load_manifest (CC=21)
   [4] M/L Split check_risk_requirements (CC=16)
   [5] M/L Split order_flow_steps (CC=21)
 
 EVOLUTION:
-  2026-06-18 CC̄=4.2 crit=12 5093L // Automated analysis
+  2026-06-18 CC̄=4.2 crit=13 5307L // Automated analysis

@@ -1,137 +1,272 @@
-# uricore | 27f 1120L | python:24,shell:2,less:1 | 2026-06-18
-# stats: 60 func | 1 cls | 27 mod | CC̄=3.5 | critical:0 | cycles:0
-# alerts[5]: CC test_parse_flow_step_graph_format=8; CC test_normalize_promotes_wire_fields_into_context=7; CC test_parse_custom_uri=7; CC open_page=6; CC test_match_route_does_not_load_handler=6
-# hotspots[5]: test_flow_runner_matches_run_flow fan=9; test_load_urisys_flow_handler_runs_steps fan=8; test_run_flow_if_skips_step fan=6; test_run_flow_save_as_and_ref fan=5; test_run_flow_payload_from fan=5
-# evolution: baseline
+# uricontrol | 55f 5307L | yaml:7,shell:2,python:38,json:2,php:1,typescript:1,proto:2,toml:1 | 2026-06-18
+# generated in 0.01s
+# stats: 140 func | 0 cls | 55 mod | CC̄=4.2 | critical:4 | cycles:0
+# alerts[5]: fan-out make_uri_handler=29; fan-out FlowRunner.run=26; fan-out build_edge_cli=22; CC CapabilityRegistry.load_manifest=21; CC order_flow_steps=21
+# hotspots[5]: make_uri_handler fan=29; FlowRunner.run fan=26; build_edge_cli fan=22; load_yaml_flow fan=18; CapabilityRegistry.load_manifest fan=16
+# evolution: CC̄ 4.2→4.2 (flat 0.0)
 # Keys: M=modules, D=details, i=imports, e=exports, c=classes, f=functions, m=methods
-M[27]:
-  app.doql.less,67
-  examples/__init__.py,1
-  examples/call_browser_mock.py,31
-  examples/call_systemd_mock.py,23
-  examples/packs/__init__.py,1
-  examples/packs/browser_mock/__init__.py,1
-  examples/packs/browser_mock/handlers.py,46
-  examples/packs/systemd_mock/__init__.py,1
-  examples/packs/systemd_mock/handlers.py,29
-  project.sh,59
-  tests/conftest.py,5
-  tests/test_dispatcher.py,50
-  tests/test_envelope.py,25
-  tests/test_flow_expect.py,33
-  tests/test_flow_inputs.py,21
-  tests/test_flow_refs.py,86
-  tests/test_flow_runner.py,23
-  tests/test_operation_policy.py,73
-  tests/test_parser.py,12
-  tests/test_register.py,93
-  tests/test_registry.py,29
-  tests/test_resolver.py,137
-  tests/test_risk_policy.py,30
-  tests/test_runtime_handlers.py,74
-  tests/test_transport.py,77
-  tests/test_urisys_handlers.py,91
-  tree.sh,2
+M[55]:
+  Makefile,16
+  contracts/proto/browser/v1/browser.proto,24
+  contracts/proto/uricontrol/v1/envelope.proto,31
+  core/node/uri-control/package.json,11
+  core/node/uri-control/src/index.ts,9
+  core/php/UriControl/composer.json,13
+  core/php/UriControl/src/UriControl.php,11
+  core/python/uri_control/__init__.py,42
+  core/python/uri_control/cli.py,123
+  core/python/uri_control/dispatcher.py,167
+  core/python/uri_control/edge/__init__.py,31
+  core/python/uri_control/edge/call/__init__.py,6
+  core/python/uri_control/edge/call/pipeline.py,71
+  core/python/uri_control/edge/call/resolver_hook.py,72
+  core/python/uri_control/edge/cli.py,164
+  core/python/uri_control/edge/compose.py,157
+  core/python/uri_control/edge/env.py,129
+  core/python/uri_control/edge/flow/__init__.py,16
+  core/python/uri_control/edge/flow/loader.py,46
+  core/python/uri_control/edge/flow/runner.py,104
+  core/python/uri_control/edge/flow/steps.py,68
+  core/python/uri_control/edge/flow_artifacts.py,40
+  core/python/uri_control/edge/flow_expect.py,156
+  core/python/uri_control/edge/flow_refs.py,176
+  core/python/uri_control/edge/http.py,148
+  core/python/uri_control/edge/manifest.py,83
+  core/python/uri_control/edge/risk_policy.py,57
+  core/python/uri_control/edge/runtime.py,270
+  core/python/uri_control/envelope.py,25
+  core/python/uri_control/errors.py,22
+  core/python/uri_control/event_store.py,65
+  core/python/uri_control/handlers.py,144
+  core/python/uri_control/models.py,127
+  core/python/uri_control/parser.py,45
+  core/python/uri_control/policy.py,71
+  core/python/uri_control/projection.py,70
+  core/python/uri_control/registry.py,233
+  core/python/uri_control/resolver.py,11
+  core/python/uri_control/runtime_handlers.py,89
+  core/python/uri_control/transport.py,11
+  examples/__init__.py,0
+  examples/call_browser_mock.py,30
+  examples/call_systemd_mock.py,22
+  examples/packs/browser_mock/handlers.py,45
+  examples/packs/browser_mock/manifest.yaml,25
+  examples/packs/systemd_mock/handlers.py,28
+  examples/packs/systemd_mock/manifest.yaml,25
+  goal.yaml,526
+  planfile.yaml,1137
+  prefact.yaml,94
+  project.sh,77
+  pyproject.toml,101
+  testql-scenarios/generated-cli-tests.testql.toon.yaml,20
+  testql-scenarios/generated-from-pytests.testql.toon.yaml,22
+  tree.sh,1
 D:
-  examples/__init__.py:
-  examples/call_browser_mock.py:
-  examples/call_systemd_mock.py:
-  examples/packs/__init__.py:
-  examples/packs/browser_mock/__init__.py:
+  core/python/uri_control/registry.py:
+    e: CapabilityRegistry,_pattern_body,_compile_pattern
+    CapabilityRegistry: __init__(0),from_manifest_files(1),load_manifest_file(1),load_manifest(1),register(2),match_route(1),match(1),explain(1)  # In-memory registry of capability manifests and URI patterns...
+    _pattern_body(pattern;scheme)
+    _compile_pattern(pattern;scheme)
+  core/python/uri_control/edge/flow/steps.py:
+    e: parse_flow_step,order_flow_steps
+    parse_flow_step(step)
+    order_flow_steps(steps)
+  core/python/uri_control/edge/flow/runner.py:
+    e: FlowRunner,run_flow
+    FlowRunner: __init__(1),run(2)  # Sequential UriFlow executor bound to an edge ``Runtime``...
+    run_flow(runtime;path;context)
+  core/python/uri_control/edge/risk_policy.py:
+    e: check_risk_requirements,_violation
+    check_risk_requirements(risk;context)
+    _violation(operation;vtype;message)
+  core/python/uri_control/edge/flow/loader.py:
+    e: load_yaml_flow
+    load_yaml_flow(path)
+  core/python/uri_control/edge/flow_refs.py:
+    e: resolve_ref,interpolate_string,interpolate_value,_result_payload,merge_payload_from,resolve_step_uri,evaluate_step_if,store_step_output,seed_flow_inputs,output_key
+    resolve_ref(ref;step_outputs)
+    interpolate_string(value;step_outputs)
+    interpolate_value(value;step_outputs)
+    _result_payload(step_value)
+    merge_payload_from(payload;step_outputs)
+    resolve_step_uri(uri;step;step_outputs)
+    evaluate_step_if(expr;step_outputs)
+    store_step_output(step_outputs)
+    seed_flow_inputs(flow;context;step_outputs)
+    output_key(step;step_id;index)
+  core/python/uri_control/edge/flow_expect.py:
+    e: _ocr_texts,_vision_confidences,_transport_ok,_required_steps,_nested_result_expect,_ocr_contains,_opened_url_contains,_min_vision_confidence,evaluate_flow_expect
+    _ocr_texts(results)
+    _vision_confidences(results)
+    _transport_ok(results)
+    _required_steps(step_outputs;names)
+    _nested_result_expect(expect_result;step_outputs)
+    _ocr_contains(expect;results)
+    _opened_url_contains(expect;results)
+    _min_vision_confidence(expect;results)
+    evaluate_flow_expect(flow;results;step_outputs)
+  core/python/uri_control/edge/manifest.py:
+    e: _handler_for_operation,_register_urisys_flows,register_manifest_file,register_manifest_data,register_manifest_files
+    _handler_for_operation(item;handlers_data)
+    _register_urisys_flows(runtime;data)
+    register_manifest_file(runtime;manifest_path)
+    register_manifest_data(runtime;data)
+    register_manifest_files(runtime;manifest_paths)
+  core/python/uri_control/edge/env.py:
+    e: _urisys_root,load_urisys_env,_env_policy_candidates,load_env_policy,_env_config,resolve_env_var,is_secret_env
+    _urisys_root()
+    load_urisys_env()
+    _env_policy_candidates()
+    load_env_policy()
+    _env_config(context)
+    resolve_env_var(name;context)
+    is_secret_env(name)
+  core/python/uri_control/dispatcher.py:
+    e: UriControlRuntime,_now_ms,_new_id
+    UriControlRuntime: __init__(0),call(3)  # URI → manifest route → policy → handler → event...
+    _now_ms()
+    _new_id(prefix)
+  core/python/uri_control/envelope.py:
+    e: normalize_call_envelope
+    normalize_call_envelope(body)
+  core/python/uri_control/policy.py:
+    e: PolicyEngine
+    PolicyEngine: __init__(0),decide(2)  # Small deterministic policy gate.
+
+This is intentionally simp...
+  core/python/uri_control/handlers.py:
+    e: load_python_handler,_safe_context,_normalise_endpoint,make_remote_handler,load_handler
+    load_python_handler(handler_ref)
+    _safe_context(context)
+    _normalise_endpoint(handler_ref)
+    make_remote_handler(handler_ref)
+    load_handler(handler_ref)
+  core/python/uri_control/edge/compose.py:
+    e: resolve_pack_module,_split,register_pack,register_packs,register_manifests,bundle_packs,_bundle_block,_imports_contracts,build_runtime
+    resolve_pack_module(name;alias_map)
+    _split(value)
+    register_pack(rt;name)
+    register_packs(rt;packs)
+    register_manifests(rt;manifests)
+    bundle_packs(bundle_path)
+    _bundle_block(text)
+    _imports_contracts(block)
+    build_runtime()
+  core/python/uri_control/edge/call/pipeline.py:
+    e: RuntimeCallPipeline
+    RuntimeCallPipeline: __init__(2),call(3),_maybe_delegate(5)  # Orchestrates a single URI call through the edge runtime stag...
+  core/python/uri_control/parser.py:
+    e: parse_uri,canonicalize_uri
+    parse_uri(uri)
+    canonicalize_uri(uri)
+  core/python/uri_control/edge/flow_artifacts.py:
+    e: sync_artifacts_to_runtime
+    sync_artifacts_to_runtime(runtime;call_result)
+  core/python/uri_control/edge/runtime.py:
+    e: Route,JsonlEventStore,Runtime,_result_ok,load_json,make_handler,serve
+    Route: compile(0),match(1)
+    JsonlEventStore: __init__(1),append(1),tail(1)
+    Runtime: __init__(2),register(2),resolve(1),_load_handler(1),call(3),_check_policies(5),_log_event(3),_build_call_context(4),_execute_handler(5)
+    _result_ok(result)
+    load_json(path)
+    make_handler(runtime)
+    serve(runtime;host;port)
   examples/packs/browser_mock/handlers.py:
     e: open_page,get_dom
     open_page(payload;context)
     get_dom(payload;context)
-  examples/packs/systemd_mock/__init__.py:
+  core/python/uri_control/projection.py:
+    e: ProjectionBuilder
+    ProjectionBuilder: __init__(1),latest_by_source_uri(0),status_by_source_uri(0),events_by_type(0),from_events(0)  # Build read models from events.
+
+This is intentionally generi...
+  core/python/uri_control/event_store.py:
+    e: EventStore,InMemoryEventStore,JsonlEventStore,dump_events
+    EventStore(ABC): append(1),read_all(0)
+    InMemoryEventStore(EventStore): __init__(0),append(1),read_all(0)
+    JsonlEventStore(EventStore): __init__(1),append(1),read_all(0)
+    dump_events(events)
+  core/python/uri_control/edge/http.py:
+    e: _as_dict,_routes_list,make_uri_handler,serve
+    _as_dict(result)
+    _routes_list(runtime)
+    make_uri_handler(runtime)
+    serve(runtime;host;port)
+  core/python/uri_control/runtime_handlers.py:
+    e: parse_runtime_handler,make_runtime_handler,load_runtime_handler
+    parse_runtime_handler(handler_ref)
+    make_runtime_handler(binding;operation)
+    load_runtime_handler(handler_ref)
   examples/packs/systemd_mock/handlers.py:
     e: unit_status,unit_restart
     unit_status(payload;context)
     unit_restart(payload;context)
-  tests/conftest.py:
-  tests/test_dispatcher.py:
-    e: _runtime,test_command_requires_approval,test_command_executes_when_approved,test_query_does_not_require_approval
-    _runtime()
-    test_command_requires_approval()
-    test_command_executes_when_approved()
-    test_query_does_not_require_approval()
-  tests/test_envelope.py:
-    e: test_normalize_promotes_wire_fields_into_context
-    test_normalize_promotes_wire_fields_into_context()
-  tests/test_flow_expect.py:
-    e: test_evaluate_transport_ok_and_required_steps,test_evaluate_required_step_missing,test_evaluate_ocr_contains
-    test_evaluate_transport_ok_and_required_steps()
-    test_evaluate_required_step_missing()
-    test_evaluate_ocr_contains()
-  tests/test_flow_inputs.py:
-    e: test_seed_flow_inputs_enables_uri_interpolation
-    test_seed_flow_inputs_enables_uri_interpolation()
-  tests/test_flow_refs.py:
-    e: test_resolve_ref_nested,test_interpolate_payload,test_run_flow_save_as_and_ref,test_run_flow_payload_from,test_run_flow_if_skips_step
-    test_resolve_ref_nested()
-    test_interpolate_payload()
-    test_run_flow_save_as_and_ref(tmp_path)
-    test_run_flow_payload_from(tmp_path)
-    test_run_flow_if_skips_step(tmp_path)
-  tests/test_flow_runner.py:
-    e: test_flow_runner_matches_run_flow
-    test_flow_runner_matches_run_flow(tmp_path)
-  tests/test_operation_policy.py:
-    e: _runtime,test_within_limit_executes,test_exceeds_limit_denied_before_handler,test_limit_enforced_even_on_dry_run,test_approval_still_checked_before_policy
-    _runtime(tmp_path)
-    test_within_limit_executes(tmp_path)
-    test_exceeds_limit_denied_before_handler(tmp_path)
-    test_limit_enforced_even_on_dry_run(tmp_path)
-    test_approval_still_checked_before_policy(tmp_path)
-  tests/test_parser.py:
-    e: test_parse_custom_uri
-    test_parse_custom_uri()
-  tests/test_register.py:
-    e: test_register_matches_like_edge_pack,test_register_defaults_match_edge_runtime,test_match_route_does_not_load_handler,test_register_requires_scheme,test_register_and_manifest_coexist
-    test_register_matches_like_edge_pack()
-    test_register_defaults_match_edge_runtime()
-    test_match_route_does_not_load_handler()
-    test_register_requires_scheme()
-    test_register_and_manifest_coexist()
-  tests/test_registry.py:
-    e: test_registry_matches_browser_route,test_registry_explain
-    test_registry_matches_browser_route()
-    test_registry_explain()
-  tests/test_resolver.py:
-    e: test_load_and_apply_resolver,test_resolve_uri_remaps_authority,test_resolve_uri_runtime_profile_overlay,test_apply_uri_aliases,test_apply_resolver_config_loads_uri_aliases,test_runtime_call_applies_resolver,test_run_flow_applies_resolver_runtime_defaults,test_order_flow_steps_after,test_order_flow_steps_cycle
-    test_load_and_apply_resolver(tmp_path)
-    test_resolve_uri_remaps_authority()
-    test_resolve_uri_runtime_profile_overlay()
-    test_apply_uri_aliases()
-    test_apply_resolver_config_loads_uri_aliases(tmp_path)
-    test_runtime_call_applies_resolver(tmp_path)
-    test_run_flow_applies_resolver_runtime_defaults(tmp_path)
-    test_order_flow_steps_after()
-    test_order_flow_steps_cycle()
-  tests/test_risk_policy.py:
-    e: test_high_risk_requires_dry_run_or_allow_real,test_audit_required_for_critical
-    test_high_risk_requires_dry_run_or_allow_real()
-    test_audit_required_for_critical()
-  tests/test_runtime_handlers.py:
-    e: test_parse_runtime_handler,test_parse_runtime_handler_rejects_missing_operation,test_load_handler_dispatches_runtime_scheme,test_runtime_handler_dry_run_is_mock,test_runtime_handler_mock_environment_is_mock,test_runtime_handler_real_without_binding_errors_cleanly,test_runtime_handler_via_runtime_call_mock,test_runtime_handler_resolver_transport_wins_over_local
-    test_parse_runtime_handler()
-    test_parse_runtime_handler_rejects_missing_operation()
-    test_load_handler_dispatches_runtime_scheme()
-    test_runtime_handler_dry_run_is_mock()
-    test_runtime_handler_mock_environment_is_mock()
-    test_runtime_handler_real_without_binding_errors_cleanly()
-    test_runtime_handler_via_runtime_call_mock(tmp_path)
-    test_runtime_handler_resolver_transport_wins_over_local(tmp_path)
-  tests/test_transport.py:
-    e: _with_http_server,test_runtime_call_delegates_before_route_match,test_runtime_unsupported_transport_returns_clean_error,test_runtime_local_transport_still_uses_handler,_Handler
-    _Handler: log_message(0),do_POST(0)
-    _with_http_server()
-    test_runtime_call_delegates_before_route_match(tmp_path)
-    test_runtime_unsupported_transport_returns_clean_error(tmp_path)
-    test_runtime_local_transport_still_uses_handler(tmp_path)
-  tests/test_urisys_handlers.py:
-    e: test_parse_urisys_flow_handler,test_load_urisys_flow_handler_runs_steps,test_resolve_flow_path_from_manifest_map,test_resolve_flow_path_missing,test_parse_flow_step_graph_format
-    test_parse_urisys_flow_handler()
-    test_load_urisys_flow_handler_runs_steps(tmp_path)
-    test_resolve_flow_path_from_manifest_map(tmp_path)
-    test_resolve_flow_path_missing()
-    test_parse_flow_step_graph_format()
+  core/python/uri_control/cli.py:
+    e: _load_payload,_registry_from_args,cmd_explain,cmd_call,cmd_list,cmd_projection_latest,cmd_projection_status,build_parser,main
+    _load_payload(value)
+    _registry_from_args(args)
+    cmd_explain(args)
+    cmd_call(args)
+    cmd_list(args)
+    cmd_projection_latest(args)
+    cmd_projection_status(args)
+    build_parser()
+    main(argv)
+  core/python/uri_control/models.py:
+    e: ParsedUri,Route,MatchedRoute,CapabilityManifest,PolicyDecision,EventEnvelope,DispatchResult
+    ParsedUri:
+    Route:
+    MatchedRoute:
+    CapabilityManifest:
+    PolicyDecision:
+    EventEnvelope: to_dict(0)
+    DispatchResult: to_dict(0)
+  core/python/uri_control/edge/cli.py:
+    e: _json_arg,_emit,build_edge_cli
+    _json_arg(value)
+    _emit(data)
+    build_edge_cli(prog;build_runtime)
+  core/python/uri_control/edge/call/resolver_hook.py:
+    e: ResolverHook,DefaultResolverHook
+    ResolverHook(Protocol): resolve(3),delegate_transport(0)  # Optional placement + transport delegation before local route...
+    DefaultResolverHook: resolve(3),delegate_transport(0)  # Uses ``uri_control.resolver`` / ``uri_control.transport`` sh...
+  core/php/UriControl/src/UriControl.php:
+    e: UriControl
+    UriControl:
+  core/node/uri-control/src/index.ts:
+    e: describePlaceholder
+    describePlaceholder()
+  goal.yaml:
+  planfile.yaml:
+  Makefile:
+  tree.sh:
+  prefact.yaml:
+  project.sh:
+    e: run_mod
+    run_mod()
+  examples/__init__.py:
+  examples/call_browser_mock.py:
+  examples/call_systemd_mock.py:
+  examples/packs/systemd_mock/manifest.yaml:
+  examples/packs/browser_mock/manifest.yaml:
+  core/php/UriControl/composer.json:
+  core/python/uri_control/errors.py:
+    e: UriControlError,UriParseError,RegistryError,RouteNotFoundError,HandlerLoadError,PolicyDeniedError
+    UriControlError(Exception):  # Base exception for uri_control...
+    UriParseError(UriControlError):  # Raised when a URI cannot be parsed...
+    RegistryError(UriControlError):  # Raised for invalid manifests or registry state...
+    RouteNotFoundError(UriControlError):  # Raised when no route matches a URI...
+    HandlerLoadError(UriControlError):  # Raised when a handler reference cannot be loaded...
+    PolicyDeniedError(UriControlError):  # Raised when policy denies a command or query...
+  core/python/uri_control/__init__.py:
+  core/python/uri_control/edge/__init__.py:
+  core/python/uri_control/edge/call/__init__.py:
+  core/python/uri_control/edge/flow/__init__.py:
+  core/node/uri-control/package.json:
+  testql-scenarios/generated-from-pytests.testql.toon.yaml:
+  testql-scenarios/generated-cli-tests.testql.toon.yaml:
+  contracts/proto/uricontrol/v1/envelope.proto:
+  contracts/proto/browser/v1/browser.proto:
+  pyproject.toml:
+  core/python/uri_control/resolver.py:
+  core/python/uri_control/transport.py:

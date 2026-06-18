@@ -1,6 +1,6 @@
-# code2llm | 55f 5093L | python:38,yaml:7,shell:2,json:2,proto:2,php:1,typescript:1,toml:1 | 2026-06-18
+# code2llm | 55f 5307L | python:38,yaml:7,shell:2,json:2,proto:2,php:1,typescript:1,toml:1 | 2026-06-18
 # generated in 0.01s
-# CC̅=4.2 | critical:4/138 | dups:0 | cycles:1
+# CC̅=4.2 | critical:4/140 | dups:0 | cycles:1
 
 HEALTH[4]:
   🟡 CC    load_manifest CC=21 (limit:15)
@@ -89,33 +89,33 @@ PIPELINES[60]:
       PURITY: 100% pure
   [38] Src [is_secret_env]: is_secret_env
       PURITY: 100% pure
-  [39] Src [compile]: compile
+  [39] Src [resolve]: resolve
       PURITY: 100% pure
-  [40] Src [match]: match
+  [40] Src [delegate_transport]: delegate_transport
       PURITY: 100% pure
   [41] Src [__init__]: __init__
       PURITY: 100% pure
-  [42] Src [append]: append
+  [42] Src [call]: call
       PURITY: 100% pure
-  [43] Src [tail]: tail
+  [43] Src [_maybe_delegate]: _maybe_delegate
       PURITY: 100% pure
-  [44] Src [__init__]: __init__
+  [44] Src [run]: run → load_yaml_flow
       PURITY: 100% pure
-  [45] Src [register]: register
+  [45] Src [compile]: compile
       PURITY: 100% pure
-  [46] Src [resolve]: resolve
+  [46] Src [match]: match
       PURITY: 100% pure
-  [47] Src [call]: call
+  [47] Src [__init__]: __init__
       PURITY: 100% pure
-  [48] Src [_check_policies]: _check_policies → check_risk_requirements → _violation
+  [48] Src [append]: append
       PURITY: 100% pure
-  [49] Src [_log_event]: _log_event
+  [49] Src [tail]: tail
       PURITY: 100% pure
-  [50] Src [_build_call_context]: _build_call_context → load_env_policy → _env_policy_candidates → _urisys_root
+  [50] Src [__init__]: __init__
       PURITY: 100% pure
 
 LAYERS:
-  core/                           CC̄=4.2    ←in:0  →out:0
+  core/                           CC̄=4.3    ←in:0  →out:0
   │ runtime                    270L  3C   18m  CC=7      ←1
   │ !! registry                   233L  1C   10m  CC=21     ←1
   │ flow_refs                  176L  0C   10m  CC=12     ←1
@@ -143,15 +143,15 @@ LAYERS:
   │ __init__                    42L  0C    0m  CC=0.0    ←0
   │ flow_artifacts              40L  0C    1m  CC=7      ←1
   │ __init__                    31L  0C    0m  CC=0.0    ←0
+  │ envelope                    25L  0C    1m  CC=10     ←1
   │ errors                      22L  6C    0m  CC=0.0    ←0
   │ __init__                    16L  0C    0m  CC=0.0    ←0
   │ composer.json               13L  0C    0m  CC=0.0    ←0
   │ UriControl.php              11L  1C    1m  CC=1      ←0
   │ package.json                11L  0C    0m  CC=0.0    ←0
+  │ resolver                    11L  0C    0m  CC=0.0    ←0
+  │ transport                   11L  0C    0m  CC=0.0    ←0
   │ index.ts                     9L  0C    1m  CC=1      ←0
-  │ envelope                     6L  0C    0m  CC=0.0    ←0
-  │ resolver                     6L  0C    0m  CC=0.0    ←0
-  │ transport                    6L  0C    0m  CC=0.0    ←0
   │ __init__                     6L  0C    0m  CC=0.0    ←0
   │
   examples/                       CC̄=4.0    ←in:0  →out:0
@@ -164,21 +164,21 @@ LAYERS:
   │ __init__                     0L  0C    0m  CC=0.0    ←0
   │
   ./                              CC̄=0.0    ←in:0  →out:0
-  │ !! planfile.yaml              994L  0C    0m  CC=0.0    ←0
-  │ !! goal.yaml                  513L  0C    0m  CC=0.0    ←0
+  │ !! planfile.yaml             1137L  0C    0m  CC=0.0    ←0
+  │ !! goal.yaml                  526L  0C    0m  CC=0.0    ←0
+  │ pyproject.toml             101L  0C    0m  CC=0.0    ←0
   │ prefact.yaml                94L  0C    0m  CC=0.0    ←0
-  │ pyproject.toml              90L  0C    0m  CC=0.0    ←0
-  │ project.sh                  59L  0C    0m  CC=0.0    ←0
+  │ project.sh                  77L  0C    1m  CC=0.0    ←0
   │ Makefile                    16L  0C    0m  CC=0.0    ←0
   │ tree.sh                      1L  0C    0m  CC=0.0    ←0
-  │
-  contracts/                      CC̄=0.0    ←in:0  →out:0
-  │ envelope.proto              31L  0C    0m  CC=0.0    ←0
-  │ browser.proto               24L  0C    0m  CC=0.0    ←0
   │
   testql-scenarios/               CC̄=0.0    ←in:0  →out:0
   │ generated-from-pytests.testql.toon.yaml    22L  0C    0m  CC=0.0    ←0
   │ generated-cli-tests.testql.toon.yaml    20L  0C    0m  CC=0.0    ←0
+  │
+  contracts/                      CC̄=0.0    ←in:0  →out:0
+  │ envelope.proto              31L  0C    0m  CC=0.0    ←0
+  │ browser.proto               24L  0C    0m  CC=0.0    ←0
   │
   ── zero ──
      examples/__init__.py                      0L

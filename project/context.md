@@ -3,14 +3,14 @@
 
 ## Overview
 
-- **Project**: /home/tom/github/tellmesh/uricore
+- **Project**: /home/tom/github/tellmesh/uricontrol
 - **Primary Language**: python
 - **Languages**: python: 38, yaml: 7, shell: 2, json: 2, proto: 2
 - **Analysis Mode**: static
-- **Total Functions**: 138
+- **Total Functions**: 140
 - **Total Classes**: 28
 - **Modules**: 55
-- **Entry Points**: 71
+- **Entry Points**: 72
 
 ## Architecture by Module
 
@@ -148,14 +148,14 @@ Main execution flows into the system:
 ### core.python.uri_control.policy.PolicyEngine.decide
 - **Calls**: PolicyDecision, PolicyDecision, PolicyDecision, PolicyDecision, PolicyDecision, bool, context.get
 
+### core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline._maybe_delegate
+- **Calls**: self.resolver_hook.delegate_transport, isinstance, resolver_ctx.get, isinstance, resolver_ctx.get, isinstance, str
+
 ### core.python.uri_control.edge.runtime.Route.compile
 - **Calls**: re.compile, len, self.pattern.index, parts.append, parts.append, re.escape, None.join
 
 ### core.python.uri_control.edge.runtime.Runtime.resolve
 - **Calls**: KeyError, Route, route.match, self._registry.match_route, dict, KeyError, self._operation_risk.get
-
-### core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline._maybe_delegate
-- **Calls**: self.resolver_hook.delegate_transport, isinstance, resolver_ctx.get, isinstance, resolver_ctx.get, isinstance, str
 
 ### core.python.uri_control.projection.ProjectionBuilder.status_by_source_uri
 - **Calls**: self.event_store.read_all, status.setdefault, event.metadata.get, event.data.get, event.data.get, event.event_type.endswith
@@ -300,10 +300,6 @@ This is intentionally generic. Domain-specific projections should li
 - **Key Methods**: core.python.uri_control.event_store.JsonlEventStore.__init__, core.python.uri_control.event_store.JsonlEventStore.append, core.python.uri_control.event_store.JsonlEventStore.read_all
 - **Inherits**: EventStore
 
-### core.python.uri_control.edge.runtime.JsonlEventStore
-- **Methods**: 3
-- **Key Methods**: core.python.uri_control.edge.runtime.JsonlEventStore.__init__, core.python.uri_control.edge.runtime.JsonlEventStore.append, core.python.uri_control.edge.runtime.JsonlEventStore.tail
-
 ### core.python.uri_control.edge.call.pipeline.RuntimeCallPipeline
 > Orchestrates a single URI call through the edge runtime stages.
 - **Methods**: 3
@@ -313,6 +309,10 @@ This is intentionally generic. Domain-specific projections should li
 > Sequential UriFlow executor bound to an edge ``Runtime``.
 - **Methods**: 3
 - **Key Methods**: core.python.uri_control.edge.flow.runner.FlowRunner.__init__, core.python.uri_control.edge.flow.runner.FlowRunner.runtime, core.python.uri_control.edge.flow.runner.FlowRunner.run
+
+### core.python.uri_control.edge.runtime.JsonlEventStore
+- **Methods**: 3
+- **Key Methods**: core.python.uri_control.edge.runtime.JsonlEventStore.__init__, core.python.uri_control.edge.runtime.JsonlEventStore.append, core.python.uri_control.edge.runtime.JsonlEventStore.tail
 
 ### core.python.uri_control.policy.PolicyEngine
 > Small deterministic policy gate.
@@ -331,10 +331,6 @@ This is intentionally simple. A future `urisys` project can replac
 - **Methods**: 2
 - **Key Methods**: core.python.uri_control.dispatcher.UriControlRuntime.__init__, core.python.uri_control.dispatcher.UriControlRuntime.call
 
-### core.python.uri_control.edge.runtime.Route
-- **Methods**: 2
-- **Key Methods**: core.python.uri_control.edge.runtime.Route.compile, core.python.uri_control.edge.runtime.Route.match
-
 ### core.python.uri_control.edge.call.resolver_hook.ResolverHook
 > Optional placement + transport delegation before local route matching.
 - **Methods**: 2
@@ -345,6 +341,10 @@ This is intentionally simple. A future `urisys` project can replac
 > Uses ``uri_control.resolver`` / ``uri_control.transport`` shims when installed.
 - **Methods**: 2
 - **Key Methods**: core.python.uri_control.edge.call.resolver_hook.DefaultResolverHook.resolve, core.python.uri_control.edge.call.resolver_hook.DefaultResolverHook.delegate_transport
+
+### core.python.uri_control.edge.runtime.Route
+- **Methods**: 2
+- **Key Methods**: core.python.uri_control.edge.runtime.Route.compile, core.python.uri_control.edge.runtime.Route.match
 
 ### core.php.UriControl.src.UriControl.UriControl.UriControl
 - **Methods**: 1
@@ -428,6 +428,7 @@ Functions exposed as public API (no underscore prefix):
 - `core.python.uri_control.edge.flow_refs.resolve_step_uri` - 11 calls
 - `core.python.uri_control.edge.flow_refs.seed_flow_inputs` - 11 calls
 - `core.python.uri_control.edge.compose.bundle_packs` - 11 calls
+- `core.python.uri_control.envelope.normalize_call_envelope` - 10 calls
 - `core.python.uri_control.edge.runtime.JsonlEventStore.append` - 10 calls
 - `core.python.uri_control.event_store.JsonlEventStore.read_all` - 9 calls
 - `core.python.uri_control.edge.env.resolve_env_var` - 9 calls
@@ -445,7 +446,6 @@ Functions exposed as public API (no underscore prefix):
 - `core.python.uri_control.projection.ProjectionBuilder.status_by_source_uri` - 6 calls
 - `core.python.uri_control.registry.CapabilityRegistry.load_manifest_file` - 6 calls
 - `core.python.uri_control.registry.CapabilityRegistry.match_route` - 6 calls
-- `core.python.uri_control.edge.http.serve` - 6 calls
 
 ## System Interactions
 
