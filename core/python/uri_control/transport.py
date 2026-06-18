@@ -165,7 +165,11 @@ def post_json(url: str, body: dict[str, Any], *, timeout: float = 30) -> dict[st
 
 def _slim_context(context: dict[str, Any]) -> dict[str, Any]:
     skip = {"config", "runtime", "event_store", "state", "params"}
-    return {k: v for k, v in context.items() if k not in skip}
+    slim = {k: v for k, v in context.items() if k not in skip}
+    for key in ("request_id", "reply_to", "trace_id", "deadline_ms", "runtime_profile"):
+        if key in context and key not in slim:
+            slim[key] = context[key]
+    return slim
 
 
 def delegate_transport_call(

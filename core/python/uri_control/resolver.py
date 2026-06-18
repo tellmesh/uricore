@@ -64,10 +64,25 @@ def load_resolver_into_runtime(runtime: Any, path: str | Path) -> dict[str, Any]
     return data
 
 
-def target_profile(config: dict[str, Any], authority: str) -> dict[str, Any] | None:
+def target_profile(
+    config: dict[str, Any], authority: str, context: dict[str, Any] | None = None
+) -> dict[str, Any] | None:
     targets = (config.get("resolver") or {}).get("targets") or config.get("targets") or {}
-    profile = targets.get(authority)
-    return dict(profile) if isinstance(profile, dict) else None
+    raw = targets.get(authority)
+    if not isinstance(raw, dict):
+        return None
+
+    profile = dict(raw)
+    nested = profile.get("profiles")
+    runtime_profile = (context or {}).get("runtime_profile")
+    if isinstance(nested, dict) and runtime_profile:
+        selected = nested.get(str(runtime_profile))
+        if isinstance(selected, dict):
+            overlay = dict(selected)
+            overlay.pop("profiles", None)
+            profile.update(overlay)
+    profile.pop("profiles", None)
+    return profile
 
 
 def apply_uri_aliases(uri: str, config: dict[str, Any]) -> str:
@@ -88,7 +103,9 @@ def apply_uri_aliases(uri: str, config: dict[str, Any]) -> str:
     return uri
 
 
-def resolve_uri(uri: str, config: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+def resolve_uri(
+    uri: str, config: dict[str, Any], context: dict[str, Any] | None = None
+) -> tuple[str, dict[str, Any]]:
     """Return URI (optionally rewritten) and extra call context from target profile."""
     uri = apply_uri_aliases(uri, config)
     parts = urlsplit(uri)
@@ -96,7 +113,7 @@ def resolve_uri(uri: str, config: dict[str, Any]) -> tuple[str, dict[str, Any]]:
     if not authority:
         return uri, {}
 
-    profile = target_profile(config, authority)
+    profile = target_profile(config, authority, context)
     if not profile:
         return uri, {}
 
@@ -112,6 +129,9 @@ def resolve_uri(uri: str, config: dict[str, Any]) -> tuple[str, dict[str, Any]]:
     transport = profile.get("transport")
     if transport:
         extra["transport"] = transport
+
+    if (context or {}).get("runtime_profile"):
+        extra["runtime_profile"] = context["runtime_profile"]
 
     return uri, extra
 

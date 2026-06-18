@@ -174,8 +174,43 @@ class Runtime:
     def call(self, uri: str, payload: dict[str, Any] | None = None, context: dict[str, Any] | None = None) -> dict[str, Any]:
         payload = payload or {}
         context = context or {}
+        resolved_uri = uri
+        resolver_ctx: dict[str, Any] = {}
         try:
-            route, params = self.resolve(uri)
+            from uri_control.resolver import resolve_uri
+
+            resolved_uri, resolver_ctx = resolve_uri(uri, self.config or {}, context)
+            if resolver_ctx:
+                context = {**context, **resolver_ctx}
+        except Exception:
+            resolved_uri = uri
+
+        profile = resolver_ctx.get("target_profile") if isinstance(resolver_ctx, dict) else None
+        transport = resolver_ctx.get("transport") if isinstance(resolver_ctx, dict) else None
+        if isinstance(profile, dict) and transport:
+            try:
+                from uri_control.transport import delegate_transport_call
+
+                delegated = delegate_transport_call(
+                    transport=str(transport),
+                    source_uri=uri,
+                    resolved_uri=resolved_uri,
+                    payload=payload,
+                    context=context,
+                    profile=profile,
+                )
+                if delegated is not None:
+                    return delegated
+            except Exception as exc:
+                return {
+                    "ok": False,
+                    "uri": uri,
+                    "type": "transport_error",
+                    "error": str(exc),
+                }
+
+        try:
+            route, params = self.resolve(resolved_uri)
         except Exception as exc:
             return {"ok": False, "uri": uri, "type": "route_not_found", "error": str(exc)}
 
@@ -185,7 +220,8 @@ class Runtime:
 
         ctx = dict(context)
         ctx.update({
-            "uri": uri,
+            "uri": resolved_uri,
+            "source_uri": uri,
             "params": params,
             "config": self.config,
             "runtime": self,
@@ -215,7 +251,7 @@ class Runtime:
         except Exception as exc:
             event = {**event_base, "event_id": str(uuid.uuid4()), "event_type": f"{route.operation}.failed", "error": str(exc)}
             self.events.append(event)
-            return {"ok": False, "uri": uri, "operation": route.operation, "error": str(exc), "event": event}
+            return {"ok": False, "uri": uri, "resolved_uri": resolved_uri, "operation": route.operation, "error": str(exc), "event": event}
 
 
 def load_json(path: str | None) -> dict[str, Any]:
@@ -267,21 +303,124 @@ def load_yaml_flow(path: str | Path) -> dict[str, Any]:
         return data
 
 
+def _parse_flow_step(step: Any) -> tuple[str, dict[str, Any], str | None]:
+    """Normalize one flow step to ``(uri, payload, step_id)``."""
+    step_id = None
+    if isinstance(step, str):
+        return step, {}, None
+    if isinstance(step, dict):
+        step_id = step.get("id")
+        if "uri" in step:
+            return str(step["uri"]), dict(step.get("payload") or {}), step_id
+        for key, value in step.items():
+            if isinstance(key, str) and "://" in key:
+                return key, dict(value or {}) if isinstance(value, dict) else {}, step_id
+        raise ValueError(f"Invalid flow step (no URI): {step!r}")
+    raise ValueError(f"Invalid flow step: {step!r}")
+
+
+def _order_flow_steps(steps: list[Any]) -> list[Any]:
+    """Topologically order steps that declare ``after``; preserve file order when acyclic."""
+    if not any(isinstance(s, dict) and s.get("after") for s in steps):
+        return steps
+
+    ids: dict[str, int] = {}
+    for i, step in enumerate(steps):
+        if isinstance(step, dict) and step.get("id"):
+            ids[str(step["id"])] = i
+
+    # Kahn on step indices
+    n = len(steps)
+    incoming = [0] * n
+    edges: dict[int, list[int]] = {i: [] for i in range(n)}
+    for j, step in enumerate(steps):
+        if not isinstance(step, dict):
+            continue
+        after = step.get("after")
+        if not after:
+            continue
+        dep_ids = after if isinstance(after, list) else [after]
+        for dep in dep_ids:
+            dep_key = str(dep)
+            if dep_key not in ids:
+                raise ValueError(f"Flow step {step.get('id')!r} depends on unknown step {dep_key!r}")
+            i = ids[dep_key]
+            edges[i].append(j)
+            incoming[j] += 1
+
+    queue = [i for i in range(n) if incoming[i] == 0]
+    queue.sort()
+    ordered: list[int] = []
+    while queue:
+        i = queue.pop(0)
+        ordered.append(i)
+        for j in edges[i]:
+            incoming[j] -= 1
+            if incoming[j] == 0:
+                queue.append(j)
+                queue.sort()
+    if len(ordered) != n:
+        raise ValueError("Flow step graph has a cycle (after: dependencies)")
+    return [steps[i] for i in ordered]
+
+
 def run_flow(runtime: Runtime, path: str, context: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    from .flow_refs import (
+        evaluate_step_if,
+        interpolate_value,
+        merge_payload_from,
+        output_key,
+        resolve_step_uri,
+        store_step_output,
+    )
+    from .flow_artifacts import sync_artifacts_to_runtime
+
     flow = load_yaml_flow(path)
     defaults = dict(flow.get("defaults") or {})
+    config = getattr(runtime, "config", None) or {}
+    resolver_runtime = ((config.get("resolver") or {}).get("runtime") or {})
+    for key, value in resolver_runtime.items():
+        defaults.setdefault(key, value)
+
     if context:
         defaults.update(context)
-    results = []
-    for step in flow.get("do", []):
-        if isinstance(step, str):
-            uri, payload = step, {}
-        elif isinstance(step, dict):
-            uri, payload = next(iter(step.items()))
-            payload = payload or {}
-        else:
-            raise ValueError(f"Invalid flow step: {step!r}")
-        results.append(runtime.call(uri, payload, defaults))
+
+    step_outputs: dict[str, Any] = {}
+    results: list[dict[str, Any]] = []
+    steps = _order_flow_steps(list(flow.get("do") or []))
+
+    for index, step in enumerate(steps):
+        uri, payload, step_id = _parse_flow_step(step)
+        step_dict = step if isinstance(step, dict) else None
+
+        if not evaluate_step_if(step_dict.get("if") if step_dict else None, step_outputs):
+            skipped = {
+                "ok": True,
+                "uri": uri,
+                "skipped": True,
+                "reason": "condition_not_met",
+                "step_id": step_id,
+            }
+            store_step_output(step_outputs, key=output_key(step, step_id, index), call_result=skipped)
+            results.append(skipped)
+            continue
+
+        payload = merge_payload_from(payload, step_outputs)
+        payload = interpolate_value(payload, step_outputs)
+        uri = resolve_step_uri(uri, step_dict, step_outputs)
+
+        call_ctx = dict(defaults)
+        call_ctx["step_outputs"] = step_outputs
+        if step_id:
+            call_ctx["step_id"] = step_id
+
+        result = runtime.call(uri, payload, call_ctx)
+        sync_artifacts_to_runtime(runtime, result)
+        store_step_output(step_outputs, key=output_key(step, step_id, index), call_result=result)
+        if step_id and output_key(step, step_id, index) != step_id:
+            store_step_output(step_outputs, key=step_id, call_result=result)
+        results.append(result)
+
     return results
 
 
