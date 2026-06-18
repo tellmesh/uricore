@@ -57,9 +57,9 @@ where = ["core/python"]
 include = ["uri_control*"]
 
 [tool.pytest.ini_options]
-# ``../urirouter/src`` lets tests import the extracted ``uri_router`` package
+# new sibling pkgs let tests import uri_guard/uri_resolver/uri_transport
 # from the sibling checkout without an editable install (prod uses the wheel).
-pythonpath = ["core/python", ".", "../urirouter/src"]
+pythonpath = ["core/python", ".", "../uriguard/src", "../uriresolver/src", "../uritransport/src"]
 testpaths = ["tests"]
 
 [tool.ruff]
