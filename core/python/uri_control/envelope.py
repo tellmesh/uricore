@@ -1,4 +1,4 @@
-"""URI call envelope normalization (moved from urirouter into uricontrol)."""
+"""URI call envelope normalization (moved from uriresolver into uricontrol)."""
 
 from __future__ import annotations
 

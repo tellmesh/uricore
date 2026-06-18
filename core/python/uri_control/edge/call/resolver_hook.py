@@ -1,4 +1,4 @@
-"""Resolver hook protocol — uricore stays independent of uri_router import graph."""
+"""Resolver hook protocol — uricore stays independent of uri_resolver import graph."""
 
 from __future__ import annotations
 

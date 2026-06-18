@@ -1,7 +1,7 @@
 """Runtime-level transport delegation (``Runtime.call``).
 
-The transport implementation and its unit tests live in the ``urirouter`` package
-(``uri_router.transport``); these tests cover the uricore runtime wiring that
+The transport implementation and its unit tests live in the ``uriresolver`` package
+(``uri_resolver.transport``); these tests cover the uricore runtime wiring that
 delegates a call before matching a local route.
 """
 
