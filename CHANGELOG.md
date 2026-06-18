@@ -101,6 +101,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.12] - 2026-06-18
+
+### Docs
+- Update README.md
+
+### Test
+- Update tests/test_resolver.py
+
+### Other
+- Update uv.lock
+
 ## [0.1.11] - 2026-06-18
 
 ### Docs
