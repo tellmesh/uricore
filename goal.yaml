@@ -260,7 +260,7 @@ publishing:
     github_release:
       enabled: true
       owner: tellmesh
-      repo: ''
+      repo: uricontrol
       repo_map: {}
       token_env: GITHUB_TOKEN
       skip_pypi_retries_on_block: true
