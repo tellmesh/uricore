@@ -128,6 +128,34 @@ def store_step_output(
     }
 
 
+def seed_flow_inputs(
+    flow: dict[str, Any],
+    context: dict[str, Any] | None,
+    step_outputs: dict[str, Any],
+) -> None:
+    """Seed ``step_outputs`` from flow ``inputs`` defaults and call ``context`` overrides."""
+    inputs_block = flow.get("inputs")
+    if not isinstance(inputs_block, dict):
+        return
+    resolved: dict[str, Any] = {}
+    for name, spec in inputs_block.items():
+        if isinstance(spec, dict) and "default" in spec:
+            resolved[str(name)] = spec["default"]
+        else:
+            resolved[str(name)] = spec
+    ctx = context or {}
+    for name in list(resolved):
+        if name in ctx:
+            resolved[name] = ctx[name]
+    payload = ctx.get("payload")
+    if isinstance(payload, dict):
+        for name in list(resolved):
+            if name in payload:
+                resolved[name] = payload[name]
+    for name, value in resolved.items():
+        step_outputs[name] = value
+
+
 def output_key(step: Any, step_id: str | None, index: int) -> str:
     if isinstance(step, dict) and step.get("save_as"):
         return str(step["save_as"])
@@ -143,5 +171,6 @@ __all__ = [
     "output_key",
     "resolve_ref",
     "resolve_step_uri",
+    "seed_flow_inputs",
     "store_step_output",
 ]

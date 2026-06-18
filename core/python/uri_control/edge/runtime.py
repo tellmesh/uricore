@@ -218,6 +218,38 @@ class Runtime:
         if route.side_effects and route.approval == "required" and not approved:
             return {"ok": False, "uri": uri, "type": "policy_denied", "reason": "approval required"}
 
+        # Central operation policy: declarative payload limits enforced before the
+        # handler (and even for dry-run), so safety does not depend on each handler.
+        from uri_router.policy import check_operation_limits
+
+        violation = check_operation_limits(route.operation, payload, self.config)
+        if violation is not None:
+            self.events.append({
+                "event_id": str(uuid.uuid4()),
+                "source_uri": uri,
+                "operation": route.operation,
+                "kind": route.kind,
+                "occurred_at_unix_ms": int(time.time() * 1000),
+                "event_type": f"{route.operation}.policy_denied",
+                "violation": violation,
+            })
+            return {**violation, "uri": uri}
+
+        from uri_router.policy import check_shell_policy
+
+        shell_violation = check_shell_policy(route.operation, payload, params, self.config)
+        if shell_violation is not None:
+            self.events.append({
+                "event_id": str(uuid.uuid4()),
+                "source_uri": uri,
+                "operation": route.operation,
+                "kind": route.kind,
+                "occurred_at_unix_ms": int(time.time() * 1000),
+                "event_type": f"{route.operation}.policy_denied",
+                "violation": shell_violation,
+            })
+            return {**shell_violation, "uri": uri}
+
         ctx = dict(context)
         ctx.update({
             "uri": resolved_uri,
@@ -371,6 +403,7 @@ def run_flow(runtime: Runtime, path: str, context: dict[str, Any] | None = None)
         merge_payload_from,
         output_key,
         resolve_step_uri,
+        seed_flow_inputs,
         store_step_output,
     )
     from .flow_artifacts import sync_artifacts_to_runtime
@@ -386,6 +419,7 @@ def run_flow(runtime: Runtime, path: str, context: dict[str, Any] | None = None)
         defaults.update(context)
 
     step_outputs: dict[str, Any] = {}
+    seed_flow_inputs(flow, context, step_outputs)
     results: list[dict[str, Any]] = []
     steps = _order_flow_steps(list(flow.get("do") or []))
 
@@ -416,15 +450,34 @@ def run_flow(runtime: Runtime, path: str, context: dict[str, Any] | None = None)
 
         result = runtime.call(uri, payload, call_ctx)
         sync_artifacts_to_runtime(runtime, result)
+        if step_id:
+            result["step_id"] = step_id
         store_step_output(step_outputs, key=output_key(step, step_id, index), call_result=result)
         if step_id and output_key(step, step_id, index) != step_id:
             store_step_output(step_outputs, key=step_id, call_result=result)
         results.append(result)
 
+    expect_block = flow.get("expect")
+    if isinstance(expect_block, dict) and expect_block:
+        from .flow_expect import evaluate_flow_expect
+
+        expect_failures = evaluate_flow_expect(flow, results, step_outputs)
+        if expect_failures:
+            results.append(
+                {
+                    "ok": False,
+                    "type": "expect_failed",
+                    "uri": "flow://expect",
+                    "failures": expect_failures,
+                }
+            )
+        else:
+            results.append({"ok": True, "type": "expect_passed", "uri": "flow://expect"})
+
     return results
 
 
-# HTTP transport now lives in urisysedge.http (the single shared implementation).
+# HTTP transport now lives in uri_control.edge.http (the single shared implementation).
 # These thin wrappers preserve the historical urisysedge entry points so callers
 # and edge shims keep working unchanged.
 from .http import make_uri_handler, serve as _serve  # noqa: E402
