@@ -86,6 +86,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.10] - 2026-06-18
+
+### Docs
+- Update README.md
+
+### Other
+- Update VERSION
+- Update core/python/uri_control/edge/call/__init__.py
+- Update core/python/uri_control/edge/call/pipeline.py
+- Update core/python/uri_control/edge/call/resolver_hook.py
+- Update core/python/uri_control/edge/flow/__init__.py
+- Update core/python/uri_control/edge/flow/loader.py
+- Update core/python/uri_control/edge/flow/runner.py
+- Update core/python/uri_control/edge/flow/steps.py
+- Update core/python/uri_control/edge/runtime.py
+- Update uv.lock
+
 ## [0.1.9] - 2026-06-18
 
 ### Added
