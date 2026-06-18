@@ -3,14 +3,14 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "uricore"
+name = "uricontrol"
 version = "0.1.12"
 description = "Thin URI-native control-plane core for software, services and devices."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 authors = [
-  { name = "uricore contributors" },
+  { name = "uricontrol contributors" },
   {name = "Tom Sapletta",email = "tom@sapletta.com"}
 ]
 dependencies = [
@@ -41,7 +41,7 @@ dev = [
 ]
 
 [project.scripts]
-uricore = "uri_control.cli:main"
+uricontrol = "uri_control.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "core/python"}
