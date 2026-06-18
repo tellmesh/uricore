@@ -15,7 +15,7 @@ authors = [
 ]
 dependencies = [
   "PyYAML>=6.0",
-  "urirouter>=0.1.0",
+  "uriguard>=0.1.0",
 ]
 keywords = ["uri", "control-plane", "cqrs", "event-sourcing", "devices", "automation"]
 classifiers = [
@@ -27,10 +27,16 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
+# Mesh runtime: logical-URI resolver + remote transport delegation.
+mesh = [
+  "uriresolver>=0.1.0",
+  "uritransport>=0.1.0",
+]
 # Native MQTT transport delegation (resolver targets with options.broker).
 # Without it, mqtt targets must use an HTTP→MQTT bridge (options.bridge_url).
 mqtt = [
-  "urirouter[mqtt]>=0.1.0",
+  "uriresolver>=0.1.0",
+  "uritransport[mqtt]>=0.1.0",
 ]
 dev = [
   "pytest>=8.0",
@@ -88,3 +94,8 @@ max_commits = 500
 
 # Cost thresholds for badge colors (USD)
 badge_color_thresholds = { low = 1.0, medium = 5.0, high = 10.0, critical = 50.0 }
+
+[tool.uv.sources]
+uriguard = { path = "../uriguard", editable = true }
+uriresolver = { path = "../uriresolver", editable = true }
+uritransport = { path = "../uritransport", editable = true }

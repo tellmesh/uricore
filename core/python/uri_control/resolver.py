@@ -1,6 +1,11 @@
-"""Shim — implementation in ``uri_router.resolver``."""
+"""Shim — implementation in ``uriresolver`` (module ``uri_resolver``). Optional ``[mesh]`` extra."""
 import sys
 
-from uri_router import resolver as _impl
+try:
+    import uri_resolver as _impl
+except ModuleNotFoundError as exc:  # pragma: no cover
+    raise ModuleNotFoundError(
+        "uri_control.resolver requires the 'uriresolver' package — pip install 'uricontrol[mesh]'"
+    ) from exc
 
 sys.modules[__name__] = _impl

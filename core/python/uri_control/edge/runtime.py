@@ -195,14 +195,14 @@ class Runtime:
             self._log_event(route, uri, f"{route.operation}.risk_denied", violation=risk_violation)
             return {**risk_violation, "uri": uri}
 
-        from uri_router.policy import check_operation_limits
+        from uri_guard import check_operation_limits
 
         violation = check_operation_limits(route.operation, payload, self.config)
         if violation is not None:
             self._log_event(route, uri, f"{route.operation}.policy_denied", violation=violation)
             return {**violation, "uri": uri}
 
-        from uri_router.policy import check_shell_policy
+        from uri_guard import check_shell_policy
 
         shell_violation = check_shell_policy(route.operation, payload, params, self.config)
         if shell_violation is not None:
