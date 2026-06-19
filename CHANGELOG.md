@@ -174,7 +174,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Capability `risk` enforcement in `Runtime.call` (`risk_policy.check_risk_requirements`).
-- Central operation payload limits via `uri_router.policy` before handler execution.
+- Central operation payload limits via `uri_resolver.policy` before handler execution.
 - `urisys://flow/<id>` and `runtime://resolver/<op>` handler loaders.
 - `tts` compose alias for `uristt`.
 
